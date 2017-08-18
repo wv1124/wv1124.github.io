@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/18/wechat-share-link-paramters/index.html">
 <meta property="og:site_name" content="哈哈">
 <meta property="og:description" content="微信公众号分享链接参数丢失问题坑，今天运营告诉我，分享商品打开后跳转首页了。打开一试果然，商品参数丢失了。发现分享链接被拼了一些参数。如:from=singlemessage上网一搜很早就有人提这个问题了。为什么之前测试一直好的？由于react开发的公众号页面使用hash router。不中避免被截掉参数，试了几次之后发现还是可以绕过去的。">
-<meta property="og:updated_time" content="2017-08-18T03:04:57.000Z">
+<meta property="og:updated_time" content="2017-08-18T03:17:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信公众号分享链接参数丢失问题">
 <meta name="twitter:description" content="微信公众号分享链接参数丢失问题坑，今天运营告诉我，分享商品打开后跳转首页了。打开一试果然，商品参数丢失了。发现分享链接被拼了一些参数。如:from=singlemessage上网一搜很早就有人提这个问题了。为什么之前测试一直好的？由于react开发的公众号页面使用hash router。不中避免被截掉参数，试了几次之后发现还是可以绕过去的。">
@@ -194,6 +194,10 @@
 <li><a href="http://natapp.d2p.top/?wv=1&amp;from=singlemessage#/detail?productName=123&amp;skuId=&amp;specName=&amp;spuId=61647&amp;?_k=pexs9t" target="_blank" rel="external">http://natapp.d2p.top/?wv=1&amp;from=singlemessage#/detail?productName=123&amp;skuId=&amp;specName=&amp;spuId=61647&amp;?_k=pexs9t</a></li>
 </ul>
 <p>===</p>
+<p>写个方法转换一下分享链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&quot;url-parse&quot;: &quot;^1.1.9&quot;,</div><div class="line">import parse from &apos;url-parse&apos;;</div><div class="line"></div><div class="line">function _changeUrl(url)&#123;</div><div class="line">  let newUrl = parse(url, true);</div><div class="line">  newUrl.set(&apos;hash&apos;, &apos;?wv=1&apos; + newUrl.hash);</div><div class="line">  let ret = newUrl.toString();</div><div class="line">  return ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>商品详情页获取参数方式修改一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line">  let query = this.props.location.query;</div><div class="line">  if (location.href.indexOf(&apos;wv=&apos;) != -1) &#123;</div><div class="line">    // 分享链接; 获取参数;</div><div class="line">  let parsed = parse(location.href.split(&apos;#&apos;)[1], true);</div><div class="line">  console.log(&apos;GoodsDetail url-parse: &apos;, parsed);</div><div class="line">  query = parsed.query;</div><div class="line">  &#125;</div><div class="line"> ......</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -224,8 +228,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2017/08/17/crontab/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux下的定时执行任务</div>
+    <a href="/2017/08/17/android-webview-debug/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动端远程调试 - Weinre</div>
       <i class="icon-circle-right"></i>
     </a>
   
