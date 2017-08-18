@@ -147,39 +147,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="微信公众号分享链接参数丢失问题"><a href="#微信公众号分享链接参数丢失问题" class="headerlink" title="微信公众号分享链接参数丢失问题"></a>微信公众号分享链接参数丢失问题</h1><ul>
-<li><a href="http://natapp.d2p.top/#/category?_k=txjf7q" target="_blank" rel="external">http://natapp.d2p.top/#/category?_k=txjf7q</a><br>-&gt; 分享后</li>
-<li><a href="http://natapp.d2p.top/?from=singlemessage" target="_blank" rel="external">http://natapp.d2p.top/?from=singlemessage</a></li>
-</ul>
-<p>===</p>
-<ul>
-<li><a href="http://natapp.d2p.top?t=123&amp;p=http" target="_blank" rel="external">http://natapp.d2p.top?t=123&amp;p=http</a><br>-&gt; 分享后 </li>
-<li><a href="http://natapp.d2p.top/?t=123&amp;p=http&amp;from=singlemessage" target="_blank" rel="external">http://natapp.d2p.top/?t=123&amp;p=http&amp;from=singlemessage</a></li>
-</ul>
-<p>===</p>
-<ul>
-<li><a href="http://natapp.d2p.top?t=123&amp;p=http/#/category" target="_blank" rel="external">http://natapp.d2p.top?t=123&amp;p=http/#/category</a><br>-&gt; 分享后 </li>
-<li><a href="http://natapp.d2p.top/?t=123&amp;p=http/&amp;from=singlemessage#/category?_k=m3qu17" target="_blank" rel="external">http://natapp.d2p.top/?t=123&amp;p=http/&amp;from=singlemessage#/category?_k=m3qu17</a></li>
-</ul>
-<p>===</p>
-<ul>
-<li><a href="http://natapp.d2p.top/?t=123&amp;p=http#/category" target="_blank" rel="external">http://natapp.d2p.top/?t=123&amp;p=http#/category</a><br>-&gt; 分享后 </li>
-<li><a href="http://natapp.d2p.top/?t=123&amp;p=http&amp;from=singlemessage#/category?_k=pexs9t" target="_blank" rel="external">http://natapp.d2p.top/?t=123&amp;p=http&amp;from=singlemessage#/category?_k=pexs9t</a></li>
-</ul>
-<p>===</p>
-<ul>
-<li>自己找规律</li>
-</ul>
-<p>===</p>
-<ul>
-<li>我们的商品详情:</li>
-<li><a href="http://natapp.d2p.top/#/detail?productName=23123&amp;skuId=&amp;specName=&amp;spuId=61647?_k=pexs9t" target="_blank" rel="external">http://natapp.d2p.top/#/detail?productName=23123&amp;skuId=&amp;specName=&amp;spuId=61647?_k=pexs9t</a><br>-&gt; 手动添加参数?wv=1</li>
-<li><a href="http://natapp.d2p.top/?wv=1#/detail?productName=23123&amp;skuId=&amp;specName=&amp;spuId=61647?_k=pexs9t" target="_blank" rel="external">http://natapp.d2p.top/?wv=1#/detail?productName=23123&amp;skuId=&amp;specName=&amp;spuId=61647?_k=pexs9t</a><br>-&gt; 微信分享后</li>
-<li><a href="http://natapp.d2p.top/?w=1&amp;from=singlemessage#/detail?productName=23123&amp;skuId=&amp;specName=&amp;spuId=61647&amp;?_k=pexs9t" target="_blank" rel="external">http://natapp.d2p.top/?w=1&amp;from=singlemessage#/detail?productName=23123&amp;skuId=&amp;specName=&amp;spuId=61647&amp;?_k=pexs9t</a><br>-&gt; 微信再分享</li>
-<li><a href="http://natapp.d2p.top/?wv=1&amp;from=singlemessage#/detail?productName=123&amp;skuId=&amp;specName=&amp;spuId=61647&amp;?_k=pexs9t" target="_blank" rel="external">http://natapp.d2p.top/?wv=1&amp;from=singlemessage#/detail?productName=123&amp;skuId=&amp;specName=&amp;spuId=61647&amp;?_k=pexs9t</a></li>
-</ul>
-<p>===</p>
-
+        <h1 id="微信公众号分享链接参数丢失问题"><a href="#微信公众号分享链接参数丢失问题" class="headerlink" title="微信公众号分享链接参数丢失问题"></a>微信公众号分享链接参数丢失问题</h1><p>坑，今天运营告诉我，分享商品打开后跳转首页了。打开一试果然，商品参数丢失了。发现分享链接被拼了一些参数。如:from=singlemessage<br>上网一搜很早就有人提这个问题了。为什么之前测试一直好的？<br>由于react开发的公众号页面使用hash router。不中避免被截掉参数，试了几次之后发现还是可以绕过去的。</p>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2017/08/18/wechat-share-link-paramters/#more">more >></a>
+        </p>
       
     </div>
     <div class="article-info article-info-index">
@@ -262,7 +233,7 @@
 
 
   
-    <article id="post-cross-domain" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-git-rebase-i" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -272,7 +243,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/cross-domain/">浏览跨域请求</a>
+      <a class="article-title" href="/2017/08/17/git-rebase-i/">Git合并及调整commit顺序</a>
     </h1>
   
 
@@ -280,29 +251,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>以前没注意到还Ajax跨域发两次请求, 一次Option, 一次真实的请求<br>Option请求发到Server端, Server端检查是不是自己人的请求, Header不能多也不能少必须按照服务配置传才能进行下次真实请求…<br>
+        <h1 id="git-合并不相邻的commit"><a href="#git-合并不相邻的commit" class="headerlink" title="git 合并不相邻的commit"></a>git 合并不相邻的commit</h1><p>Git基本操作应该不都会, 但有些高级用法还是不会, 如我想合并commit及调整commit顺序怎么搞?<br>今天主要来看一怎么合并commit;<br>另外如果想把合并的commit再提交到其它分支可以用cherry-pick, 解决分支之间commit调整;<br>
         <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/cross-domain/#more">more >></a>
+          <a class="article-more-a"  href="/2017/08/17/git-rebase-i/#more">more >></a>
         </p>
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2017/08/17/cross-domain/" class="archive-article-date">
+      <a href="/2017/08/17/git-rebase-i/" class="archive-article-date">
   	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
 	</div>
 
       
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-	</div>
-
 
       <div class="clearfix"></div>
     </div>
@@ -371,7 +337,7 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-cross-domain" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -381,7 +347,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/hello-world/">Hello World</a>
+      <a class="article-title" href="/2017/08/17/cross-domain/">浏览跨域请求</a>
     </h1>
   
 
@@ -389,19 +355,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br>
+        <p>以前没注意到还Ajax跨域发两次请求, 一次Option, 一次真实的请求<br>Option请求发到Server端, Server端检查是不是自己人的请求, Header不能多也不能少必须按照服务配置传才能进行下次真实请求…<br>
         <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/hello-world/#more">more >></a>
+          <a class="article-more-a"  href="/2017/08/17/cross-domain/#more">more >></a>
         </p>
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2017/08/17/hello-world/" class="archive-article-date">
+      <a href="/2017/08/17/cross-domain/" class="archive-article-date">
   	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
 </a>
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+	</div>
+
 
       <div class="clearfix"></div>
     </div>
@@ -418,7 +394,7 @@
 
 
   
-    <article id="post-git-rebase-i" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-react-native-animated" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -428,7 +404,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/git-rebase-i/">Git合并及调整commit顺序</a>
+      <a class="article-title" href="/2017/08/17/react-native-animated/">React Native 入门</a>
     </h1>
   
 
@@ -436,21 +412,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="git-合并不相邻的commit"><a href="#git-合并不相邻的commit" class="headerlink" title="git 合并不相邻的commit"></a>git 合并不相邻的commit</h1><p>Git基本操作应该不都会, 但有些高级用法还是不会, 如我想合并commit及调整commit顺序怎么搞?<br>今天主要来看一怎么合并commit;<br>另外如果想把合并的commit再提交到其它分支可以用cherry-pick, 解决分支之间commit调整;<br>
+        <h1 id="React-Native-动画"><a href="#React-Native-动画" class="headerlink" title="React Native 动画"></a>React Native 动画</h1><p>刚看到RN动画时一头懵, 怎么实现, 这些参数属性是什么? 那里有这些参数文档.<br>后来发现原来是CSS3时提供的, 先了解一下CSS3的动画就不难理解了.<br>
         <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/git-rebase-i/#more">more >></a>
+          <a class="article-more-a"  href="/2017/08/17/react-native-animated/#more">more >></a>
         </p>
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2017/08/17/git-rebase-i/" class="archive-article-date">
+      <a href="/2017/08/17/react-native-animated/" class="archive-article-date">
   	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native-动画/">react-native 动画</a></li></ul>
 	</div>
 
       
@@ -522,58 +498,6 @@
 
 
   
-    <article id="post-react-native-animated" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/react-native-animated/">React Native 入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="React-Native-动画"><a href="#React-Native-动画" class="headerlink" title="React Native 动画"></a>React Native 动画</h1><p>刚看到RN动画时一头懵, 怎么实现, 这些参数属性是什么? 那里有这些参数文档.<br>后来发现原来是CSS3时提供的, 先了解一下CSS3的动画就不难理解了.<br>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/react-native-animated/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2017/08/17/react-native-animated/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native-动画/">react-native 动画</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-wechat-gongzhonghao-dev" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -615,6 +539,53 @@
 	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
 	</div>
 
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/17/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2017/08/17/hello-world/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/08/17/hello-world/" class="archive-article-date">
+  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
+</a>
+      
+      
 
       <div class="clearfix"></div>
     </div>
