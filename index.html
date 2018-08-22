@@ -139,6 +139,63 @@
       <div class="body-wrap">
         
   
+    <article id="post-wechat-auth-scope-1005" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/23/wechat-auth-scope-1005/">微信授权返回“scope参数错误或者没有scop权限”</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="微信授权返回“scope参数错误或者没有scop权限”"><a href="#微信授权返回“scope参数错误或者没有scop权限”" class="headerlink" title="微信授权返回“scope参数错误或者没有scop权限”"></a>微信授权返回“scope参数错误或者没有scop权限”</h1><p>今天有个用户小程序在授权给我们的第三方平台时一直报”scope参数错误或者没有scop权限”， google发发现很多人有这个问题，但都没有解决我们的问题。试了一下公众号也是报一样的问题，就想一个简回调两个参数能错到那里去，先搞定公众号，小程序应该也就可以了。最后发现原因用户公众号没有配置回调域名。<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2018/08/23/wechat-auth-scope-1005/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/08/23/wechat-auth-scope-1005/" class="archive-article-date">
+  	<time datetime="2018-08-22T22:32:31.684Z" itemprop="datePublished"><i class="icon-clock"></i>2018-08-23</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信-公众号-小程序-scope参数错误-1005/">微信, 公众号, 小程序, scope参数错误, 1005</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/微信/">微信</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-dsm-transmission" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -157,19 +214,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="DSM6-1-安装Transmission"><a href="#DSM6-1-安装Transmission" class="headerlink" title="DSM6.1 安装Transmission"></a>DSM6.1 安装Transmission</h1><h3 id="1-网上流传安装方法"><a href="#1-网上流传安装方法" class="headerlink" title="1. 网上流传安装方法"></a>1. 网上流传安装方法</h3><ul>
-<li>配置第三方源：<a href="http://packages.synocommunity.com/" target="_blank" rel="external">http://packages.synocommunity.com/</a></li>
-<li>允许任何发行者</li>
-<li><img src="/media/Snip20180822_6.png" alt=""><br><img src="/media/Snip20180822_9.png" alt=""></li>
-</ul>
-<p>但这个安装一直失败。直接访问网站也访问不了<a href="http://packages.synocommunity.com/" target="_blank" rel="external">http://packages.synocommunity.com/</a></p>
-<h3 id="自己编译安装"><a href="#自己编译安装" class="headerlink" title="自己编译安装"></a>自己编译安装</h3><p>编译环境： <a href="https://github.com/SynoCommunity/spksrc" target="_blank" rel="external">https://github.com/SynoCommunity/spksrc</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sudo dpkg --add-architecture i386 &amp;&amp; sudo apt-get update</div><div class="line">sudo aptitude install build-essential debootstrap python-pip automake libgmp3-dev libltdl-dev libunistring-dev libffi-dev libcppunit-dev ncurses-dev imagemagick libssl-dev pkg-config zlib1g-dev gettext git curl subversion check intltool gperf flex bison xmlto php5 expect libgc-dev mercurial cython lzip cmake swig libc6-i386 libmount-dev libpcre3-dev libbz2-dev</div><div class="line">sudo pip install -U setuptools pip wheel httpie</div><div class="line"></div><div class="line">git clone https://github.com/SynoCommunity/spksrc.git</div><div class="line">cd spksrc/</div><div class="line">make setup</div><div class="line">cd spk/transmission</div><div class="line">make arch-bromolow</div></pre></td></tr></table></figure>
-<p>我编译的是bromolow, 这里有具体说明： <a href="https://github.com/SynoCommunity/spksrc/wiki/Developers-HOW-TO" target="_blank" rel="external">https://github.com/SynoCommunity/spksrc/wiki/Developers-HOW-TO</a>, 编译完成spk文件在spksrc/packages/目录下.</p>
-<p>手动安装spk就可以了，</p>
-<h3 id="更新web-ui"><a href="#更新web-ui" class="headerlink" title="更新web-ui"></a>更新web-ui</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh</div><div class="line"></div><div class="line">sudo ./install-tr-control-cn.sh</div><div class="line"></div><div class="line">	欢迎使用 Transmission Web Control 中文安装脚本。</div><div class="line">	官方帮助文档：https://github.com/ronggang/transmission-web-control/wiki</div><div class="line">	安装脚本版本：1.2.2-beta</div><div class="line"></div><div class="line">	1. 安装最新的发布版本（release）；</div><div class="line">	2. 安装指定版本，可用于降级；</div><div class="line">	3. 恢复到官方UI；</div><div class="line">	4. 重新下载安装脚本（./install-tr-control-cn.sh）；</div><div class="line">	5. 检测 Transmission 是否已启动；</div><div class="line">	6. 指定安装目录；</div><div class="line">	9. 安装最新代码库中的内容（master）；</div><div class="line">	===================</div><div class="line">	0. 退出安装；</div><div class="line"></div><div class="line">	请输入对应的数字：1</div></pre></td></tr></table></figure>
-<p>安装完成：<br><img src="/media/Snip20180822_11.png" alt=""></p>
-
+        <h1 id="DSM6-1-安装Transmission"><a href="#DSM6-1-安装Transmission" class="headerlink" title="DSM6.1 安装Transmission"></a>DSM6.1 安装Transmission</h1><p><a href="http://packages.synocommunity.com/最近访问不了了，不能安装Transmission，于是想自己编译，折腾群晖官方编译环境一直进行不下去，跟文档不匹配，搜索发现spksrc这个第三方编译环境里直接就有Transmission，packages.synocommunity.com应该也是使用spksrc编译的，很方便。" target="_blank" rel="external">http://packages.synocommunity.com/最近访问不了了，不能安装Transmission，于是想自己编译，折腾群晖官方编译环境一直进行不下去，跟文档不匹配，搜索发现spksrc这个第三方编译环境里直接就有Transmission，packages.synocommunity.com应该也是使用spksrc编译的，很方便。</a><br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2018/08/22/dsm-transmission/#more">more >></a>
+        </p>
       
     </div>
     <div class="article-info article-info-index">
@@ -280,29 +328,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="NFS配置"><a href="#NFS配置" class="headerlink" title="NFS配置"></a>NFS配置</h1><h3 id="Mac开NFS-server-gt-Linux"><a href="#Mac开NFS-server-gt-Linux" class="headerlink" title="Mac开NFS server -&gt; Linux"></a>Mac开NFS server -&gt; Linux</h3><p>Mac上修改/etc/exports:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Users/wv/nfs-server -maproot=root:wheel -network 192.168.2.0 -mask 255.255.255.0</div></pre></td></tr></table></figure>
-<ul>
-<li>/Users/hxz/test: 要通过 NFS 共享的文件目录。</li>
-<li>-maproot=root:wheel: 把 client 端的 root用户映射为 Mac OS 上的 root，client端的 root组映射为 Mac OS 上的 wheel (gid=0) 组。</li>
-<li>-network 192.168.2.0: 子网网段。</li>
-<li>-mask 255.255.255.0: 网络掩码</li>
-</ul>
-<p>mac重启 nfsd：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo nfsd restart</div><div class="line"></div><div class="line"># 查看</div><div class="line">showmount -e</div></pre></td></tr></table></figure>
-<p>客户端：Linux</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo mount -t nfs 192.168.2.235:/Users/wv/nfs-server /home/wv/nfs-client</div><div class="line"></div><div class="line">sudo mount -t nfs 172.19.3.25:/Users/wv/nfs-server /root/nfs-client</div></pre></td></tr></table></figure>
-<p>Debian:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apt-get install nfs-common</div><div class="line">mkdir /root/nfs-client</div><div class="line">mount 172.19.3.25:/Users/wv/nfs-server /root/nfs-client</div><div class="line"></div><div class="line">#/etc/fstab</div><div class="line">192.168.1.99:/srv/upload /mnt/upload nfs rsize=8192,wsize=8192,timeo=14,intr</div></pre></td></tr></table></figure>
-<h3 id="Linux做为NFS-Server"><a href="#Linux做为NFS-Server" class="headerlink" title="Linux做为NFS Server"></a>Linux做为NFS Server</h3><p>Linux编辑etc/exports：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/home/wv/nfs-server 192.168.2.0/255.255.255.0(rw,all_squash,insecure,anonuid=1000,anongid=1000)</div><div class="line">sudo service nfs-kernel-server restart</div><div class="line">showmount -e</div></pre></td></tr></table></figure>
-<p>Debian NFS Server</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">apt-get install nfs-common nfs-kernel-server</div><div class="line">mkdir /root/nfs-server</div><div class="line">chmod a+w /root/nfs-server</div><div class="line"></div><div class="line">#/etc/exports</div><div class="line">/root/nfs-server  172.19.3.0(rw,sync)</div><div class="line"></div><div class="line">/etc/init.d/nfs-kernel-server start</div><div class="line"></div><div class="line">mount -o exec /dev/cdrom /media/cdrom</div></pre></td></tr></table></figure>
-<p>客户端：Mac</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo mount -t nfs 192.168.2.21:/home/wv/nfs-server /Users/wv/nfs-client</div><div class="line">sudo mount -t nfs 10.211.55.6:/root/nfs-server /Users/wv/nfs-client</div></pre></td></tr></table></figure>
-<h3 id="卸载NFS"><a href="#卸载NFS" class="headerlink" title="卸载NFS"></a>卸载NFS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo umount -t nfs nfs_dir</div></pre></td></tr></table></figure>
-<h3 id="MAC挂截"><a href="#MAC挂截" class="headerlink" title="MAC挂截"></a>MAC挂截</h3><p><img src="/media/nfs-server-mac.png" alt=""></p>
-
+        <h1 id="NFS配置"><a href="#NFS配置" class="headerlink" title="NFS配置"></a>NFS配置</h1><p>Mac跟Linux配置NFS互访。<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2018/02/23/mac-linux-nfs/#more">more >></a>
+        </p>
       
     </div>
     <div class="article-info article-info-index">
@@ -395,7 +424,7 @@
 
 
   
-    <article id="post-android-webview-debug" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -405,7 +434,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/android-webview-debug/">移动端远程调试 - Weinre</a>
+      <a class="article-title" href="/2017/08/17/hello-world/">Hello World</a>
     </h1>
   
 
@@ -413,29 +442,71 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="移动端远程调试-Weinre"><a href="#移动端远程调试-Weinre" class="headerlink" title="移动端远程调试 - Weinre"></a>移动端远程调试 - Weinre</h1><p>Weinre可以debug手机浏览器或者原生应用嵌入的WebView, 支持Android和ios. 强大吧;<br>还支持调试微信中页面, 不用微信那坑人开发者工具.<br>下面看一下我在Mac是怎么玩的.<br>
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br>
         <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/android-webview-debug/#more">more >></a>
+          <a class="article-more-a"  href="/2017/08/17/hello-world/#more">more >></a>
         </p>
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2017/08/17/android-webview-debug/" class="archive-article-date">
+      <a href="/2017/08/17/hello-world/" class="archive-article-date">
+  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-crontab" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/17/crontab/">Linux下的定时执行任务</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux下定时执行任务"><a href="#Linux下定时执行任务" class="headerlink" title="Linux下定时执行任务"></a>Linux下定时执行任务</h1>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2017/08/17/crontab/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/08/17/crontab/" class="archive-article-date">
   	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webview/">webview</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
 	</div>
 
       
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/移动端开发/">移动端开发</a>
-	</div>
-
 
       <div class="clearfix"></div>
     </div>
@@ -509,157 +580,6 @@
 
 
   
-    <article id="post-crontab" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/crontab/">Linux下的定时执行任务</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Linux下定时执行任务"><a href="#Linux下定时执行任务" class="headerlink" title="Linux下定时执行任务"></a>Linux下定时执行任务</h1>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/crontab/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2017/08/17/crontab/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/hello-world/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2017/08/17/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-      
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-react-native-animated" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/react-native-animated/">React Native 入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="React-Native-动画"><a href="#React-Native-动画" class="headerlink" title="React Native 动画"></a>React Native 动画</h1><p>刚看到RN动画时一头懵, 怎么实现, 这些参数属性是什么? 那里有这些参数文档.<br>后来发现原来是CSS3时提供的, 先了解一下CSS3的动画就不难理解了.<br>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/react-native-animated/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2017/08/17/react-native-animated/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native-动画/">react-native 动画</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-sendmail-linux" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -696,6 +616,63 @@
 	</div>
 
       
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-android-webview-debug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/17/android-webview-debug/">移动端远程调试 - Weinre</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="移动端远程调试-Weinre"><a href="#移动端远程调试-Weinre" class="headerlink" title="移动端远程调试 - Weinre"></a>移动端远程调试 - Weinre</h1><p>Weinre可以debug手机浏览器或者原生应用嵌入的WebView, 支持Android和ios. 强大吧;<br>还支持调试微信中页面, 不用微信那坑人开发者工具.<br>下面看一下我在Mac是怎么玩的.<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2017/08/17/android-webview-debug/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/08/17/android-webview-debug/" class="archive-article-date">
+  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webview/">webview</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/移动端开发/">移动端开发</a>
+	</div>
+
 
       <div class="clearfix"></div>
     </div>
@@ -777,7 +754,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/DSM-Transmission/" style="font-size: 10px;">DSM, Transmission</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mac-Linux-NFS/" style="font-size: 10px;">Mac, Linux, NFS</a> <a href="/tags/http-https-ssl/" style="font-size: 10px;">http, https, ssl</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a>
+    				<a href="/tags/DSM-Transmission/" style="font-size: 10px;">DSM, Transmission</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mac-Linux-NFS/" style="font-size: 10px;">Mac, Linux, NFS</a> <a href="/tags/http-https-ssl/" style="font-size: 10px;">http, https, ssl</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a> <a href="/tags/微信-公众号-小程序-scope参数错误-1005/" style="font-size: 10px;">微信, 公众号, 小程序, scope参数错误, 1005</a>
     			</div>
     	</section>
     

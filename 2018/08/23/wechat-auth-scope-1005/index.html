@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: http, https, ssl | 哈哈</title>
+  <title>微信授权返回“scope参数错误或者没有scop权限” | 哈哈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="哈哈">
-<meta property="og:url" content="http://yoursite.com/tags/http-https-ssl/index.html">
+  <meta name="description" content="微信授权返回“scope参数错误或者没有scop权限”今天有个用户小程序在授权给我们的第三方平台时一直报”scope参数错误或者没有scop权限”， google发发现很多人有这个问题，但都没有解决我们的问题。试了一下公众号也是报一样的问题，就想一个简回调两个参数能错到那里去，先搞定公众号，小程序应该也就可以了。最后发现原因用户公众号没有配置回调域名。">
+<meta name="keywords" content="微信, 公众号, 小程序, scope参数错误, 1005">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信授权返回“scope参数错误或者没有scop权限”">
+<meta property="og:url" content="http://yoursite.com/2018/08/23/wechat-auth-scope-1005/index.html">
 <meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="微信授权返回“scope参数错误或者没有scop权限”今天有个用户小程序在授权给我们的第三方平台时一直报”scope参数错误或者没有scop权限”， google发发现很多人有这个问题，但都没有解决我们的问题。试了一下公众号也是报一样的问题，就想一个简回调两个参数能错到那里去，先搞定公众号，小程序应该也就可以了。最后发现原因用户公众号没有配置回调域名。">
+<meta property="og:updated_time" content="2018-08-22T23:04:44.605Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="哈哈">
+<meta name="twitter:title" content="微信授权返回“scope参数错误或者没有scop权限”">
+<meta name="twitter:description" content="微信授权返回“scope参数错误或者没有scop权限”今天有个用户小程序在授权给我们的第三方平台时一直报”scope参数错误或者没有scop权限”， google发发现很多人有这个问题，但都没有解决我们的问题。试了一下公众号也是报一样的问题，就想一个简回调两个参数能错到那里去，先搞定公众号，小程序应该也就可以了。最后发现原因用户公众号没有配置回调域名。">
   
     <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
   
@@ -137,59 +142,120 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-wechat-auth-scope-1005" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/06/https/" class="archive-article-date">
-  	<time datetime="2018-06-06T08:41:37.000Z" itemprop="datePublished"><i class="icon-clock"></i>2018-06-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/06/https/">https</a>
+    <h1 class="article-title" itemprop="name">
+      微信授权返回“scope参数错误或者没有scop权限”
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="微信授权返回“scope参数错误或者没有scop权限”"><a href="#微信授权返回“scope参数错误或者没有scop权限”" class="headerlink" title="微信授权返回“scope参数错误或者没有scop权限”"></a>微信授权返回“scope参数错误或者没有scop权限”</h1><p>今天有个用户小程序在授权给我们的第三方平台时一直报”scope参数错误或者没有scop权限”， google发发现很多人有这个问题，但都没有解决我们的问题。试了一下公众号也是报一样的问题，就想一个简回调两个参数能错到那里去，先搞定公众号，小程序应该也就可以了。最后发现原因用户公众号没有配置回调域名。<br><a id="more"></a></p>
+<h3 id="Charles抓包公众号发现报错就是授权回调获取Code时"><a href="#Charles抓包公众号发现报错就是授权回调获取Code时" class="headerlink" title="Charles抓包公众号发现报错就是授权回调获取Code时"></a>Charles抓包公众号发现报错就是授权回调获取Code时</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=SCOPE&amp;state=STATE&amp;component_appid=component_appid#wechat_redirect</div></pre></td></tr></table></figure>
+<p>上面是第三方平台授权回调多了个component_appid参数。<br>最小系统法，先使用最简单的公众号授权看看能不能成功，要使用公众号就得配这回调域名，发现配好回调域名后我构造了一个授权回调参数直接发到微信回点击，回调成功了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdd7c270c72123456&amp;redirect_uri=http%3A%2F%2Fwww.d2p.top&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE#wechat_redirect</div></pre></td></tr></table></figure>
+<p>再试第三方平台授权回调也是成功的。问题解决了，就是没有配置授权回调域名，以前一直认为第三方不使用用户公众号授权回调域名可以不用配置其实是不正确的。必须要配置。</p>
+<h3 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h3><ul>
+<li><ol>
+<li>是服务号吗？ 订阅号不行的。</li>
+</ol>
+</li>
+<li><ol>
+<li>检查用户服务号是否审核通过。</li>
+</ol>
+</li>
+<li><ol>
+<li>检查上面链接参数位置。</li>
+</ol>
+</li>
+<li><ol>
+<li>检查服务号是否已经获取相关权限。</li>
+</ol>
+</li>
+<li><ol>
+<li>检查是否配置回调域名。</li>
+</ol>
+</li>
+</ul>
+<p>经过排查发现我们的错误就是没有配置恩置调域名，尽管我们是第三方平台代用户公众号授权，用户的公众号也是需要配置这个的。随便配一个回调域名就行，其实是不使用的，公众号使用的是第三方平台授权回调域名。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li>微信第三方平台授权文档: <a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419318590&amp;token=&amp;lang=zh_CN" target="_blank" rel="external">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;id=open1419318590&amp;token=&amp;lang=zh_CN</a></li>
+<li>公众号授权文档: <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842" target="_blank" rel="external">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842</a></li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/08/23/wechat-auth-scope-1005/" class="archive-article-date">
+  	<time datetime="2018-08-22T22:32:31.684Z" itemprop="datePublished"><i class="icon-clock"></i>2018-08-23</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http-https-ssl/">http, https, ssl</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信-公众号-小程序-scope参数错误-1005/">微信, 公众号, 小程序, scope参数错误, 1005</a></li></ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/http/">http</a>
+	<a class="article-category-link" href="/categories/微信/">微信</a>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/22/dsm-transmission/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DSM6.1 安装Transmission</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
 
 
       </div>
@@ -212,9 +278,9 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
