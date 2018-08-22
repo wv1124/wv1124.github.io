@@ -6,14 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: 前端开发 | 哈哈</title>
+  <title>DSM6.1 安装Transmission | 哈哈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="哈哈">
-<meta property="og:url" content="http://yoursite.com/categories/前端开发/index.html">
+  <meta name="description" content="DSM6.1 安装Transmission1. 网上流传安装方法 配置第三方源：http://packages.synocommunity.com/ 允许任何发行者   但这个安装一直失败。直接访问网站也访问不了http://packages.synocommunity.com/ 自己编译安装编译环境： https://github.com/SynoCommunity/spksrc 1234567">
+<meta name="keywords" content="DSM, Transmission">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DSM6.1 安装Transmission">
+<meta property="og:url" content="http://yoursite.com/2018/08/22/dsm-transmission/index.html">
 <meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="DSM6.1 安装Transmission1. 网上流传安装方法 配置第三方源：http://packages.synocommunity.com/ 允许任何发行者   但这个安装一直失败。直接访问网站也访问不了http://packages.synocommunity.com/ 自己编译安装编译环境： https://github.com/SynoCommunity/spksrc 1234567">
+<meta property="og:image" content="http://yoursite.com/media/Snip20180822_6.png">
+<meta property="og:image" content="http://yoursite.com/media/Snip20180822_9.png">
+<meta property="og:image" content="http://yoursite.com/media/Snip20180822_11.png">
+<meta property="og:updated_time" content="2018-08-22T13:32:34.757Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="哈哈">
+<meta name="twitter:title" content="DSM6.1 安装Transmission">
+<meta name="twitter:description" content="DSM6.1 安装Transmission1. 网上流传安装方法 配置第三方源：http://packages.synocommunity.com/ 允许任何发行者   但这个安装一直失败。直接访问网站也访问不了http://packages.synocommunity.com/ 自己编译安装编译环境： https://github.com/SynoCommunity/spksrc 1234567">
+<meta name="twitter:image" content="http://yoursite.com/media/Snip20180822_6.png">
   
     <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
   
@@ -137,133 +146,100 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-dsm-transmission" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
+    <h1 class="article-title" itemprop="name">
+      DSM6.1 安装Transmission
+    </h1>
   
+
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
+        <h1 id="DSM6-1-安装Transmission"><a href="#DSM6-1-安装Transmission" class="headerlink" title="DSM6.1 安装Transmission"></a>DSM6.1 安装Transmission</h1><h3 id="1-网上流传安装方法"><a href="#1-网上流传安装方法" class="headerlink" title="1. 网上流传安装方法"></a>1. 网上流传安装方法</h3><ul>
+<li>配置第三方源：<a href="http://packages.synocommunity.com/" target="_blank" rel="external">http://packages.synocommunity.com/</a></li>
+<li>允许任何发行者</li>
+<li><img src="/media/Snip20180822_6.png" alt=""><br><img src="/media/Snip20180822_9.png" alt=""></li>
+</ul>
+<p>但这个安装一直失败。直接访问网站也访问不了<a href="http://packages.synocommunity.com/" target="_blank" rel="external">http://packages.synocommunity.com/</a></p>
+<h3 id="自己编译安装"><a href="#自己编译安装" class="headerlink" title="自己编译安装"></a>自己编译安装</h3><p>编译环境： <a href="https://github.com/SynoCommunity/spksrc" target="_blank" rel="external">https://github.com/SynoCommunity/spksrc</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sudo dpkg --add-architecture i386 &amp;&amp; sudo apt-get update</div><div class="line">sudo aptitude install build-essential debootstrap python-pip automake libgmp3-dev libltdl-dev libunistring-dev libffi-dev libcppunit-dev ncurses-dev imagemagick libssl-dev pkg-config zlib1g-dev gettext git curl subversion check intltool gperf flex bison xmlto php5 expect libgc-dev mercurial cython lzip cmake swig libc6-i386 libmount-dev libpcre3-dev libbz2-dev</div><div class="line">sudo pip install -U setuptools pip wheel httpie</div><div class="line"></div><div class="line">git clone https://github.com/SynoCommunity/spksrc.git</div><div class="line">cd spksrc/</div><div class="line">make setup</div><div class="line">cd spk/transmission</div><div class="line">make arch-bromolow</div></pre></td></tr></table></figure>
+<p>我编译的是bromolow, 这里有具体说明： <a href="https://github.com/SynoCommunity/spksrc/wiki/Developers-HOW-TO" target="_blank" rel="external">https://github.com/SynoCommunity/spksrc/wiki/Developers-HOW-TO</a>, 编译完成spk文件在spksrc/packages/目录下.</p>
+<p>手动安装spk就可以了，</p>
+<h3 id="更新web-ui"><a href="#更新web-ui" class="headerlink" title="更新web-ui"></a>更新web-ui</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh</div><div class="line"></div><div class="line">sudo ./install-tr-control-cn.sh</div><div class="line"></div><div class="line">	欢迎使用 Transmission Web Control 中文安装脚本。</div><div class="line">	官方帮助文档：https://github.com/ronggang/transmission-web-control/wiki</div><div class="line">	安装脚本版本：1.2.2-beta</div><div class="line"></div><div class="line">	1. 安装最新的发布版本（release）；</div><div class="line">	2. 安装指定版本，可用于降级；</div><div class="line">	3. 恢复到官方UI；</div><div class="line">	4. 重新下载安装脚本（./install-tr-control-cn.sh）；</div><div class="line">	5. 检测 Transmission 是否已启动；</div><div class="line">	6. 指定安装目录；</div><div class="line">	9. 安装最新代码库中的内容（master）；</div><div class="line">	===================</div><div class="line">	0. 退出安装；</div><div class="line"></div><div class="line">	请输入对应的数字：1</div></pre></td></tr></table></figure>
+<p>安装完成：<br><img src="/media/Snip20180822_11.png" alt=""></p>
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/18/wechat-share-link-paramters/" class="archive-article-date">
-  	<time datetime="2017-08-18T02:44:24.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-18</time>
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/08/22/dsm-transmission/" class="archive-article-date">
+  	<time datetime="2018-08-22T13:12:10.920Z" itemprop="datePublished"><i class="icon-clock"></i>2018-08-22</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/18/wechat-share-link-paramters/">微信公众号分享链接参数丢失问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DSM-Transmission/">DSM, Transmission</a></li></ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+	<a class="article-category-link" href="/categories/DSM/">DSM</a>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/17/cross-domain/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/17/cross-domain/">浏览跨域请求</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/06/https/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">https</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/17/wechat-gongzhonghao-dev/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/17/wechat-gongzhonghao-dev/">微信公众号开发</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
 
 
       </div>
@@ -286,10 +262,10 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true

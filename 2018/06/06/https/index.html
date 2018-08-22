@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: 前端开发 | 哈哈</title>
+  <title>https | 哈哈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="哈哈">
-<meta property="og:url" content="http://yoursite.com/categories/前端开发/index.html">
+  <meta name="description" content="https目前运行的公开密钥基础架构有一个天生的缺陷:所有的CA都可以在不经域名所有者同意的情况下给任意域名签发证书。经常用到https，但没详细了解过https是怎么工作的，看了一点资料，记录一下.">
+<meta name="keywords" content="http, https, ssl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="https">
+<meta property="og:url" content="http://yoursite.com/2018/06/06/https/index.html">
 <meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="https目前运行的公开密钥基础架构有一个天生的缺陷:所有的CA都可以在不经域名所有者同意的情况下给任意域名签发证书。经常用到https，但没详细了解过https是怎么工作的，看了一点资料，记录一下.">
+<meta property="og:updated_time" content="2018-06-08T02:09:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="哈哈">
+<meta name="twitter:title" content="https">
+<meta name="twitter:description" content="https目前运行的公开密钥基础架构有一个天生的缺陷:所有的CA都可以在不经域名所有者同意的情况下给任意域名签发证书。经常用到https，但没详细了解过https是怎么工作的，看了一点资料，记录一下.">
   
     <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
   
@@ -137,133 +142,109 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-https" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
+    <h1 class="article-title" itemprop="name">
+      https
+    </h1>
   
+
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
+        <h1 id="https"><a href="#https" class="headerlink" title="https"></a>https</h1><p>目前运行的公开密钥基础架构有一个天生的缺陷:所有的CA都可以在不经域名所有者同意的情况下给任意域名签发证书。<br>经常用到https，但没详细了解过https是怎么工作的，看了一点资料，记录一下.<br><a id="more"></a></p>
+<h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><h3 id="1-1-非对称加密"><a href="#1-1-非对称加密" class="headerlink" title="1.1 非对称加密"></a>1.1 非对称加密</h3><pre><code>- 生成一对公钥和私钥
+- 加密：公钥+明文-&gt;密文
+- 解密：私钥+密文-&gt;明文
+</code></pre><h3 id="1-2-数字证书"><a href="#1-2-数字证书" class="headerlink" title="1.2 数字证书"></a>1.2 数字证书</h3><ul>
+<li>在虚拟世界里，数字证书就是身份证</li>
+<li>数字证书构成:<br>  证书信息: 过期时间和序列号<br>  所有者信息: 姓名<br>  所有者公钥: CA颁发或者自自己生成。<br>  公钥的数字签名: 防止公钥伪造。 </li>
+</ul>
+<h2 id="2-WireShark抓包分析"><a href="#2-WireShark抓包分析" class="headerlink" title="2. WireShark抓包分析"></a>2. WireShark抓包分析</h2><h3 id="2-1-百度https-www-baidu-com"><a href="#2-1-百度https-www-baidu-com" class="headerlink" title="2.1 百度https://www.baidu.com"></a>2.1 百度<a href="https://www.baidu.com" target="_blank" rel="external">https://www.baidu.com</a></h3><ul>
+<li>ping 一下查看ip;</li>
+<li>设置过滤规则 ip.addr == 112.80.248.74 &amp;&amp; ssl</li>
+</ul>
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/18/wechat-share-link-paramters/" class="archive-article-date">
-  	<time datetime="2017-08-18T02:44:24.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-18</time>
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/06/06/https/" class="archive-article-date">
+  	<time datetime="2018-06-06T08:41:37.000Z" itemprop="datePublished"><i class="icon-clock"></i>2018-06-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/18/wechat-share-link-paramters/">微信公众号分享链接参数丢失问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http-https-ssl/">http, https, ssl</a></li></ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+	<a class="article-category-link" href="/categories/http/">http</a>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/17/cross-domain/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/17/cross-domain/">浏览跨域请求</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+  
+<nav id="article-nav">
+  
+    <a href="/2018/08/22/dsm-transmission/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          DSM6.1 安装Transmission
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/23/mac-linux-nfs/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">NFS配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/17/wechat-gongzhonghao-dev/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/17/wechat-gongzhonghao-dev/">微信公众号开发</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
 
 
       </div>
@@ -286,10 +267,10 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true

@@ -139,6 +139,205 @@
       <div class="body-wrap">
         
   
+    <article id="post-dsm-transmission" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/22/dsm-transmission/">DSM6.1 安装Transmission</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="DSM6-1-安装Transmission"><a href="#DSM6-1-安装Transmission" class="headerlink" title="DSM6.1 安装Transmission"></a>DSM6.1 安装Transmission</h1><h3 id="1-网上流传安装方法"><a href="#1-网上流传安装方法" class="headerlink" title="1. 网上流传安装方法"></a>1. 网上流传安装方法</h3><ul>
+<li>配置第三方源：<a href="http://packages.synocommunity.com/" target="_blank" rel="external">http://packages.synocommunity.com/</a></li>
+<li>允许任何发行者</li>
+<li><img src="/media/Snip20180822_6.png" alt=""><br><img src="/media/Snip20180822_9.png" alt=""></li>
+</ul>
+<p>但这个安装一直失败。直接访问网站也访问不了<a href="http://packages.synocommunity.com/" target="_blank" rel="external">http://packages.synocommunity.com/</a></p>
+<h3 id="自己编译安装"><a href="#自己编译安装" class="headerlink" title="自己编译安装"></a>自己编译安装</h3><p>编译环境： <a href="https://github.com/SynoCommunity/spksrc" target="_blank" rel="external">https://github.com/SynoCommunity/spksrc</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sudo dpkg --add-architecture i386 &amp;&amp; sudo apt-get update</div><div class="line">sudo aptitude install build-essential debootstrap python-pip automake libgmp3-dev libltdl-dev libunistring-dev libffi-dev libcppunit-dev ncurses-dev imagemagick libssl-dev pkg-config zlib1g-dev gettext git curl subversion check intltool gperf flex bison xmlto php5 expect libgc-dev mercurial cython lzip cmake swig libc6-i386 libmount-dev libpcre3-dev libbz2-dev</div><div class="line">sudo pip install -U setuptools pip wheel httpie</div><div class="line"></div><div class="line">git clone https://github.com/SynoCommunity/spksrc.git</div><div class="line">cd spksrc/</div><div class="line">make setup</div><div class="line">cd spk/transmission</div><div class="line">make arch-bromolow</div></pre></td></tr></table></figure>
+<p>我编译的是bromolow, 这里有具体说明： <a href="https://github.com/SynoCommunity/spksrc/wiki/Developers-HOW-TO" target="_blank" rel="external">https://github.com/SynoCommunity/spksrc/wiki/Developers-HOW-TO</a>, 编译完成spk文件在spksrc/packages/目录下.</p>
+<p>手动安装spk就可以了，</p>
+<h3 id="更新web-ui"><a href="#更新web-ui" class="headerlink" title="更新web-ui"></a>更新web-ui</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh</div><div class="line"></div><div class="line">sudo ./install-tr-control-cn.sh</div><div class="line"></div><div class="line">	欢迎使用 Transmission Web Control 中文安装脚本。</div><div class="line">	官方帮助文档：https://github.com/ronggang/transmission-web-control/wiki</div><div class="line">	安装脚本版本：1.2.2-beta</div><div class="line"></div><div class="line">	1. 安装最新的发布版本（release）；</div><div class="line">	2. 安装指定版本，可用于降级；</div><div class="line">	3. 恢复到官方UI；</div><div class="line">	4. 重新下载安装脚本（./install-tr-control-cn.sh）；</div><div class="line">	5. 检测 Transmission 是否已启动；</div><div class="line">	6. 指定安装目录；</div><div class="line">	9. 安装最新代码库中的内容（master）；</div><div class="line">	===================</div><div class="line">	0. 退出安装；</div><div class="line"></div><div class="line">	请输入对应的数字：1</div></pre></td></tr></table></figure>
+<p>安装完成：<br><img src="/media/Snip20180822_11.png" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/08/22/dsm-transmission/" class="archive-article-date">
+  	<time datetime="2018-08-22T13:12:10.920Z" itemprop="datePublished"><i class="icon-clock"></i>2018-08-22</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DSM-Transmission/">DSM, Transmission</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/DSM/">DSM</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-https" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/06/https/">https</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="https"><a href="#https" class="headerlink" title="https"></a>https</h1><p>目前运行的公开密钥基础架构有一个天生的缺陷:所有的CA都可以在不经域名所有者同意的情况下给任意域名签发证书。<br>经常用到https，但没详细了解过https是怎么工作的，看了一点资料，记录一下.<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2018/06/06/https/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/06/06/https/" class="archive-article-date">
+  	<time datetime="2018-06-06T08:41:37.000Z" itemprop="datePublished"><i class="icon-clock"></i>2018-06-06</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http-https-ssl/">http, https, ssl</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/http/">http</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-mac-linux-nfs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/23/mac-linux-nfs/">NFS配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NFS配置"><a href="#NFS配置" class="headerlink" title="NFS配置"></a>NFS配置</h1><h3 id="Mac开NFS-server-gt-Linux"><a href="#Mac开NFS-server-gt-Linux" class="headerlink" title="Mac开NFS server -&gt; Linux"></a>Mac开NFS server -&gt; Linux</h3><p>Mac上修改/etc/exports:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Users/wv/nfs-server -maproot=root:wheel -network 192.168.2.0 -mask 255.255.255.0</div></pre></td></tr></table></figure>
+<ul>
+<li>/Users/hxz/test: 要通过 NFS 共享的文件目录。</li>
+<li>-maproot=root:wheel: 把 client 端的 root用户映射为 Mac OS 上的 root，client端的 root组映射为 Mac OS 上的 wheel (gid=0) 组。</li>
+<li>-network 192.168.2.0: 子网网段。</li>
+<li>-mask 255.255.255.0: 网络掩码</li>
+</ul>
+<p>mac重启 nfsd：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo nfsd restart</div><div class="line"></div><div class="line"># 查看</div><div class="line">showmount -e</div></pre></td></tr></table></figure>
+<p>客户端：Linux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo mount -t nfs 192.168.2.235:/Users/wv/nfs-server /home/wv/nfs-client</div><div class="line"></div><div class="line">sudo mount -t nfs 172.19.3.25:/Users/wv/nfs-server /root/nfs-client</div></pre></td></tr></table></figure>
+<p>Debian:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apt-get install nfs-common</div><div class="line">mkdir /root/nfs-client</div><div class="line">mount 172.19.3.25:/Users/wv/nfs-server /root/nfs-client</div><div class="line"></div><div class="line">#/etc/fstab</div><div class="line">192.168.1.99:/srv/upload /mnt/upload nfs rsize=8192,wsize=8192,timeo=14,intr</div></pre></td></tr></table></figure>
+<h3 id="Linux做为NFS-Server"><a href="#Linux做为NFS-Server" class="headerlink" title="Linux做为NFS Server"></a>Linux做为NFS Server</h3><p>Linux编辑etc/exports：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/home/wv/nfs-server 192.168.2.0/255.255.255.0(rw,all_squash,insecure,anonuid=1000,anongid=1000)</div><div class="line">sudo service nfs-kernel-server restart</div><div class="line">showmount -e</div></pre></td></tr></table></figure>
+<p>Debian NFS Server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">apt-get install nfs-common nfs-kernel-server</div><div class="line">mkdir /root/nfs-server</div><div class="line">chmod a+w /root/nfs-server</div><div class="line"></div><div class="line">#/etc/exports</div><div class="line">/root/nfs-server  172.19.3.0(rw,sync)</div><div class="line"></div><div class="line">/etc/init.d/nfs-kernel-server start</div><div class="line"></div><div class="line">mount -o exec /dev/cdrom /media/cdrom</div></pre></td></tr></table></figure>
+<p>客户端：Mac</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo mount -t nfs 192.168.2.21:/home/wv/nfs-server /Users/wv/nfs-client</div><div class="line">sudo mount -t nfs 10.211.55.6:/root/nfs-server /Users/wv/nfs-client</div></pre></td></tr></table></figure>
+<h3 id="卸载NFS"><a href="#卸载NFS" class="headerlink" title="卸载NFS"></a>卸载NFS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo umount -t nfs nfs_dir</div></pre></td></tr></table></figure>
+<h3 id="MAC挂截"><a href="#MAC挂截" class="headerlink" title="MAC挂截"></a>MAC挂截</h3><p><img src="/media/nfs-server-mac.png" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/02/23/mac-linux-nfs/" class="archive-article-date">
+  	<time datetime="2018-02-23T08:57:50.000Z" itemprop="datePublished"><i class="icon-clock"></i>2018-02-23</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac-Linux-NFS/">Mac, Linux, NFS</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-wechat-share-link-paramters" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -362,7 +561,7 @@
 
 
   
-    <article id="post-git-rebase-i" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -372,7 +571,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/git-rebase-i/">Git合并及调整commit顺序</a>
+      <a class="article-title" href="/2017/08/17/hello-world/">Hello World</a>
     </h1>
   
 
@@ -380,23 +579,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="git-合并不相邻的commit"><a href="#git-合并不相邻的commit" class="headerlink" title="git 合并不相邻的commit"></a>git 合并不相邻的commit</h1><p>Git基本操作应该不都会, 但有些高级用法还是不会, 如我想合并commit及调整commit顺序怎么搞?<br>今天主要来看一怎么合并commit;<br>另外如果想把合并的commit再提交到其它分支可以用cherry-pick, 解决分支之间commit调整;<br>
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br>
         <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/git-rebase-i/#more">more >></a>
+          <a class="article-more-a"  href="/2017/08/17/hello-world/#more">more >></a>
         </p>
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2017/08/17/git-rebase-i/" class="archive-article-date">
+      <a href="/2017/08/17/hello-world/" class="archive-article-date">
   	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
 </a>
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-	</div>
-
       
 
       <div class="clearfix"></div>
@@ -466,110 +660,6 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/hello-world/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2017/08/17/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-      
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-wechat-gongzhonghao-dev" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/17/wechat-gongzhonghao-dev/">微信公众号开发</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>开发微信公众号真是一堆坑, 自己踩过了, 开发前耐着性子看一遍.<br>授权回调必须在微信浏览器里, 不同Ajax调用会跨域…<br>接口调试都是在线的, 还好有NATAPP这玩意…<br>MP_verify_xxxxxxxx.txt只在你设置域名时才校验…<br>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2017/08/17/wechat-gongzhonghao-dev/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2017/08/17/wechat-gongzhonghao-dev/" class="archive-article-date">
-  	<time datetime="2017-08-17T00:36:55.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-08-17</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-	</div>
-
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-sendmail-linux" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -623,6 +713,10 @@
 
   
   
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
+  
 
 
       </div>
@@ -630,7 +724,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 WV
+    		&copy; 2018 WV
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -683,7 +777,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a>
+    				<a href="/tags/DSM-Transmission/" style="font-size: 10px;">DSM, Transmission</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mac-Linux-NFS/" style="font-size: 10px;">Mac, Linux, NFS</a> <a href="/tags/http-https-ssl/" style="font-size: 10px;">http, https, ssl</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a>
     			</div>
     	</section>
     
