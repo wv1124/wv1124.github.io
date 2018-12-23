@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: http | 哈哈</title>
+  <title>NFS配置 | 哈哈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="哈哈">
-<meta property="og:url" content="http://yoursite.com/categories/http/index.html">
+  <meta name="description" content="NFS配置Mac跟Linux配置NFS互访。">
+<meta name="keywords" content="Mac, Linux, NFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NFS配置">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/mac-linux-nfs/index.html">
 <meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="NFS配置Mac跟Linux配置NFS互访。">
+<meta property="og:image" content="http://yoursite.com/media/nfs-server-mac.png">
+<meta property="og:updated_time" content="2018-12-23T01:36:36.433Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="哈哈">
+<meta name="twitter:title" content="NFS配置">
+<meta name="twitter:description" content="NFS配置Mac跟Linux配置NFS互访。">
+<meta name="twitter:image" content="http://yoursite.com/media/nfs-server-mac.png">
   
     <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
   
@@ -137,59 +144,120 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-mac-linux-nfs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/06/https/" class="archive-article-date">
-  	<time datetime="2018-06-06T08:41:37.000Z" itemprop="datePublished"><i class="icon-clock"></i>2018-06-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/06/https/">https</a>
+    <h1 class="article-title" itemprop="name">
+      NFS配置
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NFS配置"><a href="#NFS配置" class="headerlink" title="NFS配置"></a>NFS配置</h1><p>Mac跟Linux配置NFS互访。<br><a id="more"></a></p>
+<h3 id="Mac开NFS-server-gt-Linux"><a href="#Mac开NFS-server-gt-Linux" class="headerlink" title="Mac开NFS server -&gt; Linux"></a>Mac开NFS server -&gt; Linux</h3><p>Mac上修改/etc/exports:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Users/wv/nfs-server -maproot=root:wheel -network 192.168.2.0 -mask 255.255.255.0</div></pre></td></tr></table></figure>
+<ul>
+<li>/Users/hxz/test: 要通过 NFS 共享的文件目录。</li>
+<li>-maproot=root:wheel: 把 client 端的 root用户映射为 Mac OS 上的 root，client端的 root组映射为 Mac OS 上的 wheel (gid=0) 组。</li>
+<li>-network 192.168.2.0: 子网网段。</li>
+<li>-mask 255.255.255.0: 网络掩码</li>
+</ul>
+<p>mac重启 nfsd：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo nfsd restart</div><div class="line"></div><div class="line"># 查看</div><div class="line">showmount -e</div></pre></td></tr></table></figure>
+<p>客户端：Linux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo mount -t nfs 192.168.2.235:/Users/wv/nfs-server /home/wv/nfs-client</div><div class="line"></div><div class="line">sudo mount -t nfs 172.19.3.25:/Users/wv/nfs-server /root/nfs-client</div></pre></td></tr></table></figure>
+<p>Debian:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apt-get install nfs-common</div><div class="line">mkdir /root/nfs-client</div><div class="line">mount 172.19.3.25:/Users/wv/nfs-server /root/nfs-client</div><div class="line"></div><div class="line">#/etc/fstab</div><div class="line">192.168.1.99:/srv/upload /mnt/upload nfs rsize=8192,wsize=8192,timeo=14,intr</div></pre></td></tr></table></figure>
+<h3 id="Linux做为NFS-Server"><a href="#Linux做为NFS-Server" class="headerlink" title="Linux做为NFS Server"></a>Linux做为NFS Server</h3><p>Linux编辑etc/exports：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/home/wv/nfs-server 192.168.2.0/255.255.255.0(rw,all_squash,insecure,anonuid=1000,anongid=1000)</div><div class="line">sudo service nfs-kernel-server restart</div><div class="line">showmount -e</div></pre></td></tr></table></figure>
+<p>Debian NFS Server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">apt-get install nfs-common nfs-kernel-server</div><div class="line">mkdir /root/nfs-server</div><div class="line">chmod a+w /root/nfs-server</div><div class="line"></div><div class="line">#/etc/exports</div><div class="line">/root/nfs-server  172.19.3.0(rw,sync)</div><div class="line"></div><div class="line">/etc/init.d/nfs-kernel-server start</div><div class="line"></div><div class="line">mount -o exec /dev/cdrom /media/cdrom</div></pre></td></tr></table></figure>
+<p>客户端：Mac</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo mount -t nfs 192.168.2.21:/home/wv/nfs-server /Users/wv/nfs-client</div><div class="line">sudo mount -t nfs 10.211.55.6:/root/nfs-server /Users/wv/nfs-client</div></pre></td></tr></table></figure>
+<h3 id="卸载NFS"><a href="#卸载NFS" class="headerlink" title="卸载NFS"></a>卸载NFS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo umount -t nfs nfs_dir</div></pre></td></tr></table></figure>
+<h3 id="MAC挂截"><a href="#MAC挂截" class="headerlink" title="MAC挂截"></a>MAC挂截</h3><p><img src="/media/nfs-server-mac.png" alt=""></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/12/23/mac-linux-nfs/" class="archive-article-date">
+  	<time datetime="2018-12-23T01:36:36.433Z" itemprop="datePublished"><i class="icon-clock"></i>2018-12-23</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http-https-ssl/">http, https, ssl</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac-Linux-NFS/">Mac, Linux, NFS</a></li></ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/http/">http</a>
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+    <a href="/2018/12/23/nodejs-subscribe-mq/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/23/dsm-transmission/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DSM6.1 安装Transmission</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
 
 
       </div>
@@ -212,10 +280,10 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true

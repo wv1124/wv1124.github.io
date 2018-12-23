@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>抓包工具使用Charles,PostMan | 哈哈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="引题工作中经常遇到需要分析http请求，很多小伙伴还不会用，这里简单给大家说明一下。">
+<meta name="keywords" content="Tcpdump, Charle, PostMan">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抓包工具使用Charles,PostMan">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/charles_postman/index.html">
+<meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="引题工作中经常遇到需要分析http请求，很多小伙伴还不会用，这里简单给大家说明一下。">
+<meta property="og:image" content="http://yoursite.com/media/wireshark.png">
+<meta property="og:image" content="http://pic.d2p.top/15454618662227.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454616430213.jpg">
+<meta property="og:image" content="http://yoursite.com/media/Snip20181222_5.png">
+<meta property="og:image" content="http://pic.d2p.top/15454620047948.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454620342401.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454621653452.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454622263499.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454626580018.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454627652780.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454628180965.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454629161592.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454631071025.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454632297973.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454631806290.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454633244835.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454816064169.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454817038735.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454831812287.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454833863352.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454834432750.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454835328051.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454842868243.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15454845823358.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15455285415069.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15455286645315.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15455287102374.jpg">
+<meta property="og:updated_time" content="2018-12-23T01:36:36.430Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="抓包工具使用Charles,PostMan">
+<meta name="twitter:description" content="引题工作中经常遇到需要分析http请求，很多小伙伴还不会用，这里简单给大家说明一下。">
+<meta name="twitter:image" content="http://yoursite.com/media/wireshark.png">
+  
+    <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oepspd8cd.bkt.clouddn.com/IMAG0044.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">WV</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">WV</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oepspd8cd.bkt.clouddn.com/IMAG0044.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">WV</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-charles_postman" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      抓包工具使用Charles,PostMan
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="引题"><a href="#引题" class="headerlink" title="引题"></a>引题</h1><p>工作中经常遇到需要分析http请求，很多小伙伴还不会用，这里简单给大家说明一下。<br><a id="more"></a></p>
+<h2 id="1-王牌Tcpdump"><a href="#1-王牌Tcpdump" class="headerlink" title="1. 王牌Tcpdump"></a>1. 王牌Tcpdump</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>功能强大的终端抓包工具，官网<a href="http://www.tcpdump.org/，支持各种平台。" target="_blank" rel="external">http://www.tcpdump.org/，支持各种平台。</a><br>使用详见： <a href="https://www.tcpdump.org/manpages/tcpdump.1.html" target="_blank" rel="external">https://www.tcpdump.org/manpages/tcpdump.1.html</a></p>
+<h3 id="1-2-常见用法"><a href="#1-2-常见用法" class="headerlink" title="1.2 常见用法"></a>1.2 常见用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># tcpdump -vv       // 终端直接输入结果</div><div class="line"></div><div class="line"># tcpdump -i eth1 host 192.168.1.1</div><div class="line"># tcpdump -i eth1 src host 192.168.1.1</div><div class="line"># tcpdump -i eth1 dst host 192.168.1.1</div><div class="line"></div><div class="line">// 手机抓包，注意-vvv 否则包太长会截断</div><div class="line"># tcpdump -i wlan0 -p -vvv -s 0 -w /mnt/sdcard/2229.pcap -n host 192.168.0.102</div></pre></td></tr></table></figure>
+<h3 id="1-3-分析包WireShark"><a href="#1-3-分析包WireShark" class="headerlink" title="1.3 分析包WireShark"></a>1.3 分析包WireShark</h3><p>上面简单的命令记一下，大概过滤一下就可以了，抓到包可以保存到文件再使用wireShake分析。<br><img src="/media/wireshark.png" alt=""></p>
+<h2 id="2-Charles"><a href="#2-Charles" class="headerlink" title="2. Charles"></a>2. Charles</h2><p>Mac下前端开发必备神器，愿意会付钱购买的好工具。</p>
+<h3 id="2-1-浏览器基本抓包"><a href="#2-1-浏览器基本抓包" class="headerlink" title="2.1 浏览器基本抓包"></a>2.1 浏览器基本抓包</h3><p>浏览器添加代理插件<br>SwitchyOmega: <a href="https://github.com/FelisCatus/SwitchyOmega" target="_blank" rel="external">https://github.com/FelisCatus/SwitchyOmega</a></p>
+<p><img src="http://pic.d2p.top/15454618662227.jpg" alt=""></p>
+<p><img src="http://pic.d2p.top/15454616430213.jpg" alt=""></p>
+<p><img src="/media/Snip20181222_5.png" alt=""></p>
+<h3 id="2-2-Map-Remote"><a href="#2-2-Map-Remote" class="headerlink" title="2.2 Map Remote"></a>2.2 Map Remote</h3><p>把一个域请求转发到另一个域请求<br><img src="http://pic.d2p.top/15454620047948.jpg" alt=""><br><img src="http://pic.d2p.top/15454620342401.jpg" alt=""></p>
+<h3 id="2-3-Map-Local"><a href="#2-3-Map-Local" class="headerlink" title="2.3 Map Local"></a>2.3 Map Local</h3><p>把一个请求转到本直文件，请求会直接返回本地文件。应用场景，PC线上页面调试。<br><img src="http://pic.d2p.top/15454621653452.jpg" alt=""></p>
+<h3 id="2-4-Mirror"><a href="#2-4-Mirror" class="headerlink" title="2.4 Mirror"></a>2.4 Mirror</h3><p>把指定条件请求和响应保存到本地文件系统。可以先把某些请求全部缓存到本地，实现离线调试页面。<br><img src="http://pic.d2p.top/15454622263499.jpg" alt=""></p>
+<h3 id="2-5-手机抓包"><a href="#2-5-手机抓包" class="headerlink" title="2.5 手机抓包"></a>2.5 手机抓包</h3><p><img src="http://pic.d2p.top/15454626580018.jpg" alt=""></p>
+<h3 id="2-6-Android手机https抓包"><a href="#2-6-Android手机https抓包" class="headerlink" title="2.6 Android手机https抓包"></a>2.6 Android手机https抓包</h3><p>安装Charles提供的证书后就可以实际https抓包。<br><img src="http://pic.d2p.top/15454627652780.jpg" alt=""><br><img src="http://pic.d2p.top/15454628180965.jpg" alt=""><br><img src="http://pic.d2p.top/15454629161592.jpg" alt=""><br><img src="http://pic.d2p.top/15454631071025.jpg" alt=""><br><img src="http://pic.d2p.top/15454632297973.jpg" alt=""><br><img src="http://pic.d2p.top/15454631806290.jpg" alt=""></p>
+<h3 id="2-7-其它用法"><a href="#2-7-其它用法" class="headerlink" title="2.7 其它用法"></a>2.7 其它用法</h3><p><img src="http://pic.d2p.top/15454633244835.jpg" alt=""></p>
+<h2 id="3-PostMan"><a href="#3-PostMan" class="headerlink" title="3. PostMan"></a>3. PostMan</h2><h3 id="3-1-下载PostMan独立安装版-不是Chrome插件版。"><a href="#3-1-下载PostMan独立安装版-不是Chrome插件版。" class="headerlink" title="3.1 下载PostMan独立安装版,不是Chrome插件版。"></a>3.1 下载PostMan独立安装版,不是Chrome插件版。</h3><p><img src="http://pic.d2p.top/15454816064169.jpg" alt=""></p>
+<h3 id="3-2-浏览器配置代理"><a href="#3-2-浏览器配置代理" class="headerlink" title="3.2 浏览器配置代理"></a>3.2 浏览器配置代理</h3><p><img src="http://pic.d2p.top/15454817038735.jpg" alt=""></p>
+<h3 id="3-3-抓到包如下："><a href="#3-3-抓到包如下：" class="headerlink" title="3.3 抓到包如下："></a>3.3 抓到包如下：</h3><p><img src="http://pic.d2p.top/15454831812287.jpg" alt=""></p>
+<h3 id="3-4-环境配置变量化："><a href="#3-4-环境配置变量化：" class="headerlink" title="3.4 环境配置变量化："></a>3.4 环境配置变量化：</h3><p><img src="http://pic.d2p.top/15454833863352.jpg" alt=""></p>
+<h3 id="3-5-编写脚本获取登录sessionId"><a href="#3-5-编写脚本获取登录sessionId" class="headerlink" title="3.5 编写脚本获取登录sessionId:"></a>3.5 编写脚本获取登录sessionId:</h3><p><img src="http://pic.d2p.top/15454834432750.jpg" alt=""></p>
+<h3 id="3-6-其它请求就可以使用这个sessionId"><a href="#3-6-其它请求就可以使用这个sessionId" class="headerlink" title="3.6 其它请求就可以使用这个sessionId:"></a>3.6 其它请求就可以使用这个sessionId:</h3><p><img src="http://pic.d2p.top/15454835328051.jpg" alt=""></p>
+<h2 id="4-自动化抓包流程"><a href="#4-自动化抓包流程" class="headerlink" title="4. 自动化抓包流程"></a>4. 自动化抓包流程</h2><p>前面介绍PostMan也以抓包录制自动脚本，也可以用Charles抓包。Charles好的好处就是支持HTTPS。<br>下面介绍Charlse抓包后导入PostMan过程：</p>
+<h3 id="4-1-Charles选中要导入请求右键导出，选择类型HTTP-Archive-har-格式"><a href="#4-1-Charles选中要导入请求右键导出，选择类型HTTP-Archive-har-格式" class="headerlink" title="4.1 Charles选中要导入请求右键导出，选择类型HTTP Archive (.har)格式"></a>4.1 Charles选中要导入请求右键导出，选择类型HTTP Archive (.har)格式</h3><p><img src="http://pic.d2p.top/15454842868243.jpg" alt=""></p>
+<h3 id="4-2-Postman不能直接导入har格式，这里中间使用Restlet-Client转换一下"><a href="#4-2-Postman不能直接导入har格式，这里中间使用Restlet-Client转换一下" class="headerlink" title="4.2 Postman不能直接导入har格式，这里中间使用Restlet Client转换一下."></a>4.2 Postman不能直接导入har格式，这里中间使用Restlet Client转换一下.</h3><p>Chrome插件Restlet Client支持导入PostMan格式和.har格式，所以使用这个做中间转换，另外Restlet Client也是很好用的http请求模拟插件.<br><img src="http://pic.d2p.top/15454845823358.jpg" alt=""></p>
+<h3 id="4-3-再导出json格式："><a href="#4-3-再导出json格式：" class="headerlink" title="4.3 再导出json格式："></a>4.3 再导出json格式：</h3><p><img src="http://pic.d2p.top/15455285415069.jpg" alt=""></p>
+<h3 id="4-4-再导入PostMan"><a href="#4-4-再导入PostMan" class="headerlink" title="4.4 再导入PostMan:"></a>4.4 再导入PostMan:</h3><p><img src="http://pic.d2p.top/15455286645315.jpg" alt=""></p>
+<h3 id="4-5-Postman导入成功"><a href="#4-5-Postman导入成功" class="headerlink" title="4.5 Postman导入成功:"></a>4.5 Postman导入成功:</h3><p><img src="http://pic.d2p.top/15455287102374.jpg" alt=""></p>
+<h2 id="5-参考"><a href="#5-参考" class="headerlink" title="5. 参考:"></a>5. 参考:</h2>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/12/23/charles_postman/" class="archive-article-date">
+  	<time datetime="2018-12-23T01:36:36.430Z" itemprop="datePublished"><i class="icon-clock"></i>2018-12-23</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tcpdump-Charle-PostMan/">Tcpdump, Charle, PostMan</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/微信/">微信</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/12/23/cross-domain/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          浏览跨域请求
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/23/memchched/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 WV
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/DSM-Transmission/" style="font-size: 10px;">DSM, Transmission</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mac-Linux-NFS/" style="font-size: 10px;">Mac, Linux, NFS</a> <a href="/tags/Tcpdump-Charle-PostMan/" style="font-size: 10px;">Tcpdump, Charle, PostMan</a> <a href="/tags/http-https-ssl/" style="font-size: 10px;">http, https, ssl</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a> <a href="/tags/微信-公众号-小程序-scope参数错误-1005/" style="font-size: 10px;">微信, 公众号, 小程序, scope参数错误, 1005</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.me/">yilia主题作者博客</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/litten/hexo-theme-yilia">yilia github地址</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>哈哈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: NodeJs订阅MQ消息tag:  ActiveMQ NodeJs stompit categories: NodeJsNodeJs订阅MQ消息一直没有用过node订阅过MQ消息，用java也没有写，摸索一个晚上，终于明白了, 原来node是stomp协议访问端口是:61613">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈哈">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/nodejs-subscribe-mq/index.html">
+<meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="title: NodeJs订阅MQ消息tag:  ActiveMQ NodeJs stompit categories: NodeJsNodeJs订阅MQ消息一直没有用过node订阅过MQ消息，用java也没有写，摸索一个晚上，终于明白了, 原来node是stomp协议访问端口是:61613">
+<meta property="og:updated_time" content="2018-12-23T01:36:36.433Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="哈哈">
+<meta name="twitter:description" content="title: NodeJs订阅MQ消息tag:  ActiveMQ NodeJs stompit categories: NodeJsNodeJs订阅MQ消息一直没有用过node订阅过MQ消息，用java也没有写，摸索一个晚上，终于明白了, 原来node是stomp协议访问端口是:61613">
+  
+    <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oepspd8cd.bkt.clouddn.com/IMAG0044.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">WV</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">WV</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oepspd8cd.bkt.clouddn.com/IMAG0044.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">WV</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-nodejs-subscribe-mq" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>title: NodeJs订阅MQ消息<br>tag:  ActiveMQ NodeJs stompit</p>
+<h2 id="categories-NodeJs"><a href="#categories-NodeJs" class="headerlink" title="categories: NodeJs"></a>categories: NodeJs</h2><h1 id="NodeJs订阅MQ消息"><a href="#NodeJs订阅MQ消息" class="headerlink" title="NodeJs订阅MQ消息"></a>NodeJs订阅MQ消息</h1><p>一直没有用过node订阅过MQ消息，用java也没有写，摸索一个晚上，终于明白了, 原来node是stomp协议访问端口是:61613<br><a id="more"></a></p>
+<h2 id="1-订阅queue"><a href="#1-订阅queue" class="headerlink" title="1. 订阅queue"></a>1. 订阅queue</h2><p>ActiveMQ管理端<br><a href="http://172.19.71.120:8161" target="_blank" rel="external">http://172.19.71.120:8161</a><br>admin:admin</p>
+<h3 id="1-1-代码"><a href="#1-1-代码" class="headerlink" title="1.1 代码"></a>1.1 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">var stompit = require(&apos;stompit&apos;);</div><div class="line"></div><div class="line">/**</div><div class="line"> * 获取MQ监听</div><div class="line"> * @param agent</div><div class="line"> */</div><div class="line">function startCloudPrintService() &#123;</div><div class="line">  console.log(&apos;startCloudPrintService&apos;);</div><div class="line">  const connectOptions = &#123;</div><div class="line">    host: &apos;172.19.71.120&apos;,</div><div class="line">    &apos;client-id&apos;: &apos;shop-bff&apos;,</div><div class="line">    port: 61613,</div><div class="line">    timeout: 30000,</div><div class="line">    connectHeaders: &#123;</div><div class="line">      host: &apos;172.19.71.120&apos;,</div><div class="line">      login: &apos;&apos;,</div><div class="line">      passcode: &apos;&apos;,</div><div class="line">      &apos;heart-beat&apos;: &apos;5000,5000&apos;,</div><div class="line">    &#125;,</div><div class="line">  &#125;;</div><div class="line">  stompit.connect(</div><div class="line">    connectOptions,</div><div class="line">    function(error, client) &#123;</div><div class="line">      if (error) &#123;</div><div class="line">        console.log(&apos;connect error &apos; + error.message);</div><div class="line">        return;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      // let sendHeaders = &#123;</div><div class="line">      //   destination: &apos;/queue/test&apos;,</div><div class="line">      //   &apos;content-type&apos;: &apos;text/plain&apos;,</div><div class="line">      // &#125;;</div><div class="line"></div><div class="line">      // let frame = client.send(sendHeaders);</div><div class="line">      // frame.write(&apos;hello&apos;);</div><div class="line">      // frame.end();</div><div class="line">      </div><div class="line">      let subscribeHeaders = &#123;</div><div class="line">        subscription: &apos;d2cTradeOperateTopic&apos;,</div><div class="line">        destination: &apos;t.d2c.tc.TradeOperate&apos;,</div><div class="line">        ack: &apos;client-individual&apos;,</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">      client.subscribe(subscribeHeaders, function(error, message) &#123;</div><div class="line">        if (error) &#123;</div><div class="line">          console.log(&apos;subscribe error &apos; + error.message);</div><div class="line">          return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        message.readString(&apos;utf-8&apos;, function(error, body) &#123;</div><div class="line">          if (error) &#123;</div><div class="line">            console.log(&apos;read message error &apos; + error.message);</div><div class="line">            return;</div><div class="line">          &#125;</div><div class="line"></div><div class="line">          console.log(&apos;received message: &apos; + body);</div><div class="line"></div><div class="line">          client.ack(message);</div><div class="line"></div><div class="line">          client.disconnect();</div><div class="line">        &#125;);</div><div class="line">      &#125;);</div><div class="line">    &#125;,</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line">startCloudPrintService();</div></pre></td></tr></table></figure>
+<h3 id="1-2-抓包报文"><a href="#1-2-抓包报文" class="headerlink" title="1.2 抓包报文"></a>1.2 抓包报文</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">CONNECT</div><div class="line">accept-version:1.0,1.1,1.2</div><div class="line">host:172.19.71.120</div><div class="line">login:</div><div class="line">passcode:</div><div class="line">heart-beat:5000,5000</div><div class="line"></div><div class="line">.</div><div class="line">CONNECTED</div><div class="line">heart-beat:5000,5000</div><div class="line">session:ID:lin-71-120-57100-1536112290743-2:23</div><div class="line">server:ActiveMQ/5.10.2</div><div class="line">version:1.2</div><div class="line"></div><div class="line">.</div><div class="line">SUBSCRIBE</div><div class="line">subscription:d2cTradeOperateTopic</div><div class="line">destination:t.d2c.tc.TradeOperate</div><div class="line">ack:client-individual</div><div class="line">id:1</div><div class="line"></div><div class="line">.</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">MESSAGE</div><div class="line">ack:ID\clin-71-120-57100-1536112290743-29\c1</div><div class="line">message-id:ID\clin-71-120-57100-1536112290743-11\c2\c1\c1\c56</div><div class="line">type:</div><div class="line">destination:/queue/t.d2c.tc.TradeOperate</div><div class="line">timestamp:1538268629708</div><div class="line">expires:0</div><div class="line">subscription:1</div><div class="line">priority:0</div><div class="line">correlation-id:</div><div class="line"></div><div class="line">Enter some text here for the message body....</div><div class="line">ACK</div><div class="line">subscription:1</div><div class="line">message-id:ID\clin-71-120-57100-1536112290743-11\c2\c1\c1\c56</div><div class="line">id:ID\clin-71-120-57100-1536112290743-29\c1</div><div class="line"></div><div class="line">.</div><div class="line">DISCONNECT</div><div class="line">receipt:1</div><div class="line"></div><div class="line">.</div><div class="line">RECEIPT</div><div class="line">receipt-id:1</div><div class="line"></div><div class="line">.</div></pre></td></tr></table></figure>
+<h2 id="2-订阅topic"><a href="#2-订阅topic" class="headerlink" title="2. 订阅topic"></a>2. 订阅topic</h2><h3 id="2-1-代码"><a href="#2-1-代码" class="headerlink" title="2.1 代码"></a>2.1 代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">var stompit = require(&apos;stompit&apos;);</div><div class="line"></div><div class="line">/**</div><div class="line"> * 获取MQ监听</div><div class="line"> * @param agent</div><div class="line"> */</div><div class="line">function startCloudPrintService() &#123;</div><div class="line">  console.log(&apos;startCloudPrintService&apos;);</div><div class="line">  const connectOptions = &#123;</div><div class="line">    host: &apos;172.19.71.120&apos;,</div><div class="line">    &apos;client-id&apos;: &apos;shop-bff&apos;,</div><div class="line">    port: 61613,</div><div class="line">    timeout: 30000,</div><div class="line">    connectHeaders: &#123;</div><div class="line">      host: &apos;172.19.71.120&apos;,</div><div class="line">      login: &apos;&apos;,</div><div class="line">      passcode: &apos;&apos;,</div><div class="line">      &apos;heart-beat&apos;: &apos;5000,5000&apos;,</div><div class="line">    &#125;,</div><div class="line">  &#125;;</div><div class="line">  stompit.connect(</div><div class="line">    connectOptions,</div><div class="line">    function(error, client) &#123;</div><div class="line">      if (error) &#123;</div><div class="line">        console.log(&apos;connect error &apos; + error.message);</div><div class="line">        return;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      let subscribeHeaders = &#123;</div><div class="line">        subscription: &apos;d2cTradeOperateTopic&apos;,</div><div class="line">        destination: &apos;/topic/t.d2c.tc.TradeOperate&apos;,</div><div class="line">        ack: &apos;client-individual&apos;,</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">      client.subscribe(subscribeHeaders, function(error, message) &#123;</div><div class="line">        if (error) &#123;</div><div class="line">          console.log(&apos;subscribe error &apos; + error.message);</div><div class="line">          return;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        message.readString(&apos;utf-8&apos;, function(error, body) &#123;</div><div class="line">          if (error) &#123;</div><div class="line">            console.log(&apos;read message error &apos; + error.message);</div><div class="line">            return;</div><div class="line">          &#125;</div><div class="line"></div><div class="line">          console.log(&apos;received message: &apos; + body);</div><div class="line"></div><div class="line">          client.ack(message);</div><div class="line"></div><div class="line">          client.disconnect();</div><div class="line">        &#125;);</div><div class="line">      &#125;);</div><div class="line">    &#125;,</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line">startCloudPrintService();</div></pre></td></tr></table></figure>
+<h3 id="2-2-报文"><a href="#2-2-报文" class="headerlink" title="2.2 报文"></a>2.2 报文</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">CONNECT</div><div class="line">accept-version:1.0,1.1,1.2</div><div class="line">host:172.19.71.120</div><div class="line">login:</div><div class="line">passcode:</div><div class="line">heart-beat:5000,5000</div><div class="line"></div><div class="line">.</div><div class="line">CONNECTED</div><div class="line">heart-beat:5000,5000</div><div class="line">session:ID:lin-71-120-57100-1536112290743-2:28</div><div class="line">server:ActiveMQ/5.10.2</div><div class="line">version:1.2</div><div class="line"></div><div class="line">.</div><div class="line">SUBSCRIBE</div><div class="line">subscription:d2cTradeOperateTopic</div><div class="line">destination:/topic/t.d2c.tc.TradeOperate</div><div class="line">ack:client-individual</div><div class="line">id:1</div><div class="line"></div><div class="line">.</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">MESSAGE</div><div class="line">ack:ID\clin-71-120-57100-1536112290743-34\c1</div><div class="line">message-id:ID\clin-71-120-57100-1536112290743-11\c2\c1\c1\c59</div><div class="line">type:</div><div class="line">destination:/topic/t.d2c.tc.TradeOperate</div><div class="line">timestamp:1538269174376</div><div class="line">expires:0</div><div class="line">subscription:1</div><div class="line">priority:0</div><div class="line">correlation-id:</div><div class="line"></div><div class="line">Enter some text here for the message body....</div><div class="line">ACK</div><div class="line">subscription:1</div><div class="line">message-id:ID\clin-71-120-57100-1536112290743-11\c2\c1\c1\c59</div><div class="line">id:ID\clin-71-120-57100-1536112290743-34\c1</div><div class="line"></div><div class="line">.</div><div class="line">DISCONNECT</div><div class="line">receipt:1</div><div class="line"></div><div class="line">.</div><div class="line">RECEIPT</div><div class="line">receipt-id:1</div><div class="line"></div><div class="line">.</div></pre></td></tr></table></figure>
+<h2 id="参考-："><a href="#参考-：" class="headerlink" title="参考 ："></a>参考 ：</h2><ol>
+<li><a href="http://jmesnil.net/stomp-websocket/doc/" target="_blank" rel="external">http://jmesnil.net/stomp-websocket/doc/</a></li>
+<li><a href="https://github.com/gdaws/node-stomp" target="_blank" rel="external">https://github.com/gdaws/node-stomp</a></li>
+<li><a href="http://activemq.apache.org/stomp.html" target="_blank" rel="external">http://activemq.apache.org/stomp.html</a></li>
+<li><a href="http://stomp.github.io/index.html" target="_blank" rel="external">http://stomp.github.io/index.html</a></li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/12/23/nodejs-subscribe-mq/" class="archive-article-date">
+  	<time datetime="2018-12-23T01:36:36.433Z" itemprop="datePublished"><i class="icon-clock"></i>2018-12-23</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/12/23/wechat-auth-scope-1005/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          微信授权返回“scope参数错误或者没有scop权限”
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/23/mac-linux-nfs/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">NFS配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 WV
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/DSM-Transmission/" style="font-size: 10px;">DSM, Transmission</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mac-Linux-NFS/" style="font-size: 10px;">Mac, Linux, NFS</a> <a href="/tags/Tcpdump-Charle-PostMan/" style="font-size: 10px;">Tcpdump, Charle, PostMan</a> <a href="/tags/http-https-ssl/" style="font-size: 10px;">http, https, ssl</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a> <a href="/tags/微信-公众号-小程序-scope参数错误-1005/" style="font-size: 10px;">微信, 公众号, 小程序, scope参数错误, 1005</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.me/">yilia主题作者博客</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/litten/hexo-theme-yilia">yilia github地址</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
