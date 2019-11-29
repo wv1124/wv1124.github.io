@@ -1,0 +1,4 @@
+1. 安装wireshark, 过滤条件如下:
+tcp.stream eq 12
+或者
+tcp.port == 52622

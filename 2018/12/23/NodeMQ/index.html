@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>Node监听MQ消息 | 哈哈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="引题公司项目在从java切换Node，其中一个做作的事情就是ActiveMQ消息处理。下面介绍EggJS项目中监听ActiveMQ消息并处理。">
+<meta name="keywords" content="Node, MQ, EggJs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node监听MQ消息">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/NodeMQ/index.html">
+<meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="引题公司项目在从java切换Node，其中一个做作的事情就是ActiveMQ消息处理。下面介绍EggJS项目中监听ActiveMQ消息并处理。">
+<meta property="og:image" content="http://pic.d2p.top/15455473783340.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15455455244324.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15456182498637.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15456189714273.jpg">
+<meta property="og:updated_time" content="2018-12-24T08:39:47.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node监听MQ消息">
+<meta name="twitter:description" content="引题公司项目在从java切换Node，其中一个做作的事情就是ActiveMQ消息处理。下面介绍EggJS项目中监听ActiveMQ消息并处理。">
+<meta name="twitter:image" content="http://pic.d2p.top/15455473783340.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://oepspd8cd.bkt.clouddn.com/IMAG0044.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">WV</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">WV</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://oepspd8cd.bkt.clouddn.com/IMAG0044.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">WV</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-NodeMQ" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node监听MQ消息
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="引题"><a href="#引题" class="headerlink" title="引题"></a>引题</h1><p>公司项目在从java切换Node，其中一个做作的事情就是ActiveMQ消息处理。下面介绍EggJS项目中监听ActiveMQ消息并处理。<br><a id="more"></a></p>
+<h2 id="1-ActiveMQ客户端工具库"><a href="#1-ActiveMQ客户端工具库" class="headerlink" title="1. ActiveMQ客户端工具库"></a>1. ActiveMQ客户端工具库</h2><p>ActiveMQ支持很多客户端(<a href="http://activemq.apache.org/cross-language-clients.html)，Node官方支持就是stompit" target="_blank" rel="external">http://activemq.apache.org/cross-language-clients.html)，Node官方支持就是stompit</a> (<a href="https://github.com/gdaws/node-stomp)。全完支持Stomp协议。" target="_blank" rel="external">https://github.com/gdaws/node-stomp)。全完支持Stomp协议。</a></p>
+<blockquote>
+<p>A STOMP client library for Node.js that is fully compatible with STOMP 1.0, 1.1 and 1.2 servers.</p>
+</blockquote>
+<h3 id="1-1-STOMP协议简介："><a href="#1-1-STOMP协议简介：" class="headerlink" title="1.1 STOMP协议简介："></a>1.1 STOMP协议简介：</h3><blockquote>
+<p>STOMP: Simple (or Streaming) Text Orientated Messaging Protocol，简单(流)文本定向消息协议。<br>STOMP 1.2规范 : <a href="https://stomp.github.io/stomp-specification-1.2.html" target="_blank" rel="external">https://stomp.github.io/stomp-specification-1.2.html</a></p>
+</blockquote>
+<p>STOMP Server:<br><img src="http://pic.d2p.top/15455473783340.jpg" alt=""></p>
+<p>STOMP Clients比较多了：参考这里：<a href="https://stomp.github.io/implementations.html。" target="_blank" rel="external">https://stomp.github.io/implementations.html。</a></p>
+<p>STOMP协议与HTTP协议很相似，它基于TCP协议。<br>STOMP的客户端和服务器之间的通信是通过“帧”（Frame）实现的，每个帧由多“行”（Line）组成。</p>
+<h3 id="1-2-STOMP协议示例："><a href="#1-2-STOMP协议示例：" class="headerlink" title="1.2 STOMP协议示例："></a>1.2 STOMP协议示例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">CONNECT</div><div class="line">accept-version:1.0,1.1,1.2</div><div class="line">host:172.19.71.120</div><div class="line">login:</div><div class="line">passcode:</div><div class="line">heart-beat:5000,5000</div><div class="line"></div><div class="line">... </div><div class="line"></div><div class="line">CONNECTED</div><div class="line">heart-beat:5000,5000</div><div class="line">session:ID:lin-71-120-51748-1540376424566-4:40</div><div class="line">server:ActiveMQ/5.10.2</div><div class="line">version:1.2</div><div class="line"></div><div class="line">... </div><div class="line"></div><div class="line">SUBSCRIBE</div><div class="line">subscription:d2cTradeOperateTopic222</div><div class="line">destination:/topic/t.d2c.tc.cash.TradeOperate</div><div class="line">ack:client-individual</div><div class="line">id:1</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">MESSAGE</div><div class="line">X-B3-SpanId:9e83f8e2f14a9fbb</div><div class="line">X-B3-TraceId:ea0628b489b2d91d</div><div class="line">ack:ID\clin-71-120-51748-1540376424566-44\c1</div><div class="line">message-id:ID\clin-71-181-52505-1542678667123-1\c2\c3\c1\c3180</div><div class="line">X-B3-Sampled:1</div><div class="line">destination:/topic/t.d2c.tc.cash.TradeOperate</div><div class="line">timestamp:1545627372565</div><div class="line">expires:0</div><div class="line">subscription:1</div><div class="line">persistent:true</div><div class="line">priority:4</div><div class="line">X-B3-ParentSpanId:aaa522614fd78116</div><div class="line"></div><div class="line">&#123;&quot;tid&quot;:&quot;TCC18122412561211071928&quot;,&quot;receiptId&quot;:null,&quot;event&quot;:&quot;CASHIER_SELLER_CREATE_ONLINE&quot;,&quot;sellerCode&quot;:&quot;A882080&quot;,&quot;operatorCode&quot;:&quot;E114771&quot;,&quot;buyerCode&quot;:&quot;R11344502355169&quot;,&quot;vemId&quot;:null,&quot;tradeCreateTime&quot;:null,&quot;tradePaidTime&quot;:null,&quot;giftCardRefundPrice&quot;:null,&quot;msgId&quot;:&quot;Cash:MQ18122412561211041399&quot;&#125;.</div><div class="line">...</div><div class="line"></div><div class="line">ACK</div><div class="line">subscription:1</div><div class="line">message-id:ID\clin-71-181-52505-1542678667123-1\c2\c3\c1\c3180</div><div class="line">id:ID\clin-71-120-51748-1540376424566-44\c1</div></pre></td></tr></table></figure>
+<p><a href="http://pic.d2p.top/https_example.pcapng.png" target="_blank" rel="external">抓包文件, 右键保存去掉到.png</a><br>过滤tcp.port == 52622</p>
+<h3 id="1-3-STOMP心跳问题"><a href="#1-3-STOMP心跳问题" class="headerlink" title="1.3 STOMP心跳问题"></a>1.3 STOMP心跳问题</h3><p>STOMP连接是一个长连接, STOMP协议定义了发送心跳来监测stomp连接是否存活。<br>Client和Server根据心跳来判定对方已经挂掉了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 客户端发送, &lt;cx&gt;, &lt;cy&gt;分别代表一个以毫秒为单位的数字.</div><div class="line">CONNECT</div><div class="line">accept-version:1.0,1.1,1.2</div><div class="line">host:172.19.71.120</div><div class="line">login:</div><div class="line">passcode:</div><div class="line">heart-beat:&lt;cx&gt;,&lt;cy&gt;</div><div class="line"></div><div class="line">// 服务端回复, &lt;sx&gt;, &lt;sy&gt;分别代表一个以毫秒为单位的数字.</div><div class="line">CONNECTED</div><div class="line">heart-beat:&lt;sx&gt;,&lt;sy&gt;</div><div class="line">session:ID:lin-71-120-51748-1540376424566-4:36</div><div class="line">server:ActiveMQ/5.10.2</div><div class="line">version:1.2</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;cx&gt;: client能保证的发送心跳的最小间隔, 如果是0代表client不发送心跳.</div><div class="line">&lt;cy&gt;: client希望收到server心跳的间隔, 如果是0代表client不希望收到server的心跳. </div><div class="line"></div><div class="line">&lt;sx&gt;: server能保证的发送心跳的最小间隔, 如果是0代表server不发送心跳.</div><div class="line">&lt;sy&gt;: server希望收到client心跳的间隔, 如果是0代表server不希望收到client的心跳.</div></pre></td></tr></table></figure>
+<p>如果在建立连接时没有心跳header, 默认当作heart-beat:0,0. 也就是不发心跳, 也不希望对方发心跳.<br>加入心跳header进行连接后, 最终协商得出发送心跳的频率的逻辑如下: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Client: 取&lt;cx&gt;与&lt;sy&gt;的最大值, 也就是说client会取client最小能发送的间隔与server希望client发送间隔的最大值来发送心跳. </div><div class="line">如果&lt;cx&gt;或&lt;sy&gt;中任何一个为0, client都不发送心跳.</div><div class="line"></div><div class="line">Server: 取&lt;sx&gt;与&lt;cy&gt;的最大值, 也就是说server取server最小能发送的间隔与client希望server发送间隔的最大值来发送心跳. </div><div class="line">如果&lt;sx&gt;或&lt;cy&gt;中任何一个为0, server都不发送心跳.</div></pre></td></tr></table></figure>
+<h2 id="2-在EggJS上集中MQ消息处理"><a href="#2-在EggJS上集中MQ消息处理" class="headerlink" title="2. 在EggJS上集中MQ消息处理"></a>2. 在EggJS上集中MQ消息处理</h2><p>由于MQ消息一般比较重要，因此我们将MQ消息兼听处理放到Agent进程中。EggJS进程模型如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">      Koa Application</div><div class="line">             ^</div><div class="line">          EggCore</div><div class="line">             ^</div><div class="line">      ┌──────┴───────┐</div><div class="line">      │              │</div><div class="line">  Egg Agent      Egg Application</div><div class="line">     ^               ^</div><div class="line">agent worker     app worker</div></pre></td></tr></table></figure>
+<h3 id="2-1-在项目根目录下建立agent-ts文件，egg会默认把这个启动到Agent进程"><a href="#2-1-在项目根目录下建立agent-ts文件，egg会默认把这个启动到Agent进程" class="headerlink" title="2.1 在项目根目录下建立agent.ts文件，egg会默认把这个启动到Agent进程."></a>2.1 在项目根目录下建立agent.ts文件，egg会默认把这个启动到Agent进程.</h3><p><img src="http://pic.d2p.top/15455455244324.jpg" alt=""></p>
+<h3 id="2-2-兼听MQ消息代码示例"><a href="#2-2-兼听MQ消息代码示例" class="headerlink" title="2.2 兼听MQ消息代码示例"></a>2.2 兼听MQ消息代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">import stompit from &apos;stompit&apos;;</div><div class="line"> </div><div class="line">config = &#123;</div><div class="line">  host: &apos;172.19.71.120&apos;,</div><div class="line">  &apos;client-id&apos;: &apos;shop-bff&apos;,</div><div class="line">  port: 61613,    // 注册这里端口跟java不一样的；</div><div class="line">  connectHeaders: &#123;</div><div class="line">    host: &apos;172.19.71.120&apos;,</div><div class="line">    login: &apos;&apos;,</div><div class="line">    passcode: &apos;&apos;,</div><div class="line">    // &apos;heart-beat&apos;: &apos;3000,3000&apos;,</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">subscriptCashOrder(agent) &#123;</div><div class="line">  let subscribeHeaders = &#123;</div><div class="line">    subscription: &apos;d2cTradeOperateTopic&apos;,</div><div class="line">    destination: &apos;/topic/t.d2c.tc.cash.TradeOperate&apos;,</div><div class="line">    ack: &apos;client-individual&apos;, //auto, client, client-individual,</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  this.subscriptOrder(subscribeHeaders, (error, body) =&gt; &#123;</div><div class="line">    this.handlerOrder(agent, error, body, &apos;cashOrder&apos;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 订阅订单消息</div><div class="line"> */</div><div class="line">subscriptOrder(subscribeHeaders, callback) &#123;</div><div class="line">  let connectOptions = this.config;</div><div class="line">  stompit.connect(</div><div class="line">    connectOptions,</div><div class="line">    (error, client) =&gt; &#123;</div><div class="line">      if (error) &#123;</div><div class="line">        console.log(&apos;connect error &apos; + error.message);</div><div class="line">        return;</div><div class="line">      &#125;</div><div class="line">      client.subscribe(subscribeHeaders, (error, message) =&gt; &#123;</div><div class="line">        callback(error, message);</div><div class="line">        client.ack(message);</div><div class="line">      &#125;);</div><div class="line">    &#125;,</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 处理消息;</div><div class="line"> */</div><div class="line">handlerOrder(agent, error, message, type) &#123;</div><div class="line">  if (error) &#123;</div><div class="line">    console.log(&apos;subscribe error &apos; + type + &apos;: &apos; + error.message);</div><div class="line">    return;</div><div class="line">  &#125;</div><div class="line">  message.readString(&apos;utf-8&apos;, (error, body) =&gt; &#123;</div><div class="line">    // 在这里处理消息回调</div><div class="line">    console.log(&apos;received message end =========== &apos; + type);</div><div class="line">    client.ack(message);</div><div class="line">    client.disconnect();</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意：STOMP协议默认端口是61613， 见<a href="http://activemq.apache.org/stomp.html" target="_blank" rel="external">http://activemq.apache.org/stomp.html</a></p>
+<p>SUBSCRIBE消息的 ack 头: </p>
+<ul>
+<li>auto: client收到server发来的消息后不需要回复ACK frame. server假定消息发出去后client就已经收到。这种确认方式可以减少消息传输的次数.</li>
+<li>client: client必须发送ACK frame给servers, 让它处理消息. 如果在client发送ACK frame之前连接断开了，那么server将假设消息没有被处理，可能会再次发送消息给另外的客户端。client发送的ACK frame被当作是积累的确认。这就意味这种确认方式会去操作ACK frame指定的消息和订阅的所有消息. 譬如接收了10条消息，如果你ack了第8条消息，那么1-7条消息都会被ack，只有9-10两条消息还保持未ack状态。由于client不能处理某些消息，所以client应该发送NACK frame去告诉server它不能消费这些消息。</li>
+<li>client-individual，确认工作就像上面的’client’确认模式(除了由客户端发送的ACK或NACK帧)不会被累计。这意味着，后续ACK, NACK消息帧，也不能影响前面的消息的确认。</li>
+</ul>
+<h3 id="2-3-ActiveMQ注册中心"><a href="#2-3-ActiveMQ注册中心" class="headerlink" title="2.3 ActiveMQ注册中心"></a>2.3 ActiveMQ注册中心</h3><p><a href="http://172.19.71.120:8161/admin/connections.jsp" target="_blank" rel="external">http://172.19.71.120:8161/admin/connections.jsp</a></p>
+<p>启动上面代友可以看到注册中心就有这个客户端且是以Storm协议注册的：<br><img src="http://pic.d2p.top/15456182498637.jpg" alt=""></p>
+<p>也可以使用这个注册中心提供工具发MQ消息:<br><img src="http://pic.d2p.top/15456189714273.jpg" alt=""></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><p><a href="http://stomp.github.io/stomp-specification-1.1.html" target="_blank" rel="external">STOMP Protocol Specification, Version 1.1</a></p>
+</li>
+<li><p><a href="https://stomp.github.io/stomp-specification-1.2.html" target="_blank" rel="external">STOMP Protocol Specification, Version 1.2</a> </p>
+</li>
+<li><p><a href="https://blog.csdn.net/a617137379/article/details/78765025#stomp-over-websocket%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0" target="_blank" rel="external">stomp-over-websocket协议原理与实现</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/my_life/articles/7002138.html" target="_blank" rel="external">STOMP协议详解</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/12/23/NodeMQ/" class="archive-article-date">
+  	<time datetime="2018-12-23T05:59:01.351Z" itemprop="datePublished"><i class="icon-clock"></i>2018-12-23</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-MQ-EggJs/">Node, MQ, EggJs</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/Node/">Node</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/12/25/test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/23/nodejs-subscribe-mq/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 WV
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/DSM-Transmission/" style="font-size: 10px;">DSM, Transmission</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mac-Linux-NFS/" style="font-size: 10px;">Mac, Linux, NFS</a> <a href="/tags/Node-MQ-EggJs/" style="font-size: 10px;">Node, MQ, EggJs</a> <a href="/tags/Tcpdump-Charle-PostMan/" style="font-size: 10px;">Tcpdump, Charle, PostMan</a> <a href="/tags/android-adb/" style="font-size: 10px;">android, adb</a> <a href="/tags/http-https-ssl/" style="font-size: 10px;">http, https, ssl</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/千米-收银/" style="font-size: 10px;">千米 收银</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a> <a href="/tags/微信-公众号-小程序-scope参数错误-1005/" style="font-size: 10px;">微信, 公众号, 小程序, scope参数错误, 1005</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.me/">yilia主题作者博客</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/litten/hexo-theme-yilia">yilia github地址</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
