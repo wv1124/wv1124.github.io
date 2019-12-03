@@ -433,24 +433,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h1><h3 id="1-adb连接不上Genymotion问题。"><a href="#1-adb连接不上Genymotion问题。" class="headerlink" title="1. adb连接不上Genymotion问题。"></a>1. adb连接不上Genymotion问题。</h3><p>今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。<br>我在Genymotion上配置的是我自己android sdk目录，没有使用Genymotion自带的adb。<br>分析认为Genymotion 2.8.0中要使用低版本的adb才可以。我测试关掉Genymotion杀掉所有adb进程。<br>Genymotion中配置自带adb，再使用自带adb，是没有问题，可以连接设备的。换了我自己android sdk就不行了。<br><img src="http://pic.d2p.top/15571044454418.jpg" alt=""></p>
-<p>网上其它分析是修改adb 默认端口5037， 其实这个没啥用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i:5037</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export ANDROID_ADB_SERVER_PORT=6037</div></pre></td></tr></table></figure>
-<p>虚拟机跟主机也是通知socks通讯的，只要找到虚拟开启那个端口就可以adb connect上了<br>解决方法:<br>运行Genymotion Shell, 查看ip地址.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Genymotion Shell &gt; devices list</div><div class="line">Available devices:</div><div class="line"></div><div class="line"> Id | Select |    Status     |   Type   |   IP Address    |      Name</div><div class="line">----+--------+---------------+----------+-----------------+---------------</div><div class="line">  0 |    *   |            On |  virtual |  192.168.57.101 | Custom Tablet - 7.1.0 - API 25 - 1536x2048</div><div class="line">  1 |        |           Off |  virtual |         0.0.0.0 | Google Nexus 5 - 6.0.0 - API 23 - 1080x1920</div><div class="line">  2 |        |           Off |  virtual |         0.0.0.0 | nox</div><div class="line">Genymotion Shell &gt;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ adb connect 192.168.57.101:5555</div><div class="line">$ adb devicead</div></pre></td></tr></table></figure>
-<p>参考： <a href="https://stackoverflow.com/questions/17530181/genymotion-android-emulator-adb-access" target="_blank" rel="external">https://stackoverflow.com/questions/17530181/genymotion-android-emulator-adb-access</a></p>
-<p>还可以配置VBox,使用起来更简单<br><img src="http://pic.d2p.top/15571049319333.jpg" alt=""></p>
-<h3 id="1-1-安装Genymotion-ARM-Translation"><a href="#1-1-安装Genymotion-ARM-Translation" class="headerlink" title="1.1 安装Genymotion-ARM-Translation"></a>1.1 安装Genymotion-ARM-Translation</h3><ol>
-<li>下载对应的<a href="https://gitee.com/wv24/share" target="_blank" rel="external">https://gitee.com/wv24/share</a></li>
-<li>不能直接拖拽安装，命令行安装：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">adb push ARM_Translation_Marshmallow.zip /sdcard/</div><div class="line">adb shell</div><div class="line">cd /sdcard/</div><div class="line">sh /system/bin/flash-archive.sh ARM_Translation_Marshmallow.zip</div><div class="line">...</div><div class="line">### 也可以这么玩;</div><div class="line"></div><div class="line">adb shell /system/bin/flash-archive.sh  /sdcard/gapps-x86-6.0_20160402.zip</div><div class="line">adb shell /system/bin/flash-archive.sh /sdcard/SuperSU_v2.65_20160402.zip</div></pre></td></tr></table></figure>
-<ol>
-<li>重启模拟器。</li>
-</ol>
-<h3 id="2-夜神模拟器-adb连接问题。"><a href="#2-夜神模拟器-adb连接问题。" class="headerlink" title="2. 夜神模拟器 adb连接问题。"></a>2. 夜神模拟器 adb连接问题。</h3><p>在Genymotion实在用不了的情况下，尝试国产神器夜神模拟器。<br>原因： 夜神bin目录下的nox_adb.exe， 同样问题adb版本不一样;<br>参考： <a href="https://www.cnblogs.com/cnhkzyy/p/9308061.html" target="_blank" rel="external">https://www.cnblogs.com/cnhkzyy/p/9308061.html</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">adb connect 127.0.0.1:62001</div><div class="line">adb devices</div></pre></td></tr></table></figure>
-
+        <h1 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h1><p>今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2019/05/06/adb/#more">more >></a>
+        </p>
       
     </div>
     <div class="article-info article-info-index">
@@ -578,63 +564,6 @@
 
 
   
-    <article id="post-wechat-auth-scope-1005" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/23/wechat-auth-scope-1005/">微信授权返回“scope参数错误或者没有scop权限”</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="微信授权返回“scope参数错误或者没有scop权限”"><a href="#微信授权返回“scope参数错误或者没有scop权限”" class="headerlink" title="微信授权返回“scope参数错误或者没有scop权限”"></a>微信授权返回“scope参数错误或者没有scop权限”</h1><p>今天有个用户小程序在授权给我们的第三方平台时一直报”scope参数错误或者没有scop权限”， google发发现很多人有这个问题，但都没有解决我们的问题。试了一下公众号也是报一样的问题，就想一个简回调两个参数能错到那里去，先搞定公众号，小程序应该也就可以了。最后发现原因用户公众号没有配置回调域名。<br>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2018/12/23/wechat-auth-scope-1005/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2018/12/23/wechat-auth-scope-1005/" class="archive-article-date">
-  	<time datetime="2018-12-23T01:36:36.433Z" itemprop="datePublished"><i class="icon-clock"></i>2018-12-23</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信-公众号-小程序-scope参数错误-1005/">微信, 公众号, 小程序, scope参数错误, 1005</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<i class="icon-price-tags"></i>
-	<a class="article-category-link" href="/categories/微信/">微信</a>
-	</div>
-
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
     <article id="post-mac-linux-nfs" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -674,6 +603,63 @@
 	<div class="article-category tagcloud">
 	<i class="icon-price-tags"></i>
 	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-wechat-auth-scope-1005" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/23/wechat-auth-scope-1005/">微信授权返回“scope参数错误或者没有scop权限”</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="微信授权返回“scope参数错误或者没有scop权限”"><a href="#微信授权返回“scope参数错误或者没有scop权限”" class="headerlink" title="微信授权返回“scope参数错误或者没有scop权限”"></a>微信授权返回“scope参数错误或者没有scop权限”</h1><p>今天有个用户小程序在授权给我们的第三方平台时一直报”scope参数错误或者没有scop权限”， google发发现很多人有这个问题，但都没有解决我们的问题。试了一下公众号也是报一样的问题，就想一个简回调两个参数能错到那里去，先搞定公众号，小程序应该也就可以了。最后发现原因用户公众号没有配置回调域名。<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2018/12/23/wechat-auth-scope-1005/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2018/12/23/wechat-auth-scope-1005/" class="archive-article-date">
+  	<time datetime="2018-12-23T01:36:36.433Z" itemprop="datePublished"><i class="icon-clock"></i>2018-12-23</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信-公众号-小程序-scope参数错误-1005/">微信, 公众号, 小程序, scope参数错误, 1005</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/微信/">微信</a>
 	</div>
 
 

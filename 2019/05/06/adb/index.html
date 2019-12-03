@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>adb | 哈哈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="adb1. adb连接不上Genymotion问题。今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。我在Genymotion上配置的是我自己android sdk目录，没有使用Genymotion自带的adb。分析认为Genymotion 2.8.0中要使用低版本的adb才可以。我测试关掉Genymotion杀掉所有adb进程。Genymotion中配置自">
+  <meta name="description" content="adb今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。">
 <meta name="keywords" content="android, adb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="adb">
 <meta property="og:url" content="http://yoursite.com/2019/05/06/adb/index.html">
 <meta property="og:site_name" content="哈哈">
-<meta property="og:description" content="adb1. adb连接不上Genymotion问题。今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。我在Genymotion上配置的是我自己android sdk目录，没有使用Genymotion自带的adb。分析认为Genymotion 2.8.0中要使用低版本的adb才可以。我测试关掉Genymotion杀掉所有adb进程。Genymotion中配置自">
+<meta property="og:description" content="adb今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。">
 <meta property="og:image" content="http://pic.d2p.top/15571044454418.jpg">
 <meta property="og:image" content="http://pic.d2p.top/15571049319333.jpg">
-<meta property="og:updated_time" content="2019-07-17T09:46:54.401Z">
+<meta property="og:updated_time" content="2019-12-03T03:44:27.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="adb">
-<meta name="twitter:description" content="adb1. adb连接不上Genymotion问题。今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。我在Genymotion上配置的是我自己android sdk目录，没有使用Genymotion自带的adb。分析认为Genymotion 2.8.0中要使用低版本的adb才可以。我测试关掉Genymotion杀掉所有adb进程。Genymotion中配置自">
+<meta name="twitter:description" content="adb今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。">
 <meta name="twitter:image" content="http://pic.d2p.top/15571044454418.jpg">
   
     <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
@@ -163,7 +163,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h1><h3 id="1-adb连接不上Genymotion问题。"><a href="#1-adb连接不上Genymotion问题。" class="headerlink" title="1. adb连接不上Genymotion问题。"></a>1. adb连接不上Genymotion问题。</h3><p>今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。<br>我在Genymotion上配置的是我自己android sdk目录，没有使用Genymotion自带的adb。<br>分析认为Genymotion 2.8.0中要使用低版本的adb才可以。我测试关掉Genymotion杀掉所有adb进程。<br>Genymotion中配置自带adb，再使用自带adb，是没有问题，可以连接设备的。换了我自己android sdk就不行了。<br><img src="http://pic.d2p.top/15571044454418.jpg" alt=""></p>
+        <h1 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h1><p>今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。<br><a id="more"></a></p>
+<h3 id="1-adb连接不上Genymotion问题。"><a href="#1-adb连接不上Genymotion问题。" class="headerlink" title="1. adb连接不上Genymotion问题。"></a>1. adb连接不上Genymotion问题。</h3><p>我在Genymotion上配置的是我自己android sdk目录，没有使用Genymotion自带的adb。<br>分析认为Genymotion 2.8.0中要使用低版本的adb才可以。我测试关掉Genymotion杀掉所有adb进程。<br>Genymotion中配置自带adb，再使用自带adb，是没有问题，可以连接设备的。换了我自己android sdk就不行了。<br><img src="http://pic.d2p.top/15571044454418.jpg" alt=""></p>
 <p>网上其它分析是修改adb 默认端口5037， 其实这个没啥用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i:5037</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export ANDROID_ADB_SERVER_PORT=6037</div></pre></td></tr></table></figure>
 <p>虚拟机跟主机也是通知socks通讯的，只要找到虚拟开启那个端口就可以adb connect上了<br>解决方法:<br>运行Genymotion Shell, 查看ip地址.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Genymotion Shell &gt; devices list</div><div class="line">Available devices:</div><div class="line"></div><div class="line"> Id | Select |    Status     |   Type   |   IP Address    |      Name</div><div class="line">----+--------+---------------+----------+-----------------+---------------</div><div class="line">  0 |    *   |            On |  virtual |  192.168.57.101 | Custom Tablet - 7.1.0 - API 25 - 1536x2048</div><div class="line">  1 |        |           Off |  virtual |         0.0.0.0 | Google Nexus 5 - 6.0.0 - API 23 - 1080x1920</div><div class="line">  2 |        |           Off |  virtual |         0.0.0.0 | nox</div><div class="line">Genymotion Shell &gt;</div></pre></td></tr></table></figure></p>
