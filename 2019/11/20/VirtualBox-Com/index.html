@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>VirtualBox 串口设备(未完成) | 哈哈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="VirtualBox 串口设备(未完成)环境: Mac Pro 10.13.6 (17G3025) 安装12berm install socatbrew install minicom VirtualBox配置串口为管道 配置管道将socket端口567与管道文件链接起来。注意这里打开管道用的是gopen 而不是pipe（就因为这个浪费了很久时间，用pipe会在实际链接时提示不支持的操作）1sud">
+  <meta name="description" content="VirtualBox 串口设备(未完成)环境: Mac Pro 10.13.6 (17G3025)">
 <meta name="keywords" content="VM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VirtualBox 串口设备(未完成)">
 <meta property="og:url" content="http://yoursite.com/2019/11/20/VirtualBox-Com/index.html">
 <meta property="og:site_name" content="哈哈">
-<meta property="og:description" content="VirtualBox 串口设备(未完成)环境: Mac Pro 10.13.6 (17G3025) 安装12berm install socatbrew install minicom VirtualBox配置串口为管道 配置管道将socket端口567与管道文件链接起来。注意这里打开管道用的是gopen 而不是pipe（就因为这个浪费了很久时间，用pipe会在实际链接时提示不支持的操作）1sud">
+<meta property="og:description" content="VirtualBox 串口设备(未完成)环境: Mac Pro 10.13.6 (17G3025)">
 <meta property="og:image" content="http://pic.d2p.top/15742138027866.jpg">
-<meta property="og:updated_time" content="2019-11-29T10:45:28.468Z">
+<meta property="og:updated_time" content="2019-12-03T03:02:41.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VirtualBox 串口设备(未完成)">
-<meta name="twitter:description" content="VirtualBox 串口设备(未完成)环境: Mac Pro 10.13.6 (17G3025) 安装12berm install socatbrew install minicom VirtualBox配置串口为管道 配置管道将socket端口567与管道文件链接起来。注意这里打开管道用的是gopen 而不是pipe（就因为这个浪费了很久时间，用pipe会在实际链接时提示不支持的操作）1sud">
+<meta name="twitter:description" content="VirtualBox 串口设备(未完成)环境: Mac Pro 10.13.6 (17G3025)">
 <meta name="twitter:image" content="http://pic.d2p.top/15742138027866.jpg">
   
     <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
@@ -163,6 +163,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="VirtualBox-串口设备-未完成"><a href="#VirtualBox-串口设备-未完成" class="headerlink" title="VirtualBox 串口设备(未完成)"></a>VirtualBox 串口设备(未完成)</h1><p>环境: Mac Pro 10.13.6 (17G3025)</p>
+<a id="more"></a>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">berm install socat</div><div class="line">brew install minicom</div></pre></td></tr></table></figure>
 <h3 id="VirtualBox配置串口为管道"><a href="#VirtualBox配置串口为管道" class="headerlink" title="VirtualBox配置串口为管道"></a>VirtualBox配置串口为管道</h3><p><img src="http://pic.d2p.top/15742138027866.jpg" alt=""></p>
 <h3 id="配置管道"><a href="#配置管道" class="headerlink" title="配置管道"></a>配置管道</h3><p>将socket端口567与管道文件链接起来。注意这里打开管道用的是gopen 而不是pipe（就因为这个浪费了很久时间，用pipe会在实际链接时提示不支持的操作）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo socat tcp4-listen:567 gopen:/Users/wv/dsm61</div></pre></td></tr></table></figure></p>
@@ -300,7 +301,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/DSM-Transmission/" style="font-size: 10px;">DSM, Transmission</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mac-Linux-NFS/" style="font-size: 10px;">Mac, Linux, NFS</a> <a href="/tags/Node-MQ-EggJs/" style="font-size: 10px;">Node, MQ, EggJs</a> <a href="/tags/Tcpdump-Charle-PostMan/" style="font-size: 10px;">Tcpdump, Charle, PostMan</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/android-adb/" style="font-size: 10px;">android, adb</a> <a href="/tags/http-https-ssl/" style="font-size: 10px;">http, https, ssl</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/千米/" style="font-size: 10px;">千米</a> <a href="/tags/千米-收银/" style="font-size: 10px;">千米, 收银</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a> <a href="/tags/微信-公众号-小程序-scope参数错误-1005/" style="font-size: 10px;">微信, 公众号, 小程序, scope参数错误, 1005</a>
+    				<a href="/tags/DSM-Transmission/" style="font-size: 10px;">DSM, Transmission</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mac-Linux-NFS/" style="font-size: 10px;">Mac, Linux, NFS</a> <a href="/tags/Node-MQ-EggJs/" style="font-size: 10px;">Node, MQ, EggJs</a> <a href="/tags/Tcpdump-Charle-PostMan/" style="font-size: 10px;">Tcpdump, Charle, PostMan</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/android-adb/" style="font-size: 10px;">android, adb</a> <a href="/tags/http-https-ssl/" style="font-size: 10px;">http, https, ssl</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/千米/" style="font-size: 15px;">千米</a> <a href="/tags/千米-收银/" style="font-size: 10px;">千米, 收银</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a> <a href="/tags/微信-公众号-小程序-scope参数错误-1005/" style="font-size: 10px;">微信, 公众号, 小程序, scope参数错误, 1005</a>
     			</div>
     	</section>
     
