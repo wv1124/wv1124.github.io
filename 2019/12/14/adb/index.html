@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>adb | 哈哈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="adb今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。">
+<meta name="keywords" content="android, adb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="adb">
+<meta property="og:url" content="http://yoursite.com/2019/12/14/adb/index.html">
+<meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="adb今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。">
+<meta property="og:image" content="http://pic.d2p.top/15571044454418.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15571049319333.jpg">
+<meta property="og:updated_time" content="2019-12-14T04:41:25.186Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="adb">
+<meta name="twitter:description" content="adb今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。">
+<meta name="twitter:image" content="http://pic.d2p.top/15571044454418.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+
+  
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?06a2f085fc0dc0ecf4d0b2e08ece31d4";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://pic.d2p.top/15753451492250.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">WV</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">WV</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://pic.d2p.top/15753451492250.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">WV</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-adb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      adb
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h1><p>今天更新了android sdk，发现在原来可以正常连接Genymotion现在连不上了。<br><a id="more"></a></p>
+<h3 id="1-adb连接不上Genymotion问题。"><a href="#1-adb连接不上Genymotion问题。" class="headerlink" title="1. adb连接不上Genymotion问题。"></a>1. adb连接不上Genymotion问题。</h3><p>我在Genymotion上配置的是我自己android sdk目录，没有使用Genymotion自带的adb。<br>分析认为Genymotion 2.8.0中要使用低版本的adb才可以。我测试关掉Genymotion杀掉所有adb进程。<br>Genymotion中配置自带adb，再使用自带adb，是没有问题，可以连接设备的。换了我自己android sdk就不行了。<br><img src="http://pic.d2p.top/15571044454418.jpg" alt=""></p>
+<p>网上其它分析是修改adb 默认端口5037， 其实这个没啥用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i:5037</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export ANDROID_ADB_SERVER_PORT=6037</div></pre></td></tr></table></figure>
+<p>虚拟机跟主机也是通知socks通讯的，只要找到虚拟开启那个端口就可以adb connect上了<br>解决方法:<br>运行Genymotion Shell, 查看ip地址.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Genymotion Shell &gt; devices list</div><div class="line">Available devices:</div><div class="line"></div><div class="line"> Id | Select |    Status     |   Type   |   IP Address    |      Name</div><div class="line">----+--------+---------------+----------+-----------------+---------------</div><div class="line">  0 |    *   |            On |  virtual |  192.168.57.101 | Custom Tablet - 7.1.0 - API 25 - 1536x2048</div><div class="line">  1 |        |           Off |  virtual |         0.0.0.0 | Google Nexus 5 - 6.0.0 - API 23 - 1080x1920</div><div class="line">  2 |        |           Off |  virtual |         0.0.0.0 | nox</div><div class="line">Genymotion Shell &gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ adb connect 192.168.57.101:5555</div><div class="line">$ adb devicead</div></pre></td></tr></table></figure>
+<p>参考： <a href="https://stackoverflow.com/questions/17530181/genymotion-android-emulator-adb-access" target="_blank" rel="external">https://stackoverflow.com/questions/17530181/genymotion-android-emulator-adb-access</a></p>
+<p>还可以配置VBox,使用起来更简单<br><img src="http://pic.d2p.top/15571049319333.jpg" alt=""></p>
+<h3 id="1-1-安装Genymotion-ARM-Translation"><a href="#1-1-安装Genymotion-ARM-Translation" class="headerlink" title="1.1 安装Genymotion-ARM-Translation"></a>1.1 安装Genymotion-ARM-Translation</h3><ol>
+<li>下载对应的<a href="https://gitee.com/wv24/share" target="_blank" rel="external">https://gitee.com/wv24/share</a></li>
+<li>不能直接拖拽安装，命令行安装：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">adb push ARM_Translation_Marshmallow.zip /sdcard/</div><div class="line">adb shell</div><div class="line">cd /sdcard/</div><div class="line">sh /system/bin/flash-archive.sh ARM_Translation_Marshmallow.zip</div><div class="line">...</div><div class="line">### 也可以这么玩;</div><div class="line"></div><div class="line">adb shell /system/bin/flash-archive.sh  /sdcard/gapps-x86-6.0_20160402.zip</div><div class="line">adb shell /system/bin/flash-archive.sh /sdcard/SuperSU_v2.65_20160402.zip</div></pre></td></tr></table></figure>
+<ol>
+<li>重启模拟器。</li>
+</ol>
+<h3 id="2-夜神模拟器-adb连接问题。"><a href="#2-夜神模拟器-adb连接问题。" class="headerlink" title="2. 夜神模拟器 adb连接问题。"></a>2. 夜神模拟器 adb连接问题。</h3><p>在Genymotion实在用不了的情况下，尝试国产神器夜神模拟器。<br>原因： 夜神bin目录下的nox_adb.exe， 同样问题adb版本不一样;<br>参考： <a href="https://www.cnblogs.com/cnhkzyy/p/9308061.html" target="_blank" rel="external">https://www.cnblogs.com/cnhkzyy/p/9308061.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">adb connect 127.0.0.1:62001</div><div class="line">adb devices</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2019/12/14/adb/" class="archive-article-date">
+  	<time datetime="2019-12-14T04:41:25.186Z" itemprop="datePublished"><i class="icon-clock"></i>2019-12-14</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android-adb/">android, adb</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/android/">android</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/12/14/VirtualBox-Com/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          VirtualBox 串口设备(未完成)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/14/NodeMQ/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node监听MQ消息</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+	<div class="outer">
+		<div id="footer-info">
+			<div class="footer-left">
+				&copy; 2019 WV
+			</div>
+			<div class="footer-right">
+				<a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/litten/hexo-theme-yilia"
+					target="_blank">Yilia</a> by Litten
+			</div>
+		</div>
+	</div>
+	<div id="footer-info">
+		<a href="http://www.beian.miit.gov.cn/">苏ICP备17029916号-1</a>
+	</div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/DSM-Transmission/" style="font-size: 10px;">DSM, Transmission</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Mac-Linux-NFS/" style="font-size: 10px;">Mac, Linux, NFS</a> <a href="/tags/Node-MQ-EggJs/" style="font-size: 10px;">Node, MQ, EggJs</a> <a href="/tags/Tcpdump-Charle-PostMan/" style="font-size: 10px;">Tcpdump, Charle, PostMan</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/android-adb/" style="font-size: 10px;">android, adb</a> <a href="/tags/http-https-ssl/" style="font-size: 10px;">http, https, ssl</a> <a href="/tags/memcached/" style="font-size: 10px;">memcached</a> <a href="/tags/react-native-动画/" style="font-size: 10px;">react-native 动画</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/千米/" style="font-size: 20px;">千米</a> <a href="/tags/千米-收银/" style="font-size: 10px;">千米, 收银</a> <a href="/tags/微信/" style="font-size: 20px;">微信</a> <a href="/tags/微信-公众号-小程序-scope参数错误-1005/" style="font-size: 10px;">微信, 公众号, 小程序, scope参数错误, 1005</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.me/">yilia主题作者博客</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/litten/hexo-theme-yilia">yilia github地址</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
