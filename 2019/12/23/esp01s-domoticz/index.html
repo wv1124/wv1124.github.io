@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://yoursite.com/media/15770209216802.jpg">
 <meta property="og:image" content="http://yoursite.com/media/15770187769817.jpg">
 <meta property="og:image" content="http://yoursite.com/media/15770209770926.jpg">
-<meta property="og:updated_time" content="2019-12-23T04:44:35.200Z">
+<meta property="og:updated_time" content="2019-12-23T04:51:41.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ESP01S &amp; ESP_Easy &amp; Domoticz开关配置">
 <meta name="twitter:description" content="ESP01S &amp;amp; ESP_Easy &amp;amp; Domoticz最近准备折腾个wifi开关，淘宝买的一套，发现回来用不了，气人啊。ESP-01S Relay V1.0这个版本根本不用起来，据说ESP-01S Relay V4.0版本可以，没试过。下面记录折腾记录，ESP-01S刷ESP_Easy最新固件，用USB转TTL的3.3v单独给ESP-01S供电，用面包版连接继电器，是可以驱动继电">
@@ -220,7 +220,9 @@
 <h2 id="5-Esp-01S刷完插入ESP-01S-Relay无法获取IP地址"><a href="#5-Esp-01S刷完插入ESP-01S-Relay无法获取IP地址" class="headerlink" title="5. Esp-01S刷完插入ESP-01S Relay无法获取IP地址"></a>5. Esp-01S刷完插入ESP-01S Relay无法获取IP地址</h2><p>ESP-01S Relay V1.0版本电路图，测试没有问题。<br><img src="/media/15770201253970.jpg" alt=""><br><img src="/media/switcher.gif" alt="switche"></p>
 <p>最简单电路，两节1.5V电池驱动，可以在GPIO0和GND之间接白色LED测试测试，GPIO0接LED正极。测试后是正常的，LED可以点亮，通过Domoticz下可以控制LED点亮。<br><img src="/media/15770205095842.jpg" alt=""></p>
 <p>把GND和GPIO0接到ESP-01S Relay V1.0的GND和GPIO0引角上也可以驱动继电器工作<br><img src="/media/15770209216802.jpg" alt=""></p>
-<p>问题来了，继电器没有问题，ESP-01S也没有问题，单独都是可以工作的，结合一起就不能工作。</p>
+<font color="red">问题来了，继电器没有问题，ESP-01S也没有问题，单独都是可以工作的，结合一起就不能工作。</font>
+
+
 <h2 id="6-NTP也可设置一下，不知道有没有用"><a href="#6-NTP也可设置一下，不知道有没有用" class="headerlink" title="6. NTP也可设置一下，不知道有没有用"></a>6. NTP也可设置一下，不知道有没有用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cn.pool.ntp.org</div></pre></td></tr></table></figure>
 <p><img src="/media/15770187769817.jpg" alt=""></p>
 <h2 id="7-其它电路图"><a href="#7-其它电路图" class="headerlink" title="7. 其它电路图"></a>7. 其它电路图</h2><h3 id="7-1-ESP-01S-Relay-V4-0"><a href="#7-1-ESP-01S-Relay-V4-0" class="headerlink" title="7.1 ESP-01S Relay V4.0"></a>7.1 ESP-01S Relay V4.0</h3><p>注意跟V1.0不一样的，据说这个才是插上直接能用的。<br><img src="/media/15770209770926.jpg" alt=""></p>
