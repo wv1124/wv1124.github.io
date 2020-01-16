@@ -284,7 +284,13 @@
       <footer id="footer">
 	<div class="outer">
 		<div id="footer-info">
-			<div class="footer-left">
+			<script>
+				var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
+				if (isShowICP) {
+					$('#footer-left-icp').show();
+				}
+			</script>
+			<div class="footer-left" id="footer-left-icp" style="display: none;">
 				<p><a href="http://www.beian.miit.gov.cn/">苏ICP备17029916号-1</a></p>
 				<p>
 					<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011402010614"><img
@@ -292,8 +298,8 @@
 						苏公网安备 32011402010614号
 					</a>
 				</p>
-
 			</div>
+
 			<div class="footer-right">
 				<p>&copy; 2020 WV</p>
 				<p>

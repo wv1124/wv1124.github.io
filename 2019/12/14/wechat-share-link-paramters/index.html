@@ -249,8 +249,8 @@
     </a>
   
   
-    <a href="/2019/12/14/wechat-auth-scope-1005/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">微信授权返回“scope参数错误或者没有scop权限”</div>
+    <a href="/2019/12/14/wechat-gongzhonghao-dev/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微信公众号开发</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -289,7 +289,13 @@
       <footer id="footer">
 	<div class="outer">
 		<div id="footer-info">
-			<div class="footer-left">
+			<script>
+				var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
+				if (isShowICP) {
+					$('#footer-left-icp').show();
+				}
+			</script>
+			<div class="footer-left" id="footer-left-icp" style="display: none;">
 				<p><a href="http://www.beian.miit.gov.cn/">苏ICP备17029916号-1</a></p>
 				<p>
 					<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011402010614"><img
@@ -297,8 +303,8 @@
 						苏公网安备 32011402010614号
 					</a>
 				</p>
-
 			</div>
+
 			<div class="footer-right">
 				<p>&copy; 2020 WV</p>
 				<p>
