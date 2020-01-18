@@ -211,8 +211,8 @@
     </a>
   
   
-    <a href="/2019/12/14/maven/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2019/12/14/memchched/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">memcached基本操作</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -251,12 +251,6 @@
       <footer id="footer">
 	<div class="outer">
 		<div id="footer-info">
-			<script>
-				var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
-				if (isShowICP) {
-					$('#footer-left-icp').show();
-				}
-			</script>
 			<div class="footer-left" id="footer-left-icp" style="display: none;">
 				<p><a href="http://www.beian.miit.gov.cn/">苏ICP备17029916号-1</a></p>
 				<p>
@@ -264,6 +258,12 @@
 							src="/img/gonanbeian.png" style="float:left;" />
 						苏公网安备 32011402010614号
 					</a>
+					<script>
+						var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
+						if (isShowICP) {
+							document.getElementById('footer-left-icp').style.display = 'block';
+						}
+					</script>
 				</p>
 			</div>
 

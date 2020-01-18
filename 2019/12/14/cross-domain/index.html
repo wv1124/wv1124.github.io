@@ -278,12 +278,6 @@ response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot
       <footer id="footer">
 	<div class="outer">
 		<div id="footer-info">
-			<script>
-				var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
-				if (isShowICP) {
-					$('#footer-left-icp').show();
-				}
-			</script>
 			<div class="footer-left" id="footer-left-icp" style="display: none;">
 				<p><a href="http://www.beian.miit.gov.cn/">苏ICP备17029916号-1</a></p>
 				<p>
@@ -291,6 +285,12 @@ response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot
 							src="/img/gonanbeian.png" style="float:left;" />
 						苏公网安备 32011402010614号
 					</a>
+					<script>
+						var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
+						if (isShowICP) {
+							document.getElementById('footer-left-icp').style.display = 'block';
+						}
+					</script>
 				</p>
 			</div>
 

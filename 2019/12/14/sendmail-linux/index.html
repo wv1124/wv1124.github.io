@@ -215,18 +215,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/14/qianmi_pc_cash_weighter/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/12/14/react-native-animated/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          云小店PC收银串口电子称连接设置说明
+          React Native 入门
         
       </div>
     </a>
   
   
-    <a href="/2019/12/14/react-native-animated/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">React Native 入门</div>
+    <a href="/2019/12/14/qianmi_pc_cash_weighter/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">云小店PC收银串口电子称连接设置说明</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -265,12 +265,6 @@
       <footer id="footer">
 	<div class="outer">
 		<div id="footer-info">
-			<script>
-				var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
-				if (isShowICP) {
-					$('#footer-left-icp').show();
-				}
-			</script>
 			<div class="footer-left" id="footer-left-icp" style="display: none;">
 				<p><a href="http://www.beian.miit.gov.cn/">苏ICP备17029916号-1</a></p>
 				<p>
@@ -278,6 +272,12 @@
 							src="/img/gonanbeian.png" style="float:left;" />
 						苏公网安备 32011402010614号
 					</a>
+					<script>
+						var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
+						if (isShowICP) {
+							document.getElementById('footer-left-icp').style.display = 'block';
+						}
+					</script>
 				</p>
 			</div>
 
