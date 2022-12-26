@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://example.com">
+  <title>树莓派Qemu修改镜像 | 哈哈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="树莓派安装OpenMediaVault 5IPV6可以用了，把吃灰已久的树莓派拿出来折腾一下。安装OpenMediaVault。自己装了几编，把流程分享一下。另外为了方便备份这里直接修改镜像，备份tf卡太浪费空间，如果tf卡坏了，把修改后镜像再刷一遍就可以快速恢复。 为啥用Qemu？不用Vbox？因为不VBox不支持Arm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派Qemu修改镜像">
+<meta property="og:url" content="http://example.com/2022/02/03/raspi-omv5/index.html">
+<meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="树莓派安装OpenMediaVault 5IPV6可以用了，把吃灰已久的树莓派拿出来折腾一下。安装OpenMediaVault。自己装了几编，把流程分享一下。另外为了方便备份这里直接修改镜像，备份tf卡太浪费空间，如果tf卡坏了，把修改后镜像再刷一遍就可以快速恢复。 为啥用Qemu？不用Vbox？因为不VBox不支持Arm">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://pic.d2p.top/16439002474319.jpg">
+<meta property="article:published_time" content="2022-02-03T15:27:22.000Z">
+<meta property="article:modified_time" content="2022-02-03T15:27:22.000Z">
+<meta property="article:author" content="WangWei">
+<meta property="article:tag" content="树莓派">
+<meta property="article:tag" content="QEMU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pic.d2p.top/16439002474319.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/main.css">
+
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://pic.d2p.top/15753451492250.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://pic.d2p.top/15753451492250.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-raspi-omv5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      树莓派Qemu修改镜像
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="树莓派安装OpenMediaVault-5"><a href="#树莓派安装OpenMediaVault-5" class="headerlink" title="树莓派安装OpenMediaVault 5"></a>树莓派安装OpenMediaVault 5</h1><p>IPV6可以用了，把吃灰已久的树莓派拿出来折腾一下。安装OpenMediaVault。<br>自己装了几编，把流程分享一下。另外为了方便备份这里直接修改镜像，备份tf卡太浪费空间，如果tf卡坏了，把修改后镜像再刷一遍就可以快速恢复。</p>
+<p>为啥用Qemu？不用Vbox？因为不VBox不支持Arm</p>
+<span id="more"></span>
+
+<h2 id="1-准备软件"><a href="#1-准备软件" class="headerlink" title="1. 准备软件"></a>1. 准备软件</h2><h3 id="1-1-下载树莓派OS"><a href="#1-1-下载树莓派OS" class="headerlink" title="1.1 下载树莓派OS:"></a>1.1 下载树莓派OS:</h3><p>TUNA 镜像站（位于北京）：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/">https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/</a><br>SJTUG 镜像站（位于上海）：<a target="_blank" rel="noopener" href="https://mirrors.sjtug.sjtu.edu.cn/raspberry-pi-os-images/">https://mirrors.sjtug.sjtu.edu.cn/raspberry-pi-os-images/</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/raspios_oldstable_lite_armhf/images/raspios_oldstable_lite_armhf-2021-12-02/2021-12-02-raspios-buster-armhf-lite.zip</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-下载树莓派Qemu内核"><a href="#1-2-下载树莓派Qemu内核" class="headerlink" title="1.2 下载树莓派Qemu内核"></a>1.2 下载树莓派Qemu内核</h3><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/dhruvvyas90/qemu-rpi-kernel">https://github.com/dhruvvyas90/qemu-rpi-kernel</a></p>
+<p>下载下面两个文件，跟2021-12-02-raspios-buster-armhf-lite.zip放到同一个文件夹，后面Qemu会用到;</p>
+<p>内核: kernel-qemu-5.4.51-buster<br>dtb: versatile-pb-buster-5.4.51.dtb</p>
+<p>注意如果版本不同，请下载不同文件，原文：</p>
+<blockquote>
+<p>This repository contains three types of kernel images:</p>
+</blockquote>
+<blockquote>
+<p>kernel-qemu-4.<em>.</em>-buster are the most recent images, which are compatible with Raspbian Buster and Stretch. To use these images, you’ll need a compiled device tree file (.dtb) which is also contained in this repository. Use versatile-pb-buster.dtb for Buster, or use versatile-pb.dtb for Stretch. Unless you are positive you need a different kernel, the most recent of these images is probably what you want.</p>
+</blockquote>
+<blockquote>
+<p>kernel-qemu-4.<em>.</em>-stretch are images compatible with Raspbian Stretch and Jessie. To use these images, you’ll need the versatile-pb.dtb file which is also contained in this repository.</p>
+</blockquote>
+<blockquote>
+<p>kernel-qemu-4.4.*-jessie are images compatible with Raspbian Jessie and Wheezy.</p>
+</blockquote>
+<blockquote>
+<p>kernel-qemu-3.10.25-wheezy is the original image from xecdesign.com, which is compatible with Raspbian Wheezy only.</p>
+</blockquote>
+<p>下载不了，我上传云盘<br><a target="_blank" rel="noopener" href="https://cloud.189.cn/t/fiYRRrIFB7Fb">https://cloud.189.cn/t/fiYRRrIFB7Fb</a></p>
+<h2 id="2-修改镜像"><a href="#2-修改镜像" class="headerlink" title="2. 修改镜像"></a>2. 修改镜像</h2><h3 id="2-1-加载镜像"><a href="#2-1-加载镜像" class="headerlink" title="2.1 加载镜像"></a>2.1 加载镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&quot;解压树莓派镜像&quot;</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">unzip 2021-12-02-raspios-buster-armhf-lite.zip</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&quot;解压后删除&quot;</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">rm</span> -rf 2020-12-02-raspios-buster-armhf-lite.zip</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&quot;查看镜像分区结构&quot;</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo fdisk -l 2021-12-02-raspios-buster-armhf-lite.img</span></span><br><span class="line">[sudo] password for wv:</span><br><span class="line">Disk 2021-12-02-raspios-buster-armhf-lite.img: 2.8 GiB, 2961178624 bytes, 5783552 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disklabel type: dos</span><br><span class="line">Disk identifier: 0x43f6ece2</span><br><span class="line"></span><br><span class="line">Device                                    Boot  Start     End Sectors  Size Id Type</span><br><span class="line">2021-12-02-raspios-buster-armhf-lite.img1        8192  532479  524288  256M  c W95 FAT32 (LBA)</span><br><span class="line">2021-12-02-raspios-buster-armhf-lite.img2      532480 5783551 5251072  2.5G 83 Linux</span><br><span class="line"></span><br><span class="line">echo &quot;上面显示树莓派镜像有两个分区：256M是boot分，2.5G的rootfs分区，注意532480这个参数&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;先扩充镜像大小: 增加1G，相当于磁盘扩容，后面再调整分区大小&quot;</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">qemu-img resize 2020-12-02-raspios-buster-armhf-lite.img +4G</span></span><br><span class="line"></span><br><span class="line">echo &quot;加载第二个rootfs分区，注意532480是第二个分区开始的位置&quot;</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> rootfs</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo mount -v -o offset=$((<span class="number">532480</span> * <span class="number">512</span>)) -t ext4 2020-12-02-raspios-buster-armhf-lite.img ./rootfs</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> ./rootfs/etc/ld.so.preload</span></span><br><span class="line"><span class="meta prompt_">/usr/lib/arm-linux-gnueabihf/libarmmem-$</span><span class="language-bash">&#123;PLATFORM&#125;.so</span></span><br><span class="line"></span><br><span class="line">echo &quot;ld.so.preload中加了个#号注释，注意修改完镜像要原还&quot;</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo sed -i <span class="string">&#x27;s/^.*$/#\0/&#x27;</span> ./rootfs/etc/ld.so.preload</span></span><br><span class="line"></span><br><span class="line">echo &quot;新版使用PARTUUID不用修改&quot;</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> ./rootfs/etc/fstab</span></span><br><span class="line">proc            /proc           proc    defaults          0       0</span><br><span class="line">PARTUUID=067e19d7-01  /boot           vfat    defaults          0       2</span><br><span class="line">PARTUUID=067e19d7-02  /               ext4    defaults,noatime  0       1</span><br><span class="line"></span><br><span class="line">echo &quot;卸载rootfs分区&quot;</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo umount ./rootfs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-启动qemu虚拟机"><a href="#2-2-启动qemu虚拟机" class="headerlink" title="2.2 启动qemu虚拟机"></a>2.2 启动qemu虚拟机</h3><p>启动虚拟机，用起来确实很慢，建议还是直接用TF卡在真上改好后再参考第7节备份TF卡比较省事。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">qemu-system-arm                       \</span></span><br><span class="line"><span class="language-bash">  -M versatilepb                        \</span></span><br><span class="line"><span class="language-bash">  -cpu arm1176                          \</span></span><br><span class="line"><span class="language-bash">  -m 256                                \</span></span><br><span class="line"><span class="language-bash">  -drive <span class="string">&quot;file=2020-12-02-raspios-buster-armhf-lite.img,if=none,index=0,media=disk,format=raw,id=disk0&quot;</span>  \</span></span><br><span class="line"><span class="language-bash">  -device <span class="string">&quot;virtio-blk-pci,drive=disk0,disable-modern=on,disable-legacy=off&quot;</span>                              \</span></span><br><span class="line"><span class="language-bash">  -net <span class="string">&quot;user,hostfwd=tcp::3022-:22&quot;</span>     \</span></span><br><span class="line"><span class="language-bash">  -dtb versatile-pb-buster-5.4.51.dtb   \</span></span><br><span class="line"><span class="language-bash">  -kernel kernel-qemu-5.4.51-buster     \</span></span><br><span class="line"><span class="language-bash">  -append <span class="string">&#x27;root=/dev/vda2 panic=1&#x27;</span>      \</span></span><br><span class="line"><span class="language-bash">  -no-reboot                            \</span></span><br><span class="line"><span class="language-bash">  -net nic                              \</span></span><br><span class="line"><span class="language-bash">  -nographic</span></span><br><span class="line">  </span><br><span class="line">echo &quot;登录虚拟机pi:raspberry,进行下面操作, 输入ctrl + A 后按 X退出 QEMU&quot;</span><br><span class="line">pi@raspberrypi:~$: sudo service ssh start</span><br><span class="line">pi@raspberrypi:~$: sudo update-rc.d ssh enable</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-分区扩容"><a href="#2-3-分区扩容" class="headerlink" title="2.3 分区扩容"></a>2.3 分区扩容</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~$ sudo fdisk -l</span><br><span class="line">Disk /dev/ram0: 4 MiB, 4194304 bytes, 8192 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 4096 bytes</span><br><span class="line">I/O size (minimum/optimal): 4096 bytes / 4096 bytes</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">Disk /dev/vda: 2.7 GiB, 2931818496 bytes, 5726208 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disklabel type: dos</span><br><span class="line">Disk identifier: 0x067e19d7</span><br><span class="line"></span><br><span class="line">Device     Boot  Start     End Sectors  Size Id Type</span><br><span class="line">/dev/vda1         8192  532479  524288  256M  c W95 FAT32 (LBA)</span><br><span class="line">/dev/vda2       532480 3629055 3096576  1.5G 83 Linux</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mtdblock0: 64 MiB, 67108864 bytes, 131072 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line"></span><br><span class="line">pi@raspberrypi:~$ df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/root       1.5G  1.2G  179M  87% /</span><br><span class="line">devtmpfs        122M     0  122M   0% /dev</span><br><span class="line">tmpfs           122M     0  122M   0% /dev/shm</span><br><span class="line">tmpfs           122M  3.4M  118M   3% /run</span><br><span class="line">tmpfs           5.0M     0  5.0M   0% /run/lock</span><br><span class="line">tmpfs           122M     0  122M   0% /sys/fs/cgroup</span><br><span class="line">/dev/vda1       253M   54M  199M  22% /boot</span><br><span class="line">tmpfs            25M     0   25M   0% /run/user/1000</span><br><span class="line"></span><br><span class="line">echo &quot;实际分区只使用1.5G&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pi@raspberrypi:~$ sudo fdisk /dev/vda</span><br><span class="line"></span><br><span class="line">Welcome to fdisk (util-linux 2.33.1).</span><br><span class="line">Changes will remain in memory only, until you decide to write them.</span><br><span class="line">Be careful before using the write command.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Command (m for help): d</span><br><span class="line">Partition number (1,2, default 2): 2</span><br><span class="line"></span><br><span class="line">Partition 2 has been deleted.</span><br><span class="line"></span><br><span class="line">Command (m for help): n</span><br><span class="line">Partition type</span><br><span class="line">   p   primary (1 primary, 0 extended, 3 free)</span><br><span class="line">   e   extended (container for logical partitions)</span><br><span class="line">Select (default p): p</span><br><span class="line">Partition number (2-4, default 2): 2</span><br><span class="line">First sector (2048-5726207, default 2048): 532480</span><br><span class="line">Last sector, +/-sectors or +/-size&#123;K,M,G,T,P&#125; (532480-5726207, default 5726207):</span><br><span class="line"></span><br><span class="line">Created a new partition 2 of type &#x27;Linux&#x27; and of size 2.5 GiB.</span><br><span class="line">Partition #2 contains a ext4 signature.</span><br><span class="line"></span><br><span class="line">Do you want to remove the signature? [Y]es/[N]o: n</span><br><span class="line"></span><br><span class="line">Command (m for help): w</span><br><span class="line"></span><br><span class="line">The partition table has been altered.</span><br><span class="line">Syncing disks.</span><br><span class="line"></span><br><span class="line">pi@raspberrypi:~$ sudo reboot</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>重启后，resize2fs后df -h检查是否扩充成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~$ sudo resize2fs /dev/vda2</span><br><span class="line">resize2fs 1.44.5 (15-Dec-2018)</span><br><span class="line">Filesystem at /dev/vda2 is mounted on /; on-line resizing required</span><br><span class="line">old_desc_blocks = 1, new_desc_blocks = 1</span><br><span class="line">The filesystem on /dev/vda2 is now 649216 (4k) blocks long.</span><br><span class="line"></span><br><span class="line">pi@raspberrypi:~$ df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/root       2.5G  1.2G  1.2G  51% /</span><br><span class="line">devtmpfs        122M     0  122M   0% /dev</span><br><span class="line">tmpfs           122M     0  122M   0% /dev/shm</span><br><span class="line">tmpfs           122M  3.4M  118M   3% /run</span><br><span class="line">tmpfs           5.0M     0  5.0M   0% /run/lock</span><br><span class="line">tmpfs           122M     0  122M   0% /sys/fs/cgroup</span><br><span class="line">/dev/vda1       253M   54M  199M  22% /boot</span><br><span class="line">tmpfs            25M     0   25M   0% /run/user/1000</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-镜像开启SSH"><a href="#2-4-镜像开启SSH" class="headerlink" title="2.4 镜像开启SSH"></a>2.4 镜像开启SSH</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~$: sudo service ssh start</span><br><span class="line">pi@raspberrypi:~$: sudo update-rc.d ssh enable</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-替换国内源"><a href="#2-5-替换国内源" class="headerlink" title="2.5 替换国内源"></a>2.5 替换国内源</h3><p>参考：<a target="_blank" rel="noopener" href="https://tvtv.fun/pc-to-nas/16th.html">https://tvtv.fun/pc-to-nas/16th.html</a></p>
+<ul>
+<li><ol>
+<li>编辑 sources.list</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak</span><br><span class="line">sudo sh -c &#x27;echo &gt; /etc/apt/sources.list&#x27;</span><br><span class="line">sudo nano /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<p>替换如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编辑 `/etc/apt/sources.list` 文件，删除原文件所有内容，用以下内容取代：</span></span><br><span class="line">deb [arch=armhf] http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main non-free contrib rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main non-free contrib rpi</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><ol start="2">
+<li>编辑 <code>/etc/apt/sources.list.d/raspi.list</code> 文件</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list.d/raspi.list /etc/apt/sources.list.d/raspi.list.bak</span><br><span class="line">sudo sh -c &#x27;echo &gt; /etc/apt/sources.list.d/raspi.list&#x27;</span><br><span class="line">sudo nano /etc/apt/sources.list.d/raspi.list</span><br></pre></td></tr></table></figure>
+
+<p>删除原文件所有内容，用以下内容取代：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><ol start="3">
+<li>添加gpg<br>不添加下面会报错，apt-get update时如果还报就加按下面添加</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo gpg --keyserver keyserver.ubuntu.com --recv 648ACFD622F3D138</span><br><span class="line">sudo gpg --export --armor 648ACFD622F3D138 | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">sudo gpg --keyserver keyserver.ubuntu.com --recv 112695A0E562B32A</span><br><span class="line">sudo gpg --export --armor 112695A0E562B32A | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">sudo gpg --keyserver keyserver.ubuntu.com --recv 7EA0A9C3F273FCD8</span><br><span class="line">sudo gpg --export --armor 7EA0A9C3F273FCD8 | sudo apt-key add -</span><br><span class="line">sudo gpg --keyserver keyserver.ubuntu.com --recv 7E7A6C592EF35D13</span><br><span class="line">sudo gpg --export --armor 7E7A6C592EF35D13 | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">sudo gpg --keyserver keyserver.ubuntu.com --recv C5E224500C1289C0</span><br><span class="line">sudo gpg --export --armor C5E224500C1289C0 | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">sudo gpg --keyserver keyserver.ubuntu.com --recv 326A835E697B890A</span><br><span class="line">sudo gpg --export --armor 326A835E697B890A | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">sudo gpg --keyserver keyserver.ubuntu.com --recv 24863F0C716B980B</span><br><span class="line">sudo gpg --export --armor 24863F0C716B980B | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><ol start="4">
+<li>更新</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get -y update --allow-releaseinfo-change</span><br><span class="line">sudo apt-get upgrade -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-OpenMediaVault-5-安装"><a href="#3-OpenMediaVault-5-安装" class="headerlink" title="3. OpenMediaVault 5 安装"></a>3. OpenMediaVault 5 安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;开始安装OMV***************************&quot;</span><br><span class="line">echo &quot;参考https://wiki.omv-extras.org/doku.php?id=installing_omv5_raspberry_pi&quot;</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade -y</span><br><span class="line">sudo rm -f /etc/systemd/network/99-default.link</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install | sudo bash</span></span><br><span class="line">mkdir bin</span><br><span class="line">cd bin</span><br><span class="line">wget -c https://cdn.jsdelivr.net/gh/OpenMediaVault-Plugin-Developers/installScript@master/install -O installOmv.sh</span><br><span class="line">chmod a+x installOmv.sh</span><br><span class="line">sudo ./installOmv.sh -n</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="4-OpenMediaVault-配置Docker"><a href="#4-OpenMediaVault-配置Docker" class="headerlink" title="4. OpenMediaVault 配置Docker"></a>4. OpenMediaVault 配置Docker</h2><p>清华源：<br><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/openmediavault-plugin-developers/pool/main/o/openmediavault-omvextrasorg/">https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/openmediavault-plugin-developers/pool/main/o/openmediavault-omvextrasorg/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/OpenMediaVault/openmediavault-plugin-developers/pool/main/o/openmediavault-omvextrasorg/openmediavault-omvextrasorg_5.6.5_all.deb</span><br><span class="line"></span><br><span class="line">sudo dpkg -i openmediavault-omvextrasorg_5.6.5_all.deb</span><br></pre></td></tr></table></figure>
+
+<p>OMV5页面安装Docker和Portainer<br><img src="http://pic.d2p.top/16439002474319.jpg"></p>
+<h2 id="5-安装MariaDB"><a href="#5-安装MariaDB" class="headerlink" title="5. 安装MariaDB"></a>5. 安装MariaDB</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo apt-get install mariadb-server -y</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo mysql -u root -p</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-安装Gitea"><a href="#6-安装Gitea" class="headerlink" title="6. 安装Gitea"></a>6. 安装Gitea</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/jianmo-o/p/14297821.html">https://www.cnblogs.com/jianmo-o/p/14297821.html</a></p>
+<h3 id="6-1-创建数据库"><a href="#6-1-创建数据库" class="headerlink" title="6.1 创建数据库"></a>6.1 创建数据库</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo adduser --disabled-login --gecos <span class="string">&#x27;Gitea&#x27;</span> git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo mysql -u root -p</span></span><br></pre></td></tr></table></figure>
+
+<p>在mysql命令行：创建用户和数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [mysql]&gt; update user set password=password(&quot;xxxx&quot;), host=&#x27;%&#x27; where user=&#x27;root&#x27;;</span><br><span class="line">MariaDB [mysql]&gt; CREATE DATABASE gitea;</span><br><span class="line">MariaDB [mysql]&gt; GRANT ALL PRIVILEGES ON gitea.* TO &#x27;gitea&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;xxxx&#x27;;</span><br><span class="line">MariaDB [mysql]&gt; flush privileges;</span><br><span class="line"></span><br><span class="line">MariaDB [mysql]&gt; exit</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-安装Gitea"><a href="#6-2-安装Gitea" class="headerlink" title="6.2 安装Gitea"></a>6.2 安装Gitea</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo su git</span><br><span class="line">cd ~</span><br><span class="line">mkdir gitea</span><br><span class="line"></span><br><span class="line">cd gitea</span><br><span class="line">wget https://dl.gitea.io/gitea/1.15.10/gitea-1.15.10-linux-arm-6</span><br><span class="line">chmod +x gitea-1.15.10-linux-arm-6</span><br><span class="line">sudo nano /etc/systemd/system/gitea.service</span><br></pre></td></tr></table></figure>
+
+<p>编辑以下内容到：&#x2F;etc&#x2F;systemd&#x2F;system&#x2F;gitea.service</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Gitea (Git with a cup of tea)</span><br><span class="line">After=syslog.target</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"># Modify these two values ​​and uncomment them if you have</span><br><span class="line"># repos with lots of files and get to HTTP error 500 because of that</span><br><span class="line">###</span><br><span class="line"># LimitMEMLOCK=infinity</span><br><span class="line"># LimitNOFILE=65535</span><br><span class="line">RestartSec=2s</span><br><span class="line">Type=simple</span><br><span class="line">User=git</span><br><span class="line">Group=git</span><br><span class="line">WorkingDirectory=/home/git/gitea</span><br><span class="line">ExecStart=/home/git/gitea/gitea-1.15.10-linux-arm-6 web</span><br><span class="line">Restart=always</span><br><span class="line">Environment=USER=git </span><br><span class="line">HOME=/home/git</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>注意：以下参数换成你自己的。<br>WorkingDirectory：<br>ExecStart：<br>HOME：</p>
+<p>自启动相关命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable gitea.service</span><br><span class="line">sudo systemctl start gitea.service</span><br><span class="line">sudo systemctl restart gitea.service</span><br><span class="line">sudo systemctl status gitea.service</span><br><span class="line">sudo systemctl stop gitea.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-访问地址"><a href="#6-3-访问地址" class="headerlink" title="6.3 访问地址"></a>6.3 访问地址</h3><p>第一访问会填写数据相关参数.</p>
+<p><a target="_blank" rel="noopener" href="http://ip:3000/">http://ip:3000</a></p>
+<h3 id="6-4-配置"><a href="#6-4-配置" class="headerlink" title="6.4 配置"></a>6.4 配置</h3><p>禁用用户注册:gitea&#x2F;custom&#x2F;conf&#x2F;app.ini</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[service]</span><br><span class="line">DISABLE_REGISTRATION              = true</span><br></pre></td></tr></table></figure>
+
+<p>如果要域名访问，修改ROOT_URL，注意跟nginx配置要相同。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[server] </span><br><span class="line">ROOT_URL = http://your.domain/git/。</span><br></pre></td></tr></table></figure>
+
+<p>nginx配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location /git/ &#123; # Note: Trailing slash</span><br><span class="line">    proxy_pass http://localhost:3000/; # Note: Trailing slash</span><br><span class="line">    proxy_redirect off;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-TF卡备份与恢复"><a href="#7-TF卡备份与恢复" class="headerlink" title="7. TF卡备份与恢复"></a>7. TF卡备份与恢复</h2><p>重装了几次，每次都要apt-get upgrade太浪费时间，OMV也要重安装，于是想办法备份，操作如下：</p>
+<p>Linux下操作:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;备份TF卡，TF卡设备为/dev/disk2&quot;</span><br><span class="line">sudo dd if=/dev/disk2 of=raspi_omv5.img bs=2M count=64</span><br><span class="line"></span><br><span class="line">echo &quot;缩小镜像，删除空白空间，32G镜像文件会缩到5G大小，速度很快&quot;</span><br><span class="line">wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh</span><br><span class="line">chmod +x pishrink.sh</span><br><span class="line">sudo mv pishrink.sh /usr/local/bin</span><br><span class="line">sudo pishrink.sh raspi_omv5.img</span><br><span class="line">echo &quot;也可以sudo pishrink.sh -s system.img new_system.img&quot;</span><br><span class="line"></span><br><span class="line">echo &quot;恢复/dev/disk2&quot;</span><br><span class="line">sudo dd if=raspi_omv5.img of=/dev/sdc bs=2M count=64</span><br><span class="line"></span><br><span class="line">echo &quot;查看dd进度&quot;</span><br><span class="line">sudo killall -USR1 dd</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="8-参考"><a href="#8-参考" class="headerlink" title="8. 参考"></a>8. 参考</h2><p>QEMUlating a Rasbian: <a target="_blank" rel="noopener" href="https://book-of-gehn.github.io/articles/2020/12/15/Qemulating-Rasbian-ARM.html">https://book-of-gehn.github.io/articles/2020/12/15/Qemulating-Rasbian-ARM.html</a> </p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2022/02/03/raspi-omv5/" class="archive-article-date">
+  	<time datetime="2022-02-03T15:27:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2022-02-03</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QEMU/" rel="tag">QEMU</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" rel="tag">树莓派</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2022/02/03/boy_girl_heigh_weight/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          儿童生长曲线
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/08/10/sunmi-scanner/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">商米扫码枪设置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+	<div class="outer">
+		<div id="footer-info">
+			<div class="footer-left" id="footer-left-icp" style="display: none;">
+				<p><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/">苏ICP备17029916号-1</a></p>
+				<p>
+					<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011402010614"><img
+							src="/img/gonanbeian.png" style="float:left;" />
+						苏公网安备 32011402010614号
+					</a>
+					<script>
+						var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
+						if (isShowICP) {
+							document.getElementById('footer-left-icp').style.display = 'block';
+						}
+					</script>
+				</p>
+			</div>
+
+			<div class="footer-right">
+				<p>&copy; 2022 WangWei</p>
+				<p>
+					<a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/litten/hexo-theme-yilia"
+						target="_blank">Yilia</a> by Litten</p>
+			</div>
+		</div>
+	</div>
+
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+
+<script src="/./main.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 11.67px;">Android</a> <a href="/tags/Armbian/" style="font-size: 10px;">Armbian</a> <a href="/tags/Charle/" style="font-size: 10px;">Charle</a> <a href="/tags/DSM/" style="font-size: 10px;">DSM</a> <a href="/tags/Domoticz/" style="font-size: 10px;">Domoticz</a> <a href="/tags/Drone/" style="font-size: 11.67px;">Drone</a> <a href="/tags/ESC/" style="font-size: 10px;">ESC</a> <a href="/tags/ESP01S/" style="font-size: 10px;">ESP01S</a> <a href="/tags/ESP-Easy/" style="font-size: 10px;">ESP_Easy</a> <a href="/tags/EggJs/" style="font-size: 10px;">EggJs</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitea/" style="font-size: 11.67px;">Gitea</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NFS/" style="font-size: 10px;">NFS</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/POS/" style="font-size: 10px;">POS</a> <a href="/tags/PostMan/" style="font-size: 10px;">PostMan</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/T1/" style="font-size: 10px;">T1</a> <a href="/tags/Tcpdump/" style="font-size: 10px;">Tcpdump</a> <a href="/tags/Test/" style="font-size: 10px;">Test</a> <a href="/tags/Transmission/" style="font-size: 10px;">Transmission</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/memcached/" style="font-size: 10px;">memcached</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/%E4%B8%B2%E5%8F%A3%E7%A7%A4/" style="font-size: 10px;">串口秤</a> <a href="/tags/%E4%BA%91%E5%B0%8F%E5%BA%97/" style="font-size: 18.33px;">云小店</a> <a href="/tags/%E5%84%BF%E7%AB%A5/" style="font-size: 10px;">儿童</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">公众号</a> <a href="/tags/%E5%88%B7%E8%84%B8%E6%94%AF%E4%BB%98/" style="font-size: 10px;">刷脸支付</a> <a href="/tags/%E5%89%AF%E5%B1%8F/" style="font-size: 10px;">副屏</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10px;">动画</a> <a href="/tags/%E5%8D%83%E7%B1%B3/" style="font-size: 20px;">千米</a> <a href="/tags/%E5%8F%91%E8%82%B2/" style="font-size: 10px;">发育</a> <a href="/tags/%E5%95%86%E7%B1%B3/" style="font-size: 11.67px;">商米</a> <a href="/tags/%E5%A4%AA%E8%A1%8C%E4%BB%AA%E8%A1%A8/" style="font-size: 10px;">太行仪表</a> <a href="/tags/%E5%AF%8C%E5%9D%A4/" style="font-size: 10px;">富坤</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 15px;">微信</a> <a href="/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 11.67px;">打印机</a> <a href="/tags/%E6%89%AB%E7%A0%81%E6%9E%AA/" style="font-size: 11.67px;">扫码枪</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D/" style="font-size: 10px;">支付宝</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D%E8%9C%BB%E8%9C%93/" style="font-size: 10px;">支付宝蜻蜓</a> <a href="/tags/%E6%94%B6%E9%93%B6/" style="font-size: 10px;">收银</a> <a href="/tags/%E6%9D%A1%E7%A0%81%E7%A7%A4/" style="font-size: 11.67px;">条码秤</a> <a href="/tags/%E6%A0%87%E7%AD%BE%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">标签打印机</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E7%94%9F%E9%95%BF/" style="font-size: 10px;">生长</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E6%92%AD%E6%8A%A5/" style="font-size: 10px;">语音播报</a> <a href="/tags/%E8%BA%AB%E9%AB%98/" style="font-size: 10px;">身高</a> <a href="/tags/%E9%80%9A%E8%AE%AF%E7%A7%A4/" style="font-size: 16.67px;">通讯秤</a> <a href="/tags/%E9%92%88%E5%BC%8F%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">针式打印机</a> <a href="/tags/%E9%A1%B6%E5%B0%96/" style="font-size: 10px;">顶尖</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.me/">yilia主题作者博客</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/litten/hexo-theme-yilia">yilia github地址</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

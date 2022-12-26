@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://example.com">
+  <title>React Native 入门 | 哈哈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="React Native 动画刚看到RN动画时一头懵, 怎么实现, 这些参数属性是什么? 那里有这些参数文档.后来发现原来是CSS3时提供的, 先了解一下CSS3的动画就不难理解了.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native 入门">
+<meta property="og:url" content="http://example.com/2019/12/23/react-native-animated/index.html">
+<meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="React Native 动画刚看到RN动画时一头懵, 怎么实现, 这些参数属性是什么? 那里有这些参数文档.后来发现原来是CSS3时提供的, 先了解一下CSS3的动画就不难理解了.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/media/14865550115569.jpg">
+<meta property="og:image" content="http://example.com/media/14865551257521.jpg">
+<meta property="og:image" content="http://example.com/media/14865513819079.jpg">
+<meta property="og:image" content="http://example.com/media/14865529323884.jpg">
+<meta property="og:image" content="http://example.com/media/14867177443862.jpg">
+<meta property="og:image" content="http://example.com/media/14866985474908.gif">
+<meta property="article:published_time" content="2019-12-23T04:45:41.000Z">
+<meta property="article:modified_time" content="2019-12-23T04:45:41.000Z">
+<meta property="article:author" content="WangWei">
+<meta property="article:tag" content="react-native">
+<meta property="article:tag" content="动画">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/media/14865550115569.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/main.css">
+
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://pic.d2p.top/15753451492250.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://pic.d2p.top/15753451492250.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-react-native-animated" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React Native 入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="React-Native-动画"><a href="#React-Native-动画" class="headerlink" title="React Native 动画"></a>React Native 动画</h1><p>刚看到RN动画时一头懵, 怎么实现, 这些参数属性是什么? 那里有这些参数文档.<br>后来发现原来是CSS3时提供的, 先了解一下CSS3的动画就不难理解了.</p>
+<span id="more"></span>
+
+<h2 id="1-基本知识"><a href="#1-基本知识" class="headerlink" title="1. 基本知识"></a>1. 基本知识</h2><h3 id="1-1-CSS动画介络"><a href="#1-1-CSS动画介络" class="headerlink" title="1.1 CSS动画介络"></a>1.1 CSS动画介络</h3><p>CSS3动画相关的几个属性是：transition, transform, animation；我分别理解为过渡，变换，动画。虽意义相近，但具体角色不一。</p>
+<p><img src="/media/14865550115569.jpg"></p>
+<h4 id="1-2-transition"><a href="#1-2-transition" class="headerlink" title="1.2 transition"></a>1.2 transition</h4><p>作用: 当元素从一种样式变换为另一种样式时为元素添加效果</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>transition</td>
+<td>简写属性，用于在一个属性中设置四个过渡属性。</td>
+<td>3</td>
+</tr>
+<tr>
+<td>transition-property</td>
+<td>规定应用过渡的 CSS 属性的名称。比如transition-property:backgrond 就是指backgound参与这个过渡</td>
+<td>3</td>
+</tr>
+<tr>
+<td>transition-duration</td>
+<td>定义过渡效果花费的时间。默认是 0。</td>
+<td>3</td>
+</tr>
+<tr>
+<td>transition-timing-function</td>
+<td>规定过渡效果的时间曲线。默认是 “ease”。</td>
+<td>3</td>
+</tr>
+<tr>
+<td>transition-delay</td>
+<td>规定过渡效果何时开始。默认是 0。</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p>transition-timing-function: 类型如下: </p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>解释</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ease</td>
+<td>移动距离</td>
+<td>-moz-transition-timing-function:ease;</td>
+</tr>
+<tr>
+<td>linear</td>
+<td>线性过度</td>
+<td>-moz-transition-timing-function:linear;</td>
+</tr>
+<tr>
+<td>ease-in</td>
+<td>由慢到快</td>
+<td></td>
+</tr>
+<tr>
+<td>ease-out</td>
+<td>由快到慢</td>
+<td></td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td>由慢到快在到慢, ease-in-ease-out</td>
+<td></td>
+</tr>
+<tr>
+<td>cubic-bezier</td>
+<td>贝塞尔曲线</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="comment">/* Safari and Chrome */</span></span><br><span class="line">	-webkit-<span class="attribute">transition-property</span>:width;</span><br><span class="line">	-webkit-<span class="attribute">transition-duration</span>:<span class="number">1s</span>;</span><br><span class="line">	-webkit-<span class="attribute">transition-timing-function</span>:linear;</span><br><span class="line">	-webkit-<span class="attribute">transition-delay</span>:<span class="number">2s</span>;</span><br><span class="line">&#125;</span><br><span class="line">等价下面:</span><br><span class="line">div &#123;</span><br><span class="line">	<span class="comment">/* Safari and Chrome */</span></span><br><span class="line">	-webkit-<span class="attribute">transition</span>: width <span class="number">1s</span> linear <span class="number">2s</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-transform"><a href="#1-3-transform" class="headerlink" title="1.3 transform"></a>1.3 transform</h4><p>作用: 对元素进行移动、缩放、转动、拉长或拉伸<br>2D变换:<br><img src="/media/14865551257521.jpg"></p>
+<p>3D变换:<br><img src="/media/14865513819079.jpg"></p>
+<p>实例:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">rotateY</span>(<span class="number">130deg</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-animation"><a href="#1-4-animation" class="headerlink" title="1.4 animation"></a>1.4 animation</h4><p>创建能够取代动画图片、Flash 动画以及 JavaScript的动画。</p>
+<p><img src="/media/14865529323884.jpg"></p>
+<p>实例:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">animation-name</span>: myfirst;</span><br><span class="line">	<span class="attribute">animation-duration</span>: <span class="number">5s</span>;</span><br><span class="line">	<span class="attribute">animation-timing-function</span>: linear;</span><br><span class="line">	<span class="attribute">animation-delay</span>: <span class="number">2s</span>;</span><br><span class="line">	<span class="attribute">animation-iteration-count</span>: infinite;</span><br><span class="line">	<span class="attribute">animation-direction</span>: alternate;</span><br><span class="line">	<span class="attribute">animation-play-state</span>: running;</span><br><span class="line">&#125;</span><br><span class="line">// 等效</span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">	<span class="attribute">animation</span>: myfirst <span class="number">5s</span> linear <span class="number">2s</span> infinite alternate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-React-Native动画"><a href="#2-React-Native动画" class="headerlink" title="2. React-Native动画"></a>2. React-Native动画</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: </span><br><span class="line">[</span><br><span class="line">	&#123;<span class="attribute">perspective</span>: number&#125;, </span><br><span class="line">	&#123;rotate: string&#125;, </span><br><span class="line">	&#123;rotateX: string&#125;, </span><br><span class="line">	&#123;rotateY: string&#125;, </span><br><span class="line">	&#123;rotateZ: string&#125;, </span><br><span class="line">	&#123;scale: number&#125;, </span><br><span class="line">	&#123;scaleX: number&#125;, </span><br><span class="line">	&#123;scaleY: number&#125;, </span><br><span class="line">	&#123;translateX: number&#125;, </span><br><span class="line">	&#123;translateY: number&#125;, </span><br><span class="line">	&#123;skewX: string&#125;, </span><br><span class="line">	&#123;skewY: string&#125;</span><br><span class="line">] </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-1-Animated"><a href="#2-1-Animated" class="headerlink" title="2.1 Animated"></a>2.1 Animated</h3><p>Animated库使得开发者可以非常容易地实现各种各样的动画和交互方式，并且具备极高的性能。</p>
+<p><img src="/media/14867177443862.jpg"></p>
+<ul>
+<li>两个值类型: Value用于单个的值，而ValueXY用于向量值;</li>
+</ul>
+<p>三种动画类型: </p>
+<ol>
+<li><p>spring: 基础的单次弹跳物理模型，符合Origami设计标准</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">type <span class="title class_">SpringAnimationConfig</span> = <span class="title class_">AnimationConfig</span> &amp; &#123;</span><br><span class="line">  <span class="attr">toValue</span>: number | <span class="title class_">AnimatedValue</span> | &#123;<span class="attr">x</span>: number, <span class="attr">y</span>: number&#125; | <span class="title class_">AnimatedValueXY</span>,</span><br><span class="line">  overshootClamping?: bool,</span><br><span class="line">  restDisplacementThreshold?: number,</span><br><span class="line">  restSpeedThreshold?: number,</span><br><span class="line">  velocity?: number | &#123;<span class="attr">x</span>: number, <span class="attr">y</span>: number&#125;,</span><br><span class="line">  bounciness?: number,</span><br><span class="line">  speed?: number,</span><br><span class="line">  tension?: number,			<span class="comment">// 张力，默认40。</span></span><br><span class="line">  friction?: number,		<span class="comment">// 摩擦力，默认为7.</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> spring = <span class="keyword">function</span>(<span class="params"></span></span><br><span class="line"><span class="params">  value: AnimatedValue | AnimatedValueXY,</span></span><br><span class="line"><span class="params">  config: SpringAnimationConfig,</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">CompositeAnimation</span> &#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>decay: 以一个初始速度开始并且逐渐减慢停止。<br> velocity: 起始速度，必填参数。<br> deceleration: 速度衰减比例，默认为0.997。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type <span class="title class_">DecayAnimationConfig</span> = <span class="title class_">AnimationConfig</span> &amp; &#123;</span><br><span class="line">  <span class="attr">velocity</span>: number | &#123;<span class="attr">x</span>: number, <span class="attr">y</span>: number&#125;,</span><br><span class="line">  deceleration?: number,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> decay = <span class="keyword">function</span>(<span class="params"></span></span><br><span class="line"><span class="params">  value: AnimatedValue | AnimatedValueXY,</span></span><br><span class="line"><span class="params">  config: DecayAnimationConfig,</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">CompositeAnimation</span> &#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>timing: 从时间范围映射到渐变的值。<br> duration: 动画持续的时间（毫秒），默认为500。<br> easing：一个用于定义曲线的渐变函数。阅读Easing模块可以找到许多预定义的函数。iOS默认为E	asing.inOut(Easing.ease)。<br> delay: 在一段时间之后开始动画（单位是毫秒），默认为0。<br> 原型: react-native&#x2F;Libraries&#x2F;Animated&#x2F;src&#x2F;AnimatedImplementagion.js -&gt; Line: 1951</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">type TimingAnimationConfig =  AnimationConfig &amp; &#123;</span><br><span class="line">  toValue: number | AnimatedValue | &#123;x: number, y: number&#125; | AnimatedValueXY,</span><br><span class="line">  easing?: (value: number) =&gt; number,</span><br><span class="line">  duration?: number,</span><br><span class="line">  delay?: number,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var timing = function(</span><br><span class="line">  value: AnimatedValue | AnimatedValueXY,</span><br><span class="line">  config: TimingAnimationConfig,</span><br><span class="line">): CompositeAnimation &#123;</span><br><span class="line">......</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>三种组件: View，Text和Image, 可以使用Animated.createAnimatedComponent方法来对其它类型的组件创建动画</li>
+</ul>
+<h3 id="2-2-插值函数interpolate"><a href="#2-2-插值函数interpolate" class="headerlink" title="2.2 插值函数interpolate"></a>2.2 插值函数interpolate</h3><h4 id="interpolate原型"><a href="#interpolate原型" class="headerlink" title="interpolate原型"></a>interpolate原型</h4><p>interpolate插值函数。它可以接受一个输入区间，然后将其映射到另一个的输出区间。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// extend-允许超出, clamp-固定输入, identity-?</span></span><br><span class="line">type <span class="title class_">ExtrapolateType</span> = <span class="string">&#x27;extend&#x27;</span> | <span class="string">&#x27;identity&#x27;</span> | <span class="string">&#x27;clamp&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> type <span class="title class_">InterpolationConfigType</span> = &#123;</span><br><span class="line">  <span class="attr">inputRange</span>: <span class="title class_">Array</span>&lt;number&gt;,		<span class="comment">// 输入范围</span></span><br><span class="line">  <span class="attr">outputRange</span>: (<span class="title class_">Array</span>&lt;number&gt; | <span class="title class_">Array</span>&lt;string&gt;),  <span class="comment">// 输出范围</span></span><br><span class="line">  easing?: (<span class="function">(<span class="params">input: number</span>) =&gt;</span> number),  <span class="comment">// 任意的渐变函数;</span></span><br><span class="line">  extrapolate?: <span class="title class_">ExtrapolateType</span>,	        <span class="comment">// 限制输出区间</span></span><br><span class="line">  extrapolateLeft?: <span class="title class_">ExtrapolateType</span>,</span><br><span class="line">  extrapolateRight?: <span class="title class_">ExtrapolateType</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="问题-下面代码设置scale属性是从什么值变到什么值-0200-01"><a href="#问题-下面代码设置scale属性是从什么值变到什么值-0200-01" class="headerlink" title="问题: 下面代码设置scale属性是从什么值变到什么值? 0200? 01?"></a>问题: 下面代码设置scale属性是从什么值变到什么值? 0<del>200? 0</del>1?</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">FadeInView</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">   <span class="attr">state</span>: any;</span><br><span class="line"></span><br><span class="line">   <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">     <span class="variable language_">super</span>(props);</span><br><span class="line">     <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">       <span class="attr">fadeAnim</span>: <span class="keyword">new</span> <span class="title class_">Animated</span>.<span class="title class_">Value</span>(<span class="number">0</span>), <span class="comment">// 声明Animated.Value</span></span><br><span class="line">     &#125;;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">     <span class="title class_">Animated</span>.<span class="title function_">timing</span>(          <span class="comment">// Uses easing functions</span></span><br><span class="line">       <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">fadeAnim</span>,    <span class="comment">// The value to drive</span></span><br><span class="line">       &#123;</span><br><span class="line">         <span class="attr">toValue</span>: <span class="number">200</span>,         <span class="comment">// 目标值</span></span><br><span class="line">         <span class="attr">duration</span>: <span class="number">2000</span>,       <span class="comment">// 动画持续的时间（毫秒）</span></span><br><span class="line">       &#125;,</span><br><span class="line">     ).<span class="title function_">start</span>();                <span class="comment">// Don&#x27;t forget start!</span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">     <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">fadeAnim</span>.<span class="title function_">setValue</span>(<span class="number">0</span>);     <span class="comment">// 设置一个较大的初始值, [0,toValue]</span></span><br><span class="line">     <span class="keyword">return</span> (</span><br><span class="line">       <span class="language-xml"><span class="tag">&lt;<span class="name">Animated.View</span>          // <span class="attr">指定动画View</span>;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           <span class="attr">transform:</span> [&#123;<span class="attr">scale:</span> <span class="attr">this.state.fadeAnim.interpolate</span>(&#123;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">inputRange:</span> [<span class="attr">0</span>, <span class="attr">100</span>, <span class="attr">150</span>],   // <span class="attr">输义输入</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">outputRange:</span> [<span class="attr">0</span>, <span class="attr">1</span>, <span class="attr">1</span>],      // <span class="attr">对应输出区间</span>, <span class="attr">scale最终是在</span>[<span class="attr">0</span>, <span class="attr">1</span>]<span class="attr">之间变化</span>;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           &#125;)&#125;]</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         &#125;&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">         &#123;this.props.children&#125;</span></span><br><span class="line"><span class="language-xml">       <span class="tag">&lt;/<span class="name">Animated.View</span>&gt;</span></span></span><br><span class="line">     );</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>0~1之间缩放效果:<br><img src="/media/14866985474908.gif"></p>
+<p>注意: 两元素跟三个元素是有区别的:</p>
+<table>
+<thead>
+<tr>
+<th>inputRange</th>
+<th>outoutRange</th>
+<th>extrapolate</th>
+<th>实例(输入:输出)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[0, 100]</td>
+<td>[0, 1]</td>
+<td>‘extend’</td>
+<td>0:0, 50:0.5, 100:1, 150:1.5, 200:2</td>
+</tr>
+<tr>
+<td>[0, 100]</td>
+<td>[0, 1]</td>
+<td>‘clamp’</td>
+<td>0:0, 50:0.5, 100:1, 150:1, 200:1</td>
+</tr>
+<tr>
+<td>[0, 100, 200]</td>
+<td>[0, 1, 1]</td>
+<td>‘extend’</td>
+<td>0:0, 50:0.5, 100:1, 150:1, 200:1</td>
+</tr>
+<tr>
+<td>[0, 100, 200]</td>
+<td>[0, 1, 1]</td>
+<td>‘clamp’</td>
+<td>0:0, 50:0.5, 100:1, 150:1, 200:1</td>
+</tr>
+</tbody></table>
+<h3 id="动画组合"><a href="#动画组合" class="headerlink" title="动画组合:"></a>动画组合:</h3><p>parallel（同时执行）, sequence（顺序执行）, stagger(交错),  delay(延时)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Animated</span>.<span class="title function_">sequence</span>([            <span class="comment">// 首先执行decay动画，结束后同时执行spring和twirl动画</span></span><br><span class="line">  <span class="title class_">Animated</span>.<span class="title function_">decay</span>(position, &#123;   <span class="comment">// 滑行一段距离后停止</span></span><br><span class="line">    <span class="attr">velocity</span>: &#123;<span class="attr">x</span>: gestureState.<span class="property">vx</span>, <span class="attr">y</span>: gestureState.<span class="property">vy</span>&#125;, <span class="comment">// 根据用户的手势设置速度</span></span><br><span class="line">    <span class="attr">deceleration</span>: <span class="number">0.997</span>,</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="title class_">Animated</span>.<span class="title function_">parallel</span>([          <span class="comment">// 在decay之后并行执行：</span></span><br><span class="line">    <span class="title class_">Animated</span>.<span class="title function_">spring</span>(position, &#123;</span><br><span class="line">      <span class="attr">toValue</span>: &#123;<span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span>&#125;    <span class="comment">// 返回到起始点开始</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="title class_">Animated</span>.<span class="title function_">timing</span>(twirl, &#123;   <span class="comment">// 同时开始旋转</span></span><br><span class="line">      <span class="attr">toValue</span>: <span class="number">360</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">  ]),</span><br><span class="line">]).<span class="title function_">start</span>();                    <span class="comment">// 执行这一整套动画序列</span></span><br></pre></td></tr></table></figure>
+<p>默认情况下，如果任何一个动画被停止或中断了，组内所有其它的动画也会被停止。Parallel有一个stopTogether属性，如果设置为false，可以禁用自动停止。</p>
+<h3 id="LayoutAnimation"><a href="#LayoutAnimation" class="headerlink" title="LayoutAnimation"></a>LayoutAnimation</h3><h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rotate</td>
+<td>旋转</td>
+<td>-webkit-transform:rotate(10deg);</td>
+</tr>
+<tr>
+<td>scale</td>
+<td>尺寸放大缩小</td>
+<td></td>
+</tr>
+<tr>
+<td>skew</td>
+<td>倾斜角度</td>
+<td></td>
+</tr>
+<tr>
+<td>translate</td>
+<td>移动距离</td>
+<td></td>
+</tr>
+<tr>
+<td>linear</td>
+<td>线性过度</td>
+<td></td>
+</tr>
+<tr>
+<td>ease-in</td>
+<td>由慢到快</td>
+<td></td>
+</tr>
+<tr>
+<td>ease-out</td>
+<td>由快到慢</td>
+<td></td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td>由慢到快在到慢</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考:"></a>参考:</h3><ol>
+<li><a target="_blank" rel="noopener" href="http://www.zhangxinxu.com/wordpress/2010/11/css3-transitions-transforms-animation-introduction/">CSS3 Transitions, Transforms和Animation使用简介与应用展示</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.zhangxinxu.com/wordpress/2012/09/css3-3d-transform-perspective-animate-transition/">好吧，CSS3 3D transform变换，不过如此</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/css3/css3_transition.asp">W3School CSS3 transition</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/css3/css3_2dtransform.asp">W3School CSS3 2D 转换</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/css3/css3_3dtransform.asp">W3School CSS3 3D 转换</a></li>
+<li><a target="_blank" rel="noopener" href="https://facebook.github.io/react-native/docs/animated.html">React Native API Animated</a></li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2019/12/23/react-native-animated/" class="archive-article-date">
+  	<time datetime="2019-12-23T04:45:41.000Z" itemprop="datePublished"><i class="icon-clock"></i>2019-12-23</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/" rel="tag">react-native</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E7%94%BB/" rel="tag">动画</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/12/23/qianmi_pc_cash_weighter/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          云小店PC收银串口电子称连接设置说明
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/23/sendmail-linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux send mail</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+	<div class="outer">
+		<div id="footer-info">
+			<div class="footer-left" id="footer-left-icp" style="display: none;">
+				<p><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/">苏ICP备17029916号-1</a></p>
+				<p>
+					<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011402010614"><img
+							src="/img/gonanbeian.png" style="float:left;" />
+						苏公网安备 32011402010614号
+					</a>
+					<script>
+						var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
+						if (isShowICP) {
+							document.getElementById('footer-left-icp').style.display = 'block';
+						}
+					</script>
+				</p>
+			</div>
+
+			<div class="footer-right">
+				<p>&copy; 2022 WangWei</p>
+				<p>
+					<a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/litten/hexo-theme-yilia"
+						target="_blank">Yilia</a> by Litten</p>
+			</div>
+		</div>
+	</div>
+
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+
+<script src="/./main.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 11.67px;">Android</a> <a href="/tags/Armbian/" style="font-size: 10px;">Armbian</a> <a href="/tags/Charle/" style="font-size: 10px;">Charle</a> <a href="/tags/DSM/" style="font-size: 10px;">DSM</a> <a href="/tags/Domoticz/" style="font-size: 10px;">Domoticz</a> <a href="/tags/Drone/" style="font-size: 11.67px;">Drone</a> <a href="/tags/ESC/" style="font-size: 10px;">ESC</a> <a href="/tags/ESP01S/" style="font-size: 10px;">ESP01S</a> <a href="/tags/ESP-Easy/" style="font-size: 10px;">ESP_Easy</a> <a href="/tags/EggJs/" style="font-size: 10px;">EggJs</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitea/" style="font-size: 11.67px;">Gitea</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NFS/" style="font-size: 10px;">NFS</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/POS/" style="font-size: 10px;">POS</a> <a href="/tags/PostMan/" style="font-size: 10px;">PostMan</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/T1/" style="font-size: 10px;">T1</a> <a href="/tags/Tcpdump/" style="font-size: 10px;">Tcpdump</a> <a href="/tags/Test/" style="font-size: 10px;">Test</a> <a href="/tags/Transmission/" style="font-size: 10px;">Transmission</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/memcached/" style="font-size: 10px;">memcached</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/%E4%B8%B2%E5%8F%A3%E7%A7%A4/" style="font-size: 10px;">串口秤</a> <a href="/tags/%E4%BA%91%E5%B0%8F%E5%BA%97/" style="font-size: 18.33px;">云小店</a> <a href="/tags/%E5%84%BF%E7%AB%A5/" style="font-size: 10px;">儿童</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">公众号</a> <a href="/tags/%E5%88%B7%E8%84%B8%E6%94%AF%E4%BB%98/" style="font-size: 10px;">刷脸支付</a> <a href="/tags/%E5%89%AF%E5%B1%8F/" style="font-size: 10px;">副屏</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10px;">动画</a> <a href="/tags/%E5%8D%83%E7%B1%B3/" style="font-size: 20px;">千米</a> <a href="/tags/%E5%8F%91%E8%82%B2/" style="font-size: 10px;">发育</a> <a href="/tags/%E5%95%86%E7%B1%B3/" style="font-size: 11.67px;">商米</a> <a href="/tags/%E5%A4%AA%E8%A1%8C%E4%BB%AA%E8%A1%A8/" style="font-size: 10px;">太行仪表</a> <a href="/tags/%E5%AF%8C%E5%9D%A4/" style="font-size: 10px;">富坤</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 15px;">微信</a> <a href="/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 11.67px;">打印机</a> <a href="/tags/%E6%89%AB%E7%A0%81%E6%9E%AA/" style="font-size: 11.67px;">扫码枪</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D/" style="font-size: 10px;">支付宝</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D%E8%9C%BB%E8%9C%93/" style="font-size: 10px;">支付宝蜻蜓</a> <a href="/tags/%E6%94%B6%E9%93%B6/" style="font-size: 10px;">收银</a> <a href="/tags/%E6%9D%A1%E7%A0%81%E7%A7%A4/" style="font-size: 11.67px;">条码秤</a> <a href="/tags/%E6%A0%87%E7%AD%BE%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">标签打印机</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E7%94%9F%E9%95%BF/" style="font-size: 10px;">生长</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E6%92%AD%E6%8A%A5/" style="font-size: 10px;">语音播报</a> <a href="/tags/%E8%BA%AB%E9%AB%98/" style="font-size: 10px;">身高</a> <a href="/tags/%E9%80%9A%E8%AE%AF%E7%A7%A4/" style="font-size: 16.67px;">通讯秤</a> <a href="/tags/%E9%92%88%E5%BC%8F%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">针式打印机</a> <a href="/tags/%E9%A1%B6%E5%B0%96/" style="font-size: 10px;">顶尖</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.me/">yilia主题作者博客</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/litten/hexo-theme-yilia">yilia github地址</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

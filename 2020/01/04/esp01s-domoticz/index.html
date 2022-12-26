@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://example.com">
+  <title>ESP01S &amp; ESP_Easy &amp; Domoticz开关配置 | 哈哈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ESP01S &amp; ESP_Easy &amp; Domoticz最近准备折腾个wifi开关，淘宝买的一套，发现回来用不了，气人啊。ESP-01S Relay V1.0这个版本根本不用起来，据说ESP-01S Relay V4.0版本可以，没试过。下面记录折腾记录，ESP-01S刷ESP_Easy最新固件，用USB转TTL的3.3v单独给ESP-01S供电，用面包版连接继电器，是可以驱动继电">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP01S &amp; ESP_Easy &amp; Domoticz开关配置">
+<meta property="og:url" content="http://example.com/2020/01/04/esp01s-domoticz/index.html">
+<meta property="og:site_name" content="哈哈">
+<meta property="og:description" content="ESP01S &amp; ESP_Easy &amp; Domoticz最近准备折腾个wifi开关，淘宝买的一套，发现回来用不了，气人啊。ESP-01S Relay V1.0这个版本根本不用起来，据说ESP-01S Relay V4.0版本可以，没试过。下面记录折腾记录，ESP-01S刷ESP_Easy最新固件，用USB转TTL的3.3v单独给ESP-01S供电，用面包版连接继电器，是可以驱动继电">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/media/15770189881388.jpg">
+<meta property="og:image" content="http://example.com/media/15770192810195.jpg">
+<meta property="og:image" content="http://example.com/media/15770195246050.jpg">
+<meta property="og:image" content="http://example.com/media/15770190661260.jpg">
+<meta property="og:image" content="http://example.com/media/15770191864737.jpg">
+<meta property="og:image" content="http://example.com/media/15770197444977.jpg">
+<meta property="og:image" content="http://example.com/media/15770198473093.jpg">
+<meta property="og:image" content="http://example.com/media/15770198920073.jpg">
+<meta property="og:image" content="http://example.com/media/15770199200067.jpg">
+<meta property="og:image" content="http://example.com/media/15770181465616.jpg">
+<meta property="og:image" content="http://example.com/media/15770182924452.jpg">
+<meta property="og:image" content="http://example.com/media/15770183370884.jpg">
+<meta property="og:image" content="http://example.com/media/15770183939862.jpg">
+<meta property="og:image" content="http://example.com/media/15770185163013.jpg">
+<meta property="og:image" content="http://example.com/media/15770185739764.jpg">
+<meta property="og:image" content="http://example.com/media/15770178695053.jpg">
+<meta property="og:image" content="http://example.com/media/15770178977275.jpg">
+<meta property="og:image" content="http://example.com/media/15770179186923.jpg">
+<meta property="og:image" content="http://example.com/media/15770179406823.jpg">
+<meta property="og:image" content="http://example.com/media/15770179559868.jpg">
+<meta property="og:image" content="http://example.com/media/15770180224307.jpg">
+<meta property="og:image" content="http://example.com/media/15770201253970.jpg">
+<meta property="og:image" content="http://example.com/media/switcher.gif">
+<meta property="og:image" content="http://example.com/media/15770205095842.jpg">
+<meta property="og:image" content="http://example.com/media/15770209216802.jpg">
+<meta property="og:image" content="http://pic.d2p.top/15775893576916.jpg">
+<meta property="og:image" content="http://example.com/media/15770187769817.jpg">
+<meta property="og:image" content="http://example.com/media/15770209770926.jpg">
+<meta property="article:published_time" content="2020-01-04T12:29:17.000Z">
+<meta property="article:modified_time" content="2020-01-04T12:29:17.000Z">
+<meta property="article:author" content="WangWei">
+<meta property="article:tag" content="ESP01S">
+<meta property="article:tag" content="ESP_Easy">
+<meta property="article:tag" content="Domoticz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/media/15770189881388.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/main.css">
+
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://pic.d2p.top/15753451492250.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://pic.d2p.top/15753451492250.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/%E9%9A%8F%E7%AC%94">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-esp01s-domoticz" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ESP01S &amp; ESP_Easy &amp; Domoticz开关配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ESP01S-amp-ESP-Easy-amp-Domoticz"><a href="#ESP01S-amp-ESP-Easy-amp-Domoticz" class="headerlink" title="ESP01S &amp; ESP_Easy &amp; Domoticz"></a>ESP01S &amp; ESP_Easy &amp; Domoticz</h1><p>最近准备折腾个wifi开关，淘宝买的一套，发现回来用不了，气人啊。<br>ESP-01S Relay V1.0这个版本根本不用起来，据说ESP-01S Relay V4.0版本可以，没试过。<br>下面记录折腾记录，ESP-01S刷ESP_Easy最新固件，用USB转TTL的3.3v单独给ESP-01S供电，用面包版连接继电器，是可以驱动继电器工作的。直接插在继电器上面不能工作，推测继电器提供的电流太小，无法驱动ESP-01S工作，连IP都获取不到啊。</p>
+<span id="more"></span>
+
+<h2 id="1-下载ESP-Easy固件"><a href="#1-下载ESP-Easy固件" class="headerlink" title="1. 下载ESP_Easy固件"></a>1. 下载ESP_Easy固件</h2><p>下载直地址：<a target="_blank" rel="noopener" href="https://github.com/letscontrolit/ESPEasy/releases">https://github.com/letscontrolit/ESPEasy/releases</a><br>家里网不行，换个手机4G，嗖就下载完了。</p>
+<h2 id="2-刷ESP-Easy固件"><a href="#2-刷ESP-Easy固件" class="headerlink" title="2. 刷ESP_Easy固件"></a>2. 刷ESP_Easy固件</h2><p>解压在bin目录中找到： ESP_Easy_mega-20191208_normal_ESP8266_1M， 复制父目录下：<br><img src="/media/15770189881388.jpg"></p>
+<p>插件上USB刷固件神器, 找个公母头杜邦线，中间剪断，焊在下图红线位置，其它不用焊，我之前没搞错了，先焊另外两根，只要焊橙色线就可以了。<br><img src="/media/15770192810195.jpg"><br>橙色线连下起，插上ESP-01S，再插到电脑就，就自动进入下载模式了。刷完拨下USB,断开橙色线，再插上USB到电脑，ESP-01S就可以启动了。<br><img src="/media/15770195246050.jpg"></p>
+<p><img src="/media/15770190661260.jpg"></p>
+<p><img src="/media/15770191864737.jpg"></p>
+<p>Wifi搜索就有ESP_Easy_0的热点，密码是：configesp，连上去访问: <a target="_blank" rel="noopener" href="http://192.168.2.4/">http://192.168.2.4</a><br><img src="/media/15770197444977.jpg"></p>
+<p><img src="/media/15770198473093.jpg"><br>就可以连到你家里的WIFI了<br><img src="/media/15770198920073.jpg"></p>
+<p><img src="/media/15770199200067.jpg"><br>这个先到这里，下面还有进一步设置。</p>
+<h2 id="3-Domoticz创建开关"><a href="#3-Domoticz创建开关" class="headerlink" title="3. Domoticz创建开关"></a>3. Domoticz创建开关</h2><p><img src="/media/15770181465616.jpg"><br>这里添加完成后，在上图列表中点击”创建虚拟传感器”.<br><img src="/media/15770182924452.jpg"><br>创建完成后到开关Tab页就可以看到刚创建的开关了。<br><img src="/media/15770183370884.jpg"><br>然后点编辑，配置开关。<br><img src="/media/15770183939862.jpg"><br>主要编辑GPIO参数。配置好点击小灯泡测试开关。<br><img src="/media/15770185163013.jpg"></p>
+<p>有些版本ESP_Easy点不亮是因这个命令报错： Unknown or restricted command!，后来下载：ESP_Easy_mega-20191208_normal_ESP8266_1M.bin，刷入就正常了。<br><img src="/media/15770185739764.jpg"></p>
+<h2 id="4-设置开关"><a href="#4-设置开关" class="headerlink" title="4. 设置开关"></a>4. 设置开关</h2><p><img src="/media/15770178695053.jpg"><br>Enabled &#x3D;&gt; save</p>
+<p><img src="/media/15770178977275.jpg"></p>
+<p><img src="/media/15770179186923.jpg"></p>
+<p><img src="/media/15770179406823.jpg"></p>
+<p>使用GPIO0控制继电器<br><img src="/media/15770179559868.jpg"><br>IDX值跟Domoticz一致</p>
+<p><img src="/media/15770180224307.jpg"></p>
+<h2 id="5-Esp-01S刷完插入ESP-01S-Relay无法获取IP地址"><a href="#5-Esp-01S刷完插入ESP-01S-Relay无法获取IP地址" class="headerlink" title="5. Esp-01S刷完插入ESP-01S Relay无法获取IP地址"></a>5. Esp-01S刷完插入ESP-01S Relay无法获取IP地址</h2><p>ESP-01S Relay V1.0版本电路图，测试没有问题。<br><img src="/media/15770201253970.jpg"><br><img src="/media/switcher.gif" alt="switche"></p>
+<p>最简单电路，两节1.5V电池驱动，可以在GPIO0和GND之间接白色LED测试测试，GPIO0接LED正极。测试后是正常的，LED可以点亮，通过Domoticz下可以控制LED点亮。<br><img src="/media/15770205095842.jpg"></p>
+<p>把GND和GPIO0接到ESP-01S Relay V1.0的GND和GPIO0引角上也可以驱动继电器工作<br><img src="/media/15770209216802.jpg"></p>
+<p>问题来了，继电器没有问题，ESP-01S也没有问题，单独都是可以工作的，结合一起就不能工作。</p>
+<p>又测试了几次，发现根本，是GPIO0只要不接就可以正确获取IP, 获取IP能Ping通了，再接上GPIO0就可以正常工作了。测试过程中VCC接继电器VCC, GND接继电器GND，CH_PD接VCC，先不接GPIO0启动后再GPIO0。</p>
+<p><img src="http://pic.d2p.top/15775893576916.jpg"><br><font color="red">翻了一下ESP01S，需要GPIO0拉高电平才工作，傻了这么久，ESP-01S Relay V1.0电路图上看这玩意一直拉低电平啊，杜邦线测试GPIO0接VCC启动，确实可以获取IP，启动后再接回继电器GPIO0，可以正常工作。</font></p>
+<p>要把GPIO0上拉需要更换三极管，</p>
+<h2 id="6-NTP也可设置一下，不知道有没有用"><a href="#6-NTP也可设置一下，不知道有没有用" class="headerlink" title="6. NTP也可设置一下，不知道有没有用"></a>6. NTP也可设置一下，不知道有没有用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cn.pool.ntp.org</span><br></pre></td></tr></table></figure>
+<p><img src="/media/15770187769817.jpg"></p>
+<h2 id="7-其它电路图"><a href="#7-其它电路图" class="headerlink" title="7. 其它电路图"></a>7. 其它电路图</h2><h3 id="7-1-ESP-01S-Relay-V4-0"><a href="#7-1-ESP-01S-Relay-V4-0" class="headerlink" title="7.1 ESP-01S Relay V4.0"></a>7.1 ESP-01S Relay V4.0</h3><p>注意跟V1.0不一样的，据说这个才是插上直接能用的。<br><img src="/media/15770209770926.jpg"></p>
+<h2 id="8-参考"><a href="#8-参考" class="headerlink" title="8. 参考"></a>8. 参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.yeziruo.cn/archives/86.html">https://blog.yeziruo.cn/archives/86.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/IOT-MCU/ESP-01S-Relay-v1.0">ESP-01S-Relay-v1.0</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/IOT-MCU">IOT-MCU</a></li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2020/01/04/esp01s-domoticz/" class="archive-article-date">
+  	<time datetime="2020-01-04T12:29:17.000Z" itemprop="datePublished"><i class="icon-clock"></i>2020-01-04</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Domoticz/" rel="tag">Domoticz</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESP01S/" rel="tag">ESP01S</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ESP-Easy/" rel="tag">ESP_Easy</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/ESP01S/">ESP01S</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/01/14/esc-pos-printer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ESC/POS指令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/03/bluetooth-printer-connect/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">云小店Android收银机连接蓝牙小票打印机</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+	<div class="outer">
+		<div id="footer-info">
+			<div class="footer-left" id="footer-left-icp" style="display: none;">
+				<p><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/">苏ICP备17029916号-1</a></p>
+				<p>
+					<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011402010614"><img
+							src="/img/gonanbeian.png" style="float:left;" />
+						苏公网安备 32011402010614号
+					</a>
+					<script>
+						var isShowICP = window.location.hostname.indexOf('d2p.top') != -1;
+						if (isShowICP) {
+							document.getElementById('footer-left-icp').style.display = 'block';
+						}
+					</script>
+				</p>
+			</div>
+
+			<div class="footer-right">
+				<p>&copy; 2022 WangWei</p>
+				<p>
+					<a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/litten/hexo-theme-yilia"
+						target="_blank">Yilia</a> by Litten</p>
+			</div>
+		</div>
+	</div>
+
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+
+<script src="/./main.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/Android/" style="font-size: 11.67px;">Android</a> <a href="/tags/Armbian/" style="font-size: 10px;">Armbian</a> <a href="/tags/Charle/" style="font-size: 10px;">Charle</a> <a href="/tags/DSM/" style="font-size: 10px;">DSM</a> <a href="/tags/Domoticz/" style="font-size: 10px;">Domoticz</a> <a href="/tags/Drone/" style="font-size: 11.67px;">Drone</a> <a href="/tags/ESC/" style="font-size: 10px;">ESC</a> <a href="/tags/ESP01S/" style="font-size: 10px;">ESP01S</a> <a href="/tags/ESP-Easy/" style="font-size: 10px;">ESP_Easy</a> <a href="/tags/EggJs/" style="font-size: 10px;">EggJs</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitea/" style="font-size: 11.67px;">Gitea</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NFS/" style="font-size: 10px;">NFS</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/POS/" style="font-size: 10px;">POS</a> <a href="/tags/PostMan/" style="font-size: 10px;">PostMan</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/T1/" style="font-size: 10px;">T1</a> <a href="/tags/Tcpdump/" style="font-size: 10px;">Tcpdump</a> <a href="/tags/Test/" style="font-size: 10px;">Test</a> <a href="/tags/Transmission/" style="font-size: 10px;">Transmission</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/memcached/" style="font-size: 10px;">memcached</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/%E4%B8%B2%E5%8F%A3%E7%A7%A4/" style="font-size: 10px;">串口秤</a> <a href="/tags/%E4%BA%91%E5%B0%8F%E5%BA%97/" style="font-size: 18.33px;">云小店</a> <a href="/tags/%E5%84%BF%E7%AB%A5/" style="font-size: 10px;">儿童</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">公众号</a> <a href="/tags/%E5%88%B7%E8%84%B8%E6%94%AF%E4%BB%98/" style="font-size: 10px;">刷脸支付</a> <a href="/tags/%E5%89%AF%E5%B1%8F/" style="font-size: 10px;">副屏</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10px;">动画</a> <a href="/tags/%E5%8D%83%E7%B1%B3/" style="font-size: 20px;">千米</a> <a href="/tags/%E5%8F%91%E8%82%B2/" style="font-size: 10px;">发育</a> <a href="/tags/%E5%95%86%E7%B1%B3/" style="font-size: 11.67px;">商米</a> <a href="/tags/%E5%A4%AA%E8%A1%8C%E4%BB%AA%E8%A1%A8/" style="font-size: 10px;">太行仪表</a> <a href="/tags/%E5%AF%8C%E5%9D%A4/" style="font-size: 10px;">富坤</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 15px;">微信</a> <a href="/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 11.67px;">打印机</a> <a href="/tags/%E6%89%AB%E7%A0%81%E6%9E%AA/" style="font-size: 11.67px;">扫码枪</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D/" style="font-size: 10px;">支付宝</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D%E8%9C%BB%E8%9C%93/" style="font-size: 10px;">支付宝蜻蜓</a> <a href="/tags/%E6%94%B6%E9%93%B6/" style="font-size: 10px;">收银</a> <a href="/tags/%E6%9D%A1%E7%A0%81%E7%A7%A4/" style="font-size: 11.67px;">条码秤</a> <a href="/tags/%E6%A0%87%E7%AD%BE%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">标签打印机</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E7%94%9F%E9%95%BF/" style="font-size: 10px;">生长</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E6%92%AD%E6%8A%A5/" style="font-size: 10px;">语音播报</a> <a href="/tags/%E8%BA%AB%E9%AB%98/" style="font-size: 10px;">身高</a> <a href="/tags/%E9%80%9A%E8%AE%AF%E7%A7%A4/" style="font-size: 16.67px;">通讯秤</a> <a href="/tags/%E9%92%88%E5%BC%8F%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">针式打印机</a> <a href="/tags/%E9%A1%B6%E5%B0%96/" style="font-size: 10px;">顶尖</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.me/">yilia主题作者博客</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/litten/hexo-theme-yilia">yilia github地址</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
