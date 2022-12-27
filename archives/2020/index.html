@@ -541,21 +541,22 @@
       <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
 <script type="text/javascript">
-  if () {
+  if ("true") {
     var leancloud_app_id = '';
     var leancloud_app_key = '';
-    AV.init({
-      appId: leancloud_app_id,
-      appKey: leancloud_app_key
-    });
-
+    if (window.AV) {
+      AV.init({
+        appId: leancloud_app_id,
+        appKey: leancloud_app_key
+      });
+    }
     var pageViewsLength = $(".pageViews").length;
     var isIndex = $(".pageViews").length > 1 ? true : false;
 
-    function showTime () {
+    function showTime() {
       var Pageview = AV.Object.extend("Pageview");
       if (isIndex) {
-        $(".pageViews").each(function () {
+        $(".pageViews").each(function() {
           showPageViewsNum($(this), Pageview);
         });
       } else {
@@ -563,27 +564,27 @@
       }
     }
     //仅显示阅读量
-    function showPageViewsNum (ele, Pageview) {
+    function showPageViewsNum(ele, Pageview) {
       var id = ele.attr('id').trim();
       var query = new AV.Query("Pageview");
       query.equalTo("post_id", id);
       query.descending('createdAt');
       query.limit(1);
-      query.find().then(function (results) {
+      query.find().then(function(results) {
         $(document.getElementById(id)).text(results && results.length > 0 ? results[0].get("count") : '0');
-      }, function (error) {
+      }, function(error) {
         $(document.getElementById(id)).text('0');
       });
     }
     //追加并显示阅读量
-    function addPageViewsNum (ele) {
+    function addPageViewsNum(ele) {
       var id = ele.attr('id').trim();
       var title = ele.attr('data-flag-title').trim();
       var query = new AV.Query("Pageview");
       query.equalTo("post_id", id);
       query.descending('createdAt');
       query.limit(1);
-      query.find().then(function (results) {
+      query.find().then(function(results) {
         if (results.length == 0) {
           saveNewPageview(id, title);
           return;
@@ -593,29 +594,28 @@
         count++;
         pageview.set("count", count);
         pageview.set("title", title);
-        pageview.save().then(function (pageview) {
+        pageview.save().then(function(pageview) {
           $(document.getElementById(id)).text(count);
         })
-      }, function (error) {
+      }, function(error) {
         saveNewPageview(id, title);
       })
     }
 
-    function saveNewPageview (id, title) {
+    function saveNewPageview(id, title) {
       var Pageview = AV.Object.extend("Pageview");
       var query = new Pageview;
       query.save({
         post_id: id,
         title: title,
         count: 1
-      }).then(function (pageview) {
+      }).then(function(pageview) {
         $(document.getElementById(id)).text(pageview.count);
-      }, function (error) {
-      });
+      }, function(error) {});
 
     }
 
-    if (pageViewsLength) { //此处判断等于 1 在执行 可去除循环
+    if (window.AV && pageViewsLength) { //此处判断等于 1 在执行 可去除循环
       showTime();
     }
   }
@@ -654,23 +654,24 @@
 
     </div>
     <script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: false,
-		animate: true,
-		isHome: false,
-		isPost: false,
-		isArchive: true,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false,
-		root: "/",
-		innerArchive: true
-	}
+  var yiliaConfig = {
+    fancybox: true,
+    mathjax: false,
+    animate: true,
+    isHome: false,
+    isPost: false,
+    isArchive: true,
+    isTag: false,
+    isCategory: false,
+    open_in_new: false,
+    root: "/",
+    innerArchive: true
+  }
 </script>
 
 
 <script src="/./main.js"></script>
+
 
 
 
