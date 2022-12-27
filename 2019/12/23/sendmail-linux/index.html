@@ -154,6 +154,7 @@
     
       <input type="hidden" class="isFancy" />
     
+
     
       <header class="article-header">
         
@@ -163,6 +164,11 @@
     </h1>
   
 
+        <!-- word count end -->
+        
+          &nbsp; | &nbsp;
+          <span id="" class="pageViews" data-flag-title="Linux send mail">0</span>°
+        
       </header>
     
     <div class="article-entry" itemprop="articleBody">
@@ -176,7 +182,7 @@
 
 <h3 id="3-测试发邮件"><a href="#3-测试发邮件" class="headerlink" title="3. 测试发邮件"></a>3. 测试发邮件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; % sudo <span class="built_in">echo</span>  hello word | mail -v -s <span class="string">&quot;wv title&quot;</span> 276667179@qq.com                    </span><br><span class="line">[&lt;-] 220 126.com Anti-spam GT <span class="keyword">for</span> Coremail System (126com[20140526])</span><br><span class="line">[-&gt;] EHLO wv1124</span><br><span class="line">[&lt;-] 250 8BITMIME</span><br><span class="line">[-&gt;] AUTH LOGIN</span><br><span class="line">[&lt;-] 334 dXNlcm5hbWU6</span><br><span class="line">[-&gt;] d3YxMTI0</span><br><span class="line">[&lt;-] 334 UGFzc3dvcmQ6</span><br><span class="line">[&lt;-] 235 Authentication successful</span><br><span class="line">[-&gt;] MAIL FROM:&lt;wv@126.com&gt;</span><br><span class="line">[&lt;-] 553 Mail from must equal authorized user</span><br><span class="line">send-mail: 553 Mail from must equal authorized user</span><br></pre></td></tr></table></figure>
 
-<h3 id="4-报错553"><a href="#4-报错553" class="headerlink" title="4. 报错553"></a>4. 报错553</h3><p>能过log查看,发现使用的<a href="mailto:&#x77;&#x76;&#64;&#x31;&#50;&#54;&#46;&#99;&#x6f;&#x6d;">&#x77;&#x76;&#64;&#x31;&#50;&#54;&#46;&#99;&#x6f;&#x6d;</a>不是<a href="mailto:&#119;&#118;&#49;&#x31;&#x32;&#52;&#x40;&#x31;&#50;&#54;&#46;&#x63;&#111;&#109;">&#119;&#118;&#49;&#x31;&#x32;&#52;&#x40;&#x31;&#50;&#54;&#46;&#x63;&#111;&#109;</a>, 我当前linux机器的用户是wv, 于是再google一下, 找到了需要配置别名</p>
+<h3 id="4-报错553"><a href="#4-报错553" class="headerlink" title="4. 报错553"></a>4. 报错553</h3><p>能过log查看,发现使用的<a href="mailto:&#119;&#x76;&#64;&#49;&#50;&#x36;&#46;&#x63;&#x6f;&#109;">&#119;&#x76;&#64;&#49;&#50;&#x36;&#46;&#x63;&#x6f;&#109;</a>不是<a href="mailto:&#x77;&#118;&#x31;&#49;&#50;&#x34;&#x40;&#49;&#50;&#54;&#x2e;&#99;&#111;&#109;">&#x77;&#118;&#x31;&#49;&#50;&#x34;&#x40;&#49;&#50;&#54;&#x2e;&#99;&#111;&#109;</a>, 我当前linux机器的用户是wv, 于是再google一下, 找到了需要配置别名</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssmtp/revaliases</span><br></pre></td></tr></table></figure>
 <p>配置如下:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Format:	local_account:outgoing_address:mailhub</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Example: root:your_login@your.domain:mailhub.your.domain[:port]</span></span><br><span class="line"><span class="comment"># where [:port] is an optional port number that defaults to 25.</span></span><br><span class="line"></span><br><span class="line">wv:wv1124@126.com:smtp.126.com</span><br></pre></td></tr></table></figure>
@@ -293,8 +299,94 @@
 </section>
 
 
+
       </div>
       <footer id="footer">
+    
+      <!-- 文章阅读数 -->
+      <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+<script type="text/javascript">
+  if () {
+    var leancloud_app_id = '';
+    var leancloud_app_key = '';
+    AV.init({
+      appId: leancloud_app_id,
+      appKey: leancloud_app_key
+    });
+    var pageViewsLength = $(".pageViews").length;
+    var isIndex = $(".pageViews").length > 1 ? true : false;
+    function showTime () {
+      var Pageview = AV.Object.extend("Pageview");
+      if (isIndex) {
+        $(".pageViews").each(function () {
+          showPageViewsNum($(this), Pageview);
+        });
+      } else {
+        addPageViewsNum($(".pageViews"));
+      }
+    }
+    //仅显示阅读量
+    function showPageViewsNum (ele, Pageview) {
+      var id = ele.attr('id').trim();
+      var query = new AV.Query("Pageview");
+      query.equalTo("post_id", id);
+      query.descending('createdAt');
+      query.limit(1);
+      query.find().then(function (results) {
+        $(document.getElementById(id)).text(results && results.length > 0 ? results[0].get("count") : '0');
+      }, function (error) {
+        $(document.getElementById(id)).text('0');
+      });
+    }
+    //追加并显示阅读量
+    function addPageViewsNum (ele) {
+      var id = ele.attr('id').trim();
+      var title = ele.attr('data-flag-title').trim();
+      var query = new AV.Query("Pageview");
+      query.equalTo("post_id", id);
+      query.descending('createdAt');
+      query.limit(1);
+      query.find().then(function (results) {
+        if (results.length == 0) {
+          saveNewPageview(id, title);
+          return;
+        }
+        var pageview = results[0];
+        var count = pageview.get("count");
+        count++;
+        pageview.set("count", count);
+        pageview.set("title", title);
+        pageview.save().then(function (pageview) {
+          $(document.getElementById(id)).text(count);
+        })
+      }, function (error) {
+        saveNewPageview(id, title);
+      })
+    }
+
+    function saveNewPageview (id, title) {
+      var Pageview = AV.Object.extend("Pageview");
+      var query = new Pageview;
+      query.save({
+        post_id: id,
+        title: title,
+        count: 1
+      }).then(function (pageview) {
+        $(document.getElementById(id)).text(pageview.count);
+      }, function (error) {
+      });
+
+    }
+
+    if (pageViewsLength) { //此处判断等于 1 在执行 可去除循环
+      showTime();
+    }
+  }
+</script>
+
+    
+
 	<div class="outer">
 		<div id="footer-info">
 			<div class="footer-left" id="footer-left-icp" style="display: none;">
@@ -323,6 +415,7 @@
 	</div>
 
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {
