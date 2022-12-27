@@ -18,8 +18,11 @@
 <meta property="og:image" content="http://pic.d2p.top/15750231731733.jpg">
 <meta property="og:image" content="http://pic.d2p.top/15792657590481.jpg">
 <meta property="og:image" content="http://pic.d2p.top/15792664989939.jpg">
+<meta property="og:image" content="http://example.com/media/Snip20221227_58.png">
+<meta property="og:image" content="http://example.com/media/Snip20221227_61.png">
+<meta property="og:image" content="http://pic.d2p.top/16439419250623.jpg">
 <meta property="article:published_time" content="2022-02-16T04:11:36.000Z">
-<meta property="article:modified_time" content="2022-02-16T04:11:36.000Z">
+<meta property="article:modified_time" content="2022-12-27T09:27:31.753Z">
 <meta property="article:author" content="WangWei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://pic.d2p.top/15750231731733.jpg">
@@ -223,6 +226,11 @@ console.log(window.navigator);
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install --save highlight.js</span><br><span class="line">yarn upgrade highlight.js</span><br><span class="line">npm upgrade highlight.js jsftp.js</span><br></pre></td></tr></table></figure>
 
 
+<h2 id="MWeb配置"><a href="#MWeb配置" class="headerlink" title="MWeb配置"></a>MWeb配置</h2><p>CMD + E 打开外部模式。<br>导入文件夹：<br><img src="/media/Snip20221227_58.png" alt="Snip20221227_58"></p>
+<p>右键引入文件夹编辑：<br><img src="/media/Snip20221227_61.png" alt="Snip20221227_61"></p>
+<p>图床设置</p>
+<p><img src="http://pic.d2p.top/16439419250623.jpg"></p>
+
       
     </div>
     <div class="article-info article-info-index">
@@ -330,8 +338,10 @@ console.log(window.navigator);
       appId: leancloud_app_id,
       appKey: leancloud_app_key
     });
+
     var pageViewsLength = $(".pageViews").length;
     var isIndex = $(".pageViews").length > 1 ? true : false;
+
     function showTime () {
       var Pageview = AV.Object.extend("Pageview");
       if (isIndex) {

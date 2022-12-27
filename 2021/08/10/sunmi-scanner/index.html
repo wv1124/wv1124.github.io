@@ -17,8 +17,13 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://pic.d2p.top/16286034756826.jpg">
 <meta property="og:image" content="http://pic.d2p.top/16286034961656.jpg">
+<meta property="og:image" content="http://example.com/media/16721329126794.jpg">
+<meta property="og:image" content="http://example.com/media/16721320073180.jpg">
+<meta property="og:image" content="http://example.com/media/16721320638649.jpg">
+<meta property="og:image" content="http://example.com/media/16721320865745.jpg">
+<meta property="og:image" content="http://example.com/media/16721321022062.jpg">
 <meta property="article:published_time" content="2021-08-10T13:57:39.000Z">
-<meta property="article:modified_time" content="2021-08-10T13:57:39.000Z">
+<meta property="article:modified_time" content="2022-12-27T10:01:57.156Z">
 <meta property="article:author" content="WangWei">
 <meta property="article:tag" content="云小店">
 <meta property="article:tag" content="商米">
@@ -182,6 +187,16 @@
 <h2 id="1-商米扫码松鼠扫描UPC条码时会在前端加个0，导致扫出来商品识别异常。"><a href="#1-商米扫码松鼠扫描UPC条码时会在前端加个0，导致扫出来商品识别异常。" class="headerlink" title="1. 商米扫码松鼠扫描UPC条码时会在前端加个0，导致扫出来商品识别异常。"></a>1. 商米扫码松鼠扫描UPC条码时会在前端加个0，导致扫出来商品识别异常。</h2><p>依次扫下面条码设置：</p>
 <p>重置扫码枪<br><img src="http://pic.d2p.top/16286034756826.jpg" width="50%" height="50%"></p>
 <p>设置通用码<br><img src="http://pic.d2p.top/16286034961656.jpg" width="50%" height="40%"></p>
+<h2 id="2-识别所有条码"><a href="#2-识别所有条码" class="headerlink" title="2. 识别所有条码"></a>2. 识别所有条码</h2><p>解决临时商品条码扫码问题，注意下图是总价模式下打印出来的。<br><img src="/media/16721329126794.jpg"></p>
+<p>依次扫下面条码设置：</p>
+<p>启动设置<br><img src="/media/16721320073180.jpg"></p>
+<p>重置扫码枪<br><img src="/media/16721320638649.jpg"></p>
+<p><img src="/media/16721320865745.jpg"></p>
+<p><img src="/media/16721321022062.jpg"></p>
+<h2><font color="red">注意临时商品必须选择总价模式，否则识别出来条码有异常</font></h2>
+![](/media/16721349731813.jpg)
+
+
 
       
     </div>
@@ -300,8 +315,10 @@
       appId: leancloud_app_id,
       appKey: leancloud_app_key
     });
+
     var pageViewsLength = $(".pageViews").length;
     var isIndex = $(".pageViews").length > 1 ? true : false;
+
     function showTime () {
       var Pageview = AV.Object.extend("Pageview");
       if (isIndex) {

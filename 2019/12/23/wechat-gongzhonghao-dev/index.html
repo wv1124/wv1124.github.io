@@ -399,8 +399,10 @@
       appId: leancloud_app_id,
       appKey: leancloud_app_key
     });
+
     var pageViewsLength = $(".pageViews").length;
     var isIndex = $(".pageViews").length > 1 ? true : false;
+
     function showTime () {
       var Pageview = AV.Object.extend("Pageview");
       if (isIndex) {
