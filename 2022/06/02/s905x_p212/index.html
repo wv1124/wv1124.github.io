@@ -15,18 +15,19 @@
 <meta property="og:site_name" content="哈哈">
 <meta property="og:description" content="S905X刷Android闲鱼上买了2+16G的Android盒了，S905X芯片，回来只能从TF卡启动armbian和CoreELEC，也可以从U盘启动，但必须是TF旁边的USB口才可以。盒子自带root，备份了一下各分区。开始尝试各种刷机。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://pic.d2p.top/16484416159125.jpg">
-<meta property="og:image" content="http://pic.d2p.top/16465733777533.jpg">
-<meta property="og:image" content="http://pic.d2p.top/16489772751879.jpg">
-<meta property="og:image" content="http://pic.d2p.top/16489772854373.jpg">
-<meta property="og:image" content="http://pic.d2p.top/16489772934522.jpg">
-<meta property="og:image" content="http://pic.d2p.top/16489779124906.jpg">
+<meta property="og:image" content="http://example.com/media/16484416159125.jpg">
+<meta property="og:image" content="http://example.com/media/16465733777533.jpg">
+<meta property="og:image" content="http://example.com/media/16489772751879.jpg">
+<meta property="og:image" content="http://example.com/media/16489772854373.jpg">
+<meta property="og:image" content="http://example.com/media/16489772934522.jpg">
+<meta property="og:image" content="http://example.com/media/16489779124906.jpg">
+<meta property="og:image" content="http://example.com/media/16489779124906.jpg">
 <meta property="article:published_time" content="2022-06-02T14:10:57.000Z">
-<meta property="article:modified_time" content="2022-06-02T14:10:57.000Z">
+<meta property="article:modified_time" content="2026-11-03T13:29:34.825Z">
 <meta property="article:author" content="WangWei">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://pic.d2p.top/16484416159125.jpg">
+<meta name="twitter:image" content="http://example.com/media/16484416159125.jpg">
   
     <link rel="alternative" href="/atom.xml" title="哈哈" type="application/atom+xml">
   
@@ -209,7 +210,7 @@
 <h2><font color="red">问题：看不到Android分区，无法安装到emmc</font></h2>
 
 <p>如果需要备份原系统可以ddbr备份。</p>
-<p><img src="http://pic.d2p.top/16484416159125.jpg"></p>
+<p><img src="/media/16484416159125.jpg"></p>
 <h2 id="4-刷CoreELEC"><a href="#4-刷CoreELEC" class="headerlink" title="4. 刷CoreELEC"></a>4. 刷CoreELEC</h2><p><a target="_blank" rel="noopener" href="https://discourse.coreelec.org/t/how-to-install-coreelec/677">https://discourse.coreelec.org/t/how-to-install-coreelec/677</a></p>
 <p>网盘中：CoreELEC-Amlogic-ng.arm-19.4-Matrix_rc3-Generic.img.gz<br>跟上面一样写入TF卡或者U盘。</p>
 <h2 id="写完按官方文档-https-coreelec-org-dtb"><a href="#写完按官方文档-https-coreelec-org-dtb" class="headerlink" title="写完按官方文档:https://coreelec.org/dtb/"></a>写完按官方文档:<a target="_blank" rel="noopener" href="https://coreelec.org/dtb/">https://coreelec.org/dtb/</a></h2><p>把：device_trees&#x2F;gxl_p212_2g 复制到根目录改名为dtb.img.<br>就可以正常启动CoreELEC，同样也是看不到android分区。</p>
@@ -220,7 +221,7 @@
 <h2><font color="red">问题：看不到Android分区，无法安装到emmc</font></h2>
 
 <h2 id="5-刷Andorid"><a href="#5-刷Andorid" class="headerlink" title="5. 刷Andorid"></a>5. 刷Andorid</h2><p>网盘: Aidan’s ROM [S905X] 1GB 2GB+.img 从XDA下载的。<br>耳机插孔中有复位按钮，捅个10秒左右，进线刷模式</p>
-<p><img src="http://pic.d2p.top/16465733777533.jpg"></p>
+<p><img src="/media/16465733777533.jpg"></p>
 <p>Windows线刷试了多次，卡7%。</p>
 <p>线刷报错：UBOOT&#x2F;获取返回&#x2F;DiskInitial命令出错<br>[2022-03-05 15:14:16 886][HUB2-5][0x32030201]UBOOT&#x2F;获取返回&#x2F;DiskInitial命令出错<br>按这个方法不能解决：<a target="_blank" rel="noopener" href="https://www.znds.com/tv-1207043-1-1.html">https://www.znds.com/tv-1207043-1-1.html</a></p>
 <p>于放弃windows，转向linux。</p>
@@ -249,10 +250,11 @@
 <p>解压后直接写入TF卡，注意这个文件解压后比较大。跟EMMC一样大。TF卡必须略大于EMMC。</p>
 <p>TF卡插入后接通电源，再armbian的U盘也接入盒子，此时盒子还是不会亮灯，短接EMMC，这里就从TF卡启动了。并会加载U盘中的armbian，如果是emmc，直接ddbr恢复就行。</p>
 <p>经过几次折腾，USB_Borning_Tools卡在4%或者%7都跟固件包有问题，可以使用Customization Tool 解包后 Packaing 把Full勾去掉，在下面只勾选boot, system这两个重新制线刷包就行可以正常刷入。不过不一定能启动。</p>
-<p><img src="http://pic.d2p.top/16489772751879.jpg"></p>
-<p><img src="http://pic.d2p.top/16489772854373.jpg"></p>
-<p><img src="http://pic.d2p.top/16489772934522.jpg"></p>
-<p>EMMC短接点：<br><img src="http://pic.d2p.top/16489779124906.jpg"></p>
+<p><img src="/media/16489772751879.jpg"></p>
+<p><img src="/media/16489772854373.jpg"></p>
+<p><img src="/media/16489772934522.jpg"></p>
+<p>EMMC短接点：<br><img src="/media/16489779124906.jpg"></p>
+<p><img src="/media/16489779124906.jpg"></p>
 <p>经过几天折腾发现这盒子真是刷不挂啊，最后总能能通TF卡启动Bootloader给救回来。</p>
 
       
@@ -282,6 +284,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2022/08/30/docker-install/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/2022/03/08/t1-armbian/" id="article-nav-older" class="article-nav-link-wrap">
@@ -369,7 +380,7 @@
 			</div>
 
 			<div class="footer-right">
-				<p>&copy; 2022 WangWei</p>
+				<p>&copy; 2026 WangWei</p>
 				<p>
 					<a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/litten/hexo-theme-yilia"
 						target="_blank">Yilia</a> by Litten</p>
@@ -426,7 +437,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/Android/" style="font-size: 11.67px;">Android</a> <a href="/tags/Armbian/" style="font-size: 10px;">Armbian</a> <a href="/tags/Charle/" style="font-size: 10px;">Charle</a> <a href="/tags/DSM/" style="font-size: 10px;">DSM</a> <a href="/tags/Domoticz/" style="font-size: 10px;">Domoticz</a> <a href="/tags/Drone/" style="font-size: 11.67px;">Drone</a> <a href="/tags/ESC/" style="font-size: 10px;">ESC</a> <a href="/tags/ESP01S/" style="font-size: 10px;">ESP01S</a> <a href="/tags/ESP-Easy/" style="font-size: 10px;">ESP_Easy</a> <a href="/tags/EggJs/" style="font-size: 10px;">EggJs</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitea/" style="font-size: 11.67px;">Gitea</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NFS/" style="font-size: 10px;">NFS</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/POS/" style="font-size: 10px;">POS</a> <a href="/tags/PostMan/" style="font-size: 10px;">PostMan</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/T1/" style="font-size: 10px;">T1</a> <a href="/tags/Tcpdump/" style="font-size: 10px;">Tcpdump</a> <a href="/tags/Test/" style="font-size: 10px;">Test</a> <a href="/tags/Transmission/" style="font-size: 10px;">Transmission</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/memcached/" style="font-size: 10px;">memcached</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/%E4%B8%B2%E5%8F%A3%E7%A7%A4/" style="font-size: 10px;">串口秤</a> <a href="/tags/%E4%BA%91%E5%B0%8F%E5%BA%97/" style="font-size: 18.33px;">云小店</a> <a href="/tags/%E5%84%BF%E7%AB%A5/" style="font-size: 10px;">儿童</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">公众号</a> <a href="/tags/%E5%88%B7%E8%84%B8%E6%94%AF%E4%BB%98/" style="font-size: 10px;">刷脸支付</a> <a href="/tags/%E5%89%AF%E5%B1%8F/" style="font-size: 10px;">副屏</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10px;">动画</a> <a href="/tags/%E5%8D%83%E7%B1%B3/" style="font-size: 20px;">千米</a> <a href="/tags/%E5%8F%91%E8%82%B2/" style="font-size: 10px;">发育</a> <a href="/tags/%E5%95%86%E7%B1%B3/" style="font-size: 11.67px;">商米</a> <a href="/tags/%E5%A4%AA%E8%A1%8C%E4%BB%AA%E8%A1%A8/" style="font-size: 10px;">太行仪表</a> <a href="/tags/%E5%AF%8C%E5%9D%A4/" style="font-size: 10px;">富坤</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 15px;">微信</a> <a href="/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 11.67px;">打印机</a> <a href="/tags/%E6%89%AB%E7%A0%81%E6%9E%AA/" style="font-size: 11.67px;">扫码枪</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D/" style="font-size: 10px;">支付宝</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D%E8%9C%BB%E8%9C%93/" style="font-size: 10px;">支付宝蜻蜓</a> <a href="/tags/%E6%94%B6%E9%93%B6/" style="font-size: 10px;">收银</a> <a href="/tags/%E6%9D%A1%E7%A0%81%E7%A7%A4/" style="font-size: 11.67px;">条码秤</a> <a href="/tags/%E6%A0%87%E7%AD%BE%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">标签打印机</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E7%94%9F%E9%95%BF/" style="font-size: 10px;">生长</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E6%92%AD%E6%8A%A5/" style="font-size: 10px;">语音播报</a> <a href="/tags/%E8%BA%AB%E9%AB%98/" style="font-size: 10px;">身高</a> <a href="/tags/%E9%80%9A%E8%AE%AF%E7%A7%A4/" style="font-size: 16.67px;">通讯秤</a> <a href="/tags/%E9%92%88%E5%BC%8F%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">针式打印机</a> <a href="/tags/%E9%A1%B6%E5%B0%96/" style="font-size: 10px;">顶尖</a>
+    				<a href="/tags/Android/" style="font-size: 11.67px;">Android</a> <a href="/tags/Armbian/" style="font-size: 10px;">Armbian</a> <a href="/tags/Charle/" style="font-size: 10px;">Charle</a> <a href="/tags/Clion/" style="font-size: 10px;">Clion</a> <a href="/tags/DSM/" style="font-size: 10px;">DSM</a> <a href="/tags/Domoticz/" style="font-size: 10px;">Domoticz</a> <a href="/tags/Drone/" style="font-size: 11.67px;">Drone</a> <a href="/tags/ESC/" style="font-size: 10px;">ESC</a> <a href="/tags/ESP01S/" style="font-size: 10px;">ESP01S</a> <a href="/tags/ESP-Easy/" style="font-size: 10px;">ESP_Easy</a> <a href="/tags/EggJs/" style="font-size: 10px;">EggJs</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gitea/" style="font-size: 11.67px;">Gitea</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/MQ/" style="font-size: 10px;">MQ</a> <a href="/tags/Mac/" style="font-size: 11.67px;">Mac</a> <a href="/tags/NFS/" style="font-size: 10px;">NFS</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/POS/" style="font-size: 10px;">POS</a> <a href="/tags/PostMan/" style="font-size: 10px;">PostMan</a> <a href="/tags/QEMU/" style="font-size: 10px;">QEMU</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a> <a href="/tags/STM32CubeMx/" style="font-size: 10px;">STM32CubeMx</a> <a href="/tags/T1/" style="font-size: 10px;">T1</a> <a href="/tags/Tcpdump/" style="font-size: 10px;">Tcpdump</a> <a href="/tags/Test/" style="font-size: 10px;">Test</a> <a href="/tags/Transmission/" style="font-size: 10px;">Transmission</a> <a href="/tags/VM/" style="font-size: 10px;">VM</a> <a href="/tags/adb/" style="font-size: 10px;">adb</a> <a href="/tags/android/" style="font-size: 10px;">android</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/memcached/" style="font-size: 10px;">memcached</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/webview/" style="font-size: 10px;">webview</a> <a href="/tags/%E4%B8%B2%E5%8F%A3%E7%A7%A4/" style="font-size: 10px;">串口秤</a> <a href="/tags/%E4%BA%91%E5%B0%8F%E5%BA%97/" style="font-size: 18.33px;">云小店</a> <a href="/tags/%E5%84%BF%E7%AB%A5/" style="font-size: 10px;">儿童</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 10px;">公众号</a> <a href="/tags/%E5%88%B7%E8%84%B8%E6%94%AF%E4%BB%98/" style="font-size: 10px;">刷脸支付</a> <a href="/tags/%E5%89%AF%E5%B1%8F/" style="font-size: 10px;">副屏</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 10px;">动画</a> <a href="/tags/%E5%8D%83%E7%B1%B3/" style="font-size: 20px;">千米</a> <a href="/tags/%E5%8F%91%E8%82%B2/" style="font-size: 10px;">发育</a> <a href="/tags/%E5%95%86%E7%B1%B3/" style="font-size: 11.67px;">商米</a> <a href="/tags/%E5%A4%AA%E8%A1%8C%E4%BB%AA%E8%A1%A8/" style="font-size: 10px;">太行仪表</a> <a href="/tags/%E5%AF%8C%E5%9D%A4/" style="font-size: 10px;">富坤</a> <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">小程序</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 15px;">微信</a> <a href="/tags/%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 11.67px;">打印机</a> <a href="/tags/%E6%89%AB%E7%A0%81%E6%9E%AA/" style="font-size: 11.67px;">扫码枪</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D/" style="font-size: 10px;">支付宝</a> <a href="/tags/%E6%94%AF%E4%BB%98%E5%AE%9D%E8%9C%BB%E8%9C%93/" style="font-size: 10px;">支付宝蜻蜓</a> <a href="/tags/%E6%94%B6%E9%93%B6/" style="font-size: 10px;">收银</a> <a href="/tags/%E6%9D%A1%E7%A0%81%E7%A7%A4/" style="font-size: 11.67px;">条码秤</a> <a href="/tags/%E6%A0%87%E7%AD%BE%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">标签打印机</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 10px;">树莓派</a> <a href="/tags/%E7%94%9F%E9%95%BF/" style="font-size: 10px;">生长</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E6%92%AD%E6%8A%A5/" style="font-size: 10px;">语音播报</a> <a href="/tags/%E8%BA%AB%E9%AB%98/" style="font-size: 10px;">身高</a> <a href="/tags/%E9%80%9A%E8%AE%AF%E7%A7%A4/" style="font-size: 16.67px;">通讯秤</a> <a href="/tags/%E9%92%88%E5%BC%8F%E6%89%93%E5%8D%B0%E6%9C%BA/" style="font-size: 10px;">针式打印机</a> <a href="/tags/%E9%A1%B6%E5%B0%96/" style="font-size: 10px;">顶尖</a>
     			</div>
     	</section>
     
